@@ -1,5 +1,7 @@
 # How to download, run and use MSnR
 
+For the simplest Windows installation, use the [single-file installer](ONE_FILE_WINDOWS.md). The commands below remain available for manual or server deployments.
+
 Start in **paper mode**. The dashboard and database run without a broker connection, but real market monitoring needs an authenticated Windows MT5 terminal. Paper mode simulates execution using the available market feed; it does not generate example prices. Demo mode sends actual orders to a demo account. Live mode remains disabled until the separate validation and authorization process is completed.
 
 The local checks and limitations are recorded in [VALIDATION.md](VALIDATION.md). Windows/MT5 and real Discord delivery still need testing on your own accounts.
