@@ -14,8 +14,8 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-$SourceCommit = '2b0874403677fa44ce75949270fa5f80fbbaacc7'
-$SourceSha256 = '41a8abe46bc1c72ffd010c1ce61b115c016a9a9fed722eb75620fa3b1051e63a'
+$SourceCommit = '5cd48c0218be42e21b0d423740c2db37140431ee'
+$SourceSha256 = 'ed038a299b217a3f1286a47e36bdcc904c1fbf9eb23048e339fac615c9f8fe80'
 $SourceUrl = "https://codeload.github.com/airateenarogers-a11y/MSnR/zip/$SourceCommit"
 
 function Invoke-Native([string]$Executable, [string[]]$Arguments) {
