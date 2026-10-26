@@ -13,3 +13,33 @@ jobs:
       - run: .venv/bin/pytest --cov=msnr --cov-report=term-missing
       # Real Chrome tests run only when MSNR_CHROME_EXECUTABLE is configured.
       # MT5 integration and broker forwarding require a separate Windows demo host.
+  windows-desktop:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Windows dependencies
+        shell: pwsh
+        run: |
+          python -m venv .venv
+          .venv/Scripts/python -m pip install --require-hashes -r requirements-windows.lock
+          .venv/Scripts/python -m pip install --no-deps --no-build-isolation -e .
+          .venv/Scripts/python -m pip check
+      - name: Test desktop lifecycle and Windows credential encryption
+        shell: pwsh
+        run: |
+          .venv/Scripts/python -m pytest -q tests/test_desktop.py
+          powershell -NoProfile -File deployment/test-windows-bootstrap.ps1
+      - name: Verify the standalone installer twice
+        shell: pwsh
+        run: |
+          if (Test-Path Install-MSnR.cmd) {
+            $env:MSNR_SETUP_TEST = '1'
+            $env:MSNR_INSTALL_ROOT = Join-Path $env:RUNNER_TEMP 'MSnR installer test with spaces'
+            & .\Install-MSnR.cmd
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+            & .\Install-MSnR.cmd
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          }

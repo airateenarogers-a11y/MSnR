@@ -344,9 +344,15 @@ class Worker:
         )
 
     def run(self):
-        for sig in (os_signal.SIGTERM, os_signal.SIGINT):
+        signals = [os_signal.SIGTERM, os_signal.SIGINT]
+        if hasattr(os_signal, "SIGBREAK"):
+            signals.append(os_signal.SIGBREAK)
+        for sig in signals:
             os_signal.signal(sig, lambda *_: self.stop_event.set())
         while not self.stop_event.is_set():
+            stop_file = os.getenv("MSNR_WORKER_STOP_FILE")
+            if stop_file and Path(stop_file).is_file():
+                break
             try:
                 self.once()
             except LeaseUnavailable:

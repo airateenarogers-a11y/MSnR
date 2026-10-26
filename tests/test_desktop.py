@@ -1,0 +1,127 @@
+import json
+import os
+import shutil
+import time
+
+import httpx
+import pytest
+
+from msnr.desktop import InstanceLock, Supervisor, Vault, protect_secret
+from msnr.store import Store
+
+
+@pytest.fixture
+def desktop(tmp_path):
+    root = tmp_path / "installation with spaces"
+    (root / "config").mkdir(parents=True)
+    shutil.copyfile("config/default.json", root / "config/default.json")
+    supervisor = Supervisor(
+        root,
+        {
+            "operator": "operator-test-" + "x" * 32,
+            "bridge": "bridge-test-" + "y" * 32,
+            "webhook": "",
+            "terminal": "",
+        },
+    )
+    yield supervisor
+    supervisor.close()
+
+
+def test_repeat_start_auth_and_shutdown_release_actual_lease(desktop):
+    desktop.start()
+    original = {role: p.pid for role, p in desktop.processes.items()}
+    desktop.start()
+    assert original == {role: p.pid for role, p in desktop.processes.items()}
+    with httpx.Client(trust_env=False) as client:
+        assert client.get(desktop.url + "/api/status").status_code == 401
+        response = client.get(
+            desktop.url + "/api/status",
+            headers={"Authorization": "Bearer " + desktop.credentials["operator"]},
+        )
+        assert response.json()["mode"] == "paper"
+    store = Store(desktop.state / "paper.db")
+    for _ in range(50):
+        if store.state("worker_lease"):
+            break
+        time.sleep(0.1)
+    assert store.state("worker_lease")
+    desktop.close()
+    assert store.state("worker_lease") is None
+    assert store.verify_chain()
+    assert not list(desktop.state.glob("stop-*"))
+
+
+def test_inherited_live_flags_and_broker_password_are_not_used(desktop, monkeypatch):
+    monkeypatch.setenv("MSNR_BRIDGE_ALLOW_LIVE", "EXPLICITLY_AUTHORIZED")
+    monkeypatch.setenv("MT5_PASSWORD", "unrelated-account-password")
+    monkeypatch.setenv("MSNR_DB", "/unrelated/ledger.db")
+    env = desktop.environment()
+    assert "MSNR_BRIDGE_ALLOW_LIVE" not in env
+    assert "MT5_PASSWORD" not in env
+    assert "MSNR_BRIDGE_URL" not in env
+    assert env["MSNR_DB"] == str(desktop.state / "paper.db")
+
+
+def test_live_config_refused_on_restart(desktop):
+    data = json.loads(desktop.config.read_text())
+    data["mode"] = "live"
+    desktop.config.write_text(json.dumps(data))
+    with pytest.raises(ValueError, match="paper"):
+        desktop.start_process("worker")
+    assert not desktop.processes
+
+
+def test_only_one_control_window(tmp_path):
+    first = InstanceLock(tmp_path / "instance.lock")
+    try:
+        with pytest.raises(RuntimeError, match="already running"):
+            InstanceLock(tmp_path / "instance.lock")
+    finally:
+        first.close()
+    second = InstanceLock(tmp_path / "instance.lock")
+    second.close()
+
+
+def test_corrupt_credentials_are_never_silently_replaced(tmp_path):
+    def codec(value, decrypt=False):
+        return value[::-1]
+
+    vault = Vault(tmp_path / "vault", codec=codec)
+    original = vault.read()
+    assert vault.read() == original
+    assert original["operator"].encode() not in vault.path.read_bytes()
+    vault.path.write_bytes(b"corrupt")
+    with pytest.raises(ValueError):
+        vault.read()
+    assert vault.path.read_bytes() == b"corrupt"
+
+
+def test_unconfigured_terminal_keeps_worker_disconnected(desktop):
+    assert "Choose" in desktop.connect()
+    assert not desktop.feed_connected
+    assert "bridge" not in desktop.processes
+
+
+@pytest.mark.skipif(os.name != "nt", reason="Windows DPAPI requires a Windows user profile")
+def test_windows_dpapi_roundtrip_and_randomized_ciphertext():
+    secret = b"test-credential-never-used-for-a-service"
+    protected = protect_secret(secret)
+    assert secret not in protected
+    assert protect_secret(protected, decrypt=True) == secret
+    assert protected != protect_secret(secret)
+
+
+def test_requested_stop_file_releases_worker_lease(settings, tmp_path, monkeypatch):
+    from msnr.worker import Worker
+    from msnr.clock import utcnow
+
+    store = Store(tmp_path / "worker.db")
+    worker = Worker(store, settings)
+    worker.lease(utcnow())
+    stop = tmp_path / "stop"
+    stop.touch()
+    monkeypatch.setenv("MSNR_WORKER_STOP_FILE", str(stop))
+    monkeypatch.setattr("msnr.worker.os_signal.signal", lambda *_: None)
+    worker.run()
+    assert store.state("worker_lease") is None

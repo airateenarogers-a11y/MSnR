@@ -1,0 +1,2 @@
+# Build backend installed from the same hash-verified Windows lock.
+setuptools>=75
