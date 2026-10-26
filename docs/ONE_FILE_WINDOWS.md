@@ -11,9 +11,9 @@ The file:
 1. Reuses Python 3.12 x64 if installed; otherwise downloads the official Python.org Windows installer and verifies its publisher signature.
 2. Downloads the pinned MSnR source archive and checks its SHA-256 before extraction.
 3. Creates a private installation at `%LOCALAPPDATA%\MSnR\app` and installs the Windows Python/MT5 dependencies using `requirements-windows.lock` hashes.
-4. Finds Google Chrome and MT5. If missing, it launches their official, publisher-verified installers. Complete MT5's installation prompts. If either optional installer fails or is cancelled, the local paper dashboard can still run; the launcher explains what remains unavailable.
+4. Finds Google Chrome and MT5. If missing, it launches their official, publisher-verified installers. Complete MT5's installation prompts. If either optional installer fails or is cancelled, the local dashboard can still run; the launcher explains what remains unavailable.
 5. Generates separate dashboard/bridge credentials and encrypts them using Windows DPAPI for your Windows user.
-6. Starts the dashboard and paper worker, opens the dashboard, and creates the **MSnR Trading Ledger** desktop shortcut.
+6. Starts the dashboard and demo worker, opens the dashboard, and creates the **MSnR Trading Ledger** desktop shortcut. It prioritizes your already-running MT5 terminal and does not reinstall MT5 when that session is detected.
 
 The control window offers **Copy sign-in key**. Click it, paste the key into the dashboard's **Sign in** form, and keep the control window open while monitoring. The key is not printed in setup logs or placed in a URL. Closing the control window clears the clipboard if it still contains that key.
 
@@ -26,7 +26,9 @@ The installer cannot create a broker account or supply its credentials.
 3. Click **Connect MT5**. If MT5 is still starting, finish signing in and click again.
 4. Confirm the dashboard receives the expected symbols and specifications.
 
-The worker receives the bridge connection only after a hedging demo account is verified. The application remains in **PAPER mode**: market data comes from MT5 and execution is simulated locally. This launcher does not activate broker demo orders or live trading, and refuses an edited desktop configuration that requests either. Follow the separate [run guide](RUN_GUIDE.md#10-move-from-paper-to-demo) for a reviewed demo-execution deployment.
+The worker receives the bridge connection only after a hedging demo account is verified. The launcher starts **automatic DEMO execution**, as authorized by the owner. It can place orders on the connected demo account once all strategy and risk checks pass. MT5 must have Algo Trading enabled and external Python trading permitted. Real/live accounts are refused; the launcher does not change those MT5 permissions by blindly toggling a button. The configured kill switch, loss/exposure limits, cooldowns and manual reality-check rule still apply. No qualifying setup means no trade.
+
+V4 plus the approved clarification record remains authoritative. Missing mandatory evidence rejects the setup. Existing engineering tests do not establish 100% compliance across every model and real-market history; full historical/model validation remains outstanding. The demo account is the authorized forward-testing environment.
 
 Click **Configure Discord** to enter an optional webhook locally. It is saved in the encrypted credential vault and the worker restarts with the setting. Leave the field empty to disable Discord. Do not send passwords, tokens or webhook URLs in chat.
 
@@ -46,8 +48,8 @@ Close the MSnR control window to stop its worker, bridge and dashboard. Shutdown
 | `downloads\` | Verified source and dependency download cache |
 | `app\.msnr-source.json` | Installed source release identity |
 | `app\.venv\` | Isolated Python packages |
-| `app\var\desktop\paper.db` | Persistent paper journal |
-| `app\var\desktop\paper-config.json` | Dedicated paper-only configuration |
+| `app\var\desktop\demo.db` | Persistent demo journal |
+| `app\var\desktop\demo-config.json` | Dedicated demo configuration; live mode refused |
 | `app\var\desktop\credentials.dpapi` | Encrypted credentials tied to your Windows profile |
 | `app\var\desktop\dashboard.log`, `worker.log`, `bridge.log` | Service troubleshooting logs |
 | `app\var\bridge.db` | Durable bridge command state |
@@ -62,6 +64,6 @@ For an upgrade, back up runtime state and use the [operations guide](OPERATIONS.
 
 ## Validation scope
 
-Local tests cover service startup/authentication, duplicate prevention, paper-only enforcement, inherited live-flag removal, credential-file preservation, shutdown and worker lease release. PowerShell checks cover parsing, archive checksums, HTTPS requirements and preservation of existing folders.
+Local tests cover service startup/authentication, duplicate prevention, demo/paper isolation and live-mode rejection, inherited live-flag removal, credential-file preservation, shutdown and worker lease release. PowerShell checks cover parsing, archive checksums, HTTPS requirements and preservation of existing folders.
 
 The GitHub **windows-desktop** job tests DPAPI, the native process lifecycle, Windows PowerShell parsing and the packaged installer twice. Its installer test reuses the runner's Python and skips interactive Chrome/MT5 installers. Actual broker login, vendor installation prompts, Windows desktop visual behavior and real MT5/Discord operation still require validation on your PC. See the [workflow](https://github.com/airateenarogers-a11y/MSnR/actions/workflows/test.yml) and [production checklist](READINESS.md).

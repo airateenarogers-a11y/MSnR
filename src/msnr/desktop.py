@@ -1,4 +1,4 @@
-"""Local Windows paper-mode control panel. Never authorizes demo/live execution."""
+"""Local Windows control panel for authorized demo automation; live execution is refused."""
 
 from __future__ import annotations
 
@@ -190,18 +190,22 @@ def free_port(preferred):
 
 
 class Supervisor:
-    def __init__(self, root: Path, credentials: dict):
+    def __init__(self, root: Path, credentials: dict, mode="demo"):
+        if mode not in ("demo", "paper"):
+            raise ValueError("Desktop mode must be demo or paper; live is disabled")
+        self.mode = mode
         self.root, self.credentials = root.resolve(), credentials
         self.state = self.root / "var/desktop"
         self.state.mkdir(parents=True, exist_ok=True)
-        self.config = self.state / "paper-config.json"
+        self.config = self.state / f"{mode}-config.json"
+        self.database = self.state / f"{mode}.db"
         if not self.config.exists():
             settings = load(self.root / "config/default.json")
-            settings = settings.model_copy(update={"mode": "paper", "live_authorization_file": None})
+            settings = settings.model_copy(update={"mode": mode, "live_authorization_file": None})
             atomic_json(self.config, settings.model_dump())
         settings = load(self.config)
-        if settings.mode != "paper" or settings.live_authorization_file is not None:
-            raise ValueError("This launcher only starts paper mode. Review the changed desktop config.")
+        if settings.mode != mode or settings.live_authorization_file is not None:
+            raise ValueError("Desktop config must match the selected demo/paper mode with live disabled.")
         self.processes = {}
         self.streams = {}
         self.stop_files = {}
@@ -218,7 +222,7 @@ class Supervisor:
         env.update(
             {
                 "MSNR_CONFIG": str(self.config),
-                "MSNR_DB": str(self.state / "paper.db"),
+                "MSNR_DB": str(self.database),
                 "MSNR_OPERATOR_TOKEN": self.credentials["operator"],
                 "MSNR_BRIDGE_TOKEN": self.credentials["bridge"],
                 "MPLCONFIGDIR": str(self.state / "cache/matplotlib"),
@@ -236,8 +240,8 @@ class Supervisor:
 
     def start_process(self, role, feed=False):
         settings = load(self.config)
-        if settings.mode != "paper" or settings.live_authorization_file is not None:
-            raise ValueError("Desktop execution must remain in paper mode")
+        if settings.mode != self.mode or settings.live_authorization_file is not None:
+            raise ValueError("Desktop execution must remain in the selected demo/paper mode")
         if role in self.processes and self.processes[role].poll() is None:
             return
         self.stop_process(role)
@@ -302,7 +306,7 @@ class Supervisor:
                         self.url + "/api/status",
                         headers={"Authorization": "Bearer " + self.credentials["operator"]},
                     )
-                    if r.status_code == 200 and r.json()["mode"] == "paper":
+                    if r.status_code == 200 and r.json()["mode"] == self.mode:
                         break
                 except (httpx.HTTPError, ValueError):
                     pass
@@ -310,7 +314,7 @@ class Supervisor:
             else:
                 raise RuntimeError("Dashboard did not become healthy; check its log and firewall.")
         self.start_process("worker", self.feed_connected)
-        atomic_json(self.state / "running.json", {"url": self.url, "mode": "paper"})
+        atomic_json(self.state / "running.json", {"url": self.url, "mode": self.mode})
 
     def connect(self):
         path = self.credentials.get("terminal", "")
@@ -327,13 +331,19 @@ class Supervisor:
                 account = response.json()
             if account.get("mode") != "demo" or not account.get("hedging"):
                 return "MT5 must be signed in to a hedging DEMO account. The worker remains disconnected."
+            if self.mode == "demo" and not account.get("trading_allowed"):
+                return "Enable MT5 Algo Trading and allow external Python trading, then click Connect MT5."
         except (httpx.HTTPError, ValueError):
             return "Waiting for MT5 demo login. Keep the terminal open, then click Connect MT5 again."
         if not self.feed_connected:
             self.stop_process("worker")
             self.start_process("worker", feed=True)
             self.feed_connected = True
-        return "MT5 demo feed connected. Executions remain simulated in PAPER mode."
+        return (
+            "Automatic DEMO execution enabled. Every strategy and risk condition must pass before an order."
+            if self.mode == "demo"
+            else "MT5 demo feed connected. Executions remain simulated in PAPER mode."
+        )
 
     def restart_worker(self):
         self.stop_process("worker")
@@ -358,7 +368,9 @@ def gui(supervisor: Supervisor, vault: Vault):
     frame = ttk.Frame(window, padding=28)
     frame.pack(fill="both", expand=True)
     ttk.Label(frame, text="MSnR · Trading Ledger", font=("Segoe UI", 23, "bold")).pack(anchor="w")
-    ttk.Label(frame, text="PAPER MODE  /  local services  /  live trading disabled").pack(anchor="w", pady=10)
+    ttk.Label(
+        frame, text=f"{supervisor.mode.upper()} MODE  /  automatic execution  /  live trading disabled"
+    ).pack(anchor="w", pady=10)
     status = tk.StringVar(value="Starting dashboard and market worker…")
     services = tk.StringVar(value="")
     ttk.Label(frame, textvariable=status, wraplength=690).pack(anchor="w", pady=16)
@@ -499,6 +511,7 @@ def gui(supervisor: Supervisor, vault: Vault):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path.cwd())
+    parser.add_argument("--mode", choices=("demo", "paper"), default="demo")
     parser.add_argument(
         "--self-test", action="store_true", help="Verify local service startup; no MT5 orders"
     )
@@ -511,7 +524,7 @@ def main():
     try:
         vault = Vault(state / "credentials.dpapi")
         credentials = vault.read()
-        supervisor = Supervisor(root, credentials)
+        supervisor = Supervisor(root, credentials, args.mode)
         if args.self_test:
             supervisor.start()
             with httpx.Client(trust_env=False) as client:
@@ -522,10 +535,12 @@ def main():
             supervisor.close()
             from .store import Store
 
-            store = Store(state / "paper.db")
+            store = Store(supervisor.database)
             assert store.state("worker_lease") is None
             assert store.verify_chain()
-            print("PASS: encrypted credentials, paper services, authentication, shutdown and lease release")
+            print(
+                "PASS: encrypted credentials, isolated services, authentication, shutdown and lease release"
+            )
         else:
             gui(supervisor, vault)
     finally:

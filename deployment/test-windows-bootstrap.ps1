@@ -8,6 +8,10 @@ if ($errors.Count) { throw ($errors | Out-String) }
 $temporary = Join-Path ([IO.Path]::GetTempPath()) ('msnr-bootstrap-test-' + [guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $temporary | Out-Null
 try {
+    if ($env:OS -eq 'Windows_NT') {
+        Set-PrivateDirectory $temporary
+        if (-not (Get-Acl -LiteralPath $temporary).AreAccessRulesProtected) { throw 'Private directory ACL did not apply.' }
+    }
     $archive = Join-Path $temporary 'archive.zip'
     [IO.File]::WriteAllText($archive, 'known content')
     $hash = (Get-FileHash -LiteralPath $archive -Algorithm SHA256).Hash

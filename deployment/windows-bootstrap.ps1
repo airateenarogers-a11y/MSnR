@@ -101,6 +101,9 @@ function Find-Chrome {
 }
 
 function Find-MT5 {
+    $running = @(Get-Process -Name terminal64 -ErrorAction SilentlyContinue | Where-Object { $_.Path } | Select-Object -ExpandProperty Path -Unique)
+    if ($running.Count -eq 1) { return $running[0] }
+    if ($running.Count -gt 1) { return $null }
     foreach ($base in @($env:ProgramFiles, ${env:ProgramFiles(x86)})) {
         if ($base) {
             $files = @(Get-ChildItem -Path (Join-Path $base '*\terminal64.exe') -File -ErrorAction SilentlyContinue)
@@ -125,8 +128,13 @@ function Install-ChartBrowser([string]$Downloads) {
 }
 
 function Install-Terminal([string]$Downloads) {
+    $running = @(Get-Process -Name terminal64 -ErrorAction SilentlyContinue)
     $terminal = Find-MT5
     if ($terminal) { return $terminal }
+    if ($running.Count -gt 0) {
+        Write-Host 'MT5 is already running. Select the correct terminal in the control window; another MT5 installation will not be started.'
+        return $null
+    }
     try {
         Write-Host 'Opening the official MT5 installer. Complete its prompts, then sign in to your broker DEMO account.'
         $installer = Join-Path $Downloads 'mt5setup.exe'
@@ -136,7 +144,7 @@ function Install-Terminal([string]$Downloads) {
         if ($process.ExitCode -notin @(0, 3010)) { throw 'MT5 installation was cancelled or failed.' }
         return (Find-MT5)
     } catch {
-        Write-Warning 'MT5 is not installed yet. The paper dashboard will start; use your broker installer and Choose MT5 terminal when ready.'
+        Write-Warning 'MT5 is not installed yet. The dashboard will wait for your demo connection; use your broker installer and Choose MT5 terminal when ready.'
         return $null
     }
 }
@@ -228,14 +236,14 @@ function Main {
                     $shortcut = $shell.CreateShortcut($link)
                     $shortcut.TargetPath = $copy
                     $shortcut.WorkingDirectory = $app
-                    $shortcut.Description = 'Start the local MSnR paper trading control center'
+                    $shortcut.Description = 'Start the local MSnR automatic demo trading control center'
                     $shortcut.Save()
                 }
             }
-            Write-Host 'Starting PAPER mode. Keep the control window open. Use Copy sign-in key to sign in to the dashboard.'
-            Invoke-Native $venv @('-m', 'msnr.desktop', '--root', $app)
+            Write-Host 'Starting automatic DEMO mode. Live accounts are refused. Keep the control window open; use Copy sign-in key to sign in.'
+            Invoke-Native $venv @('-m', 'msnr.desktop', '--root', $app, '--mode', 'demo')
         } else {
-            Invoke-Native $venv @('-m', 'msnr.desktop', '--root', $app, '--self-test')
+            Invoke-Native $venv @('-m', 'msnr.desktop', '--root', $app, '--mode', 'demo', '--self-test')
         }
     } finally {
         if ($installerLock) { $installerLock.Dispose() }

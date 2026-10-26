@@ -10,8 +10,8 @@ from msnr.desktop import InstanceLock, Supervisor, Vault, protect_secret
 from msnr.store import Store
 
 
-@pytest.fixture
-def desktop(tmp_path):
+@pytest.fixture(params=["paper", "demo"])
+def desktop(tmp_path, request):
     root = tmp_path / "installation with spaces"
     (root / "config").mkdir(parents=True)
     shutil.copyfile("config/default.json", root / "config/default.json")
@@ -23,6 +23,7 @@ def desktop(tmp_path):
             "webhook": "",
             "terminal": "",
         },
+        mode=request.param,
     )
     yield supervisor
     supervisor.close()
@@ -39,8 +40,8 @@ def test_repeat_start_auth_and_shutdown_release_actual_lease(desktop):
             desktop.url + "/api/status",
             headers={"Authorization": "Bearer " + desktop.credentials["operator"]},
         )
-        assert response.json()["mode"] == "paper"
-    store = Store(desktop.state / "paper.db")
+        assert response.json()["mode"] == desktop.mode
+    store = Store(desktop.database)
     for _ in range(50):
         if store.state("worker_lease"):
             break
@@ -60,7 +61,7 @@ def test_inherited_live_flags_and_broker_password_are_not_used(desktop, monkeypa
     assert "MSNR_BRIDGE_ALLOW_LIVE" not in env
     assert "MT5_PASSWORD" not in env
     assert "MSNR_BRIDGE_URL" not in env
-    assert env["MSNR_DB"] == str(desktop.state / "paper.db")
+    assert env["MSNR_DB"] == str(desktop.database)
 
 
 def test_live_config_refused_on_restart(desktop):
@@ -101,6 +102,57 @@ def test_unconfigured_terminal_keeps_worker_disconnected(desktop):
     assert "Choose" in desktop.connect()
     assert not desktop.feed_connected
     assert "bridge" not in desktop.processes
+
+
+@pytest.mark.parametrize(
+    "account,connected",
+    [
+        ({"mode": "real", "hedging": True, "trading_allowed": True}, False),
+        ({"mode": "demo", "hedging": False, "trading_allowed": True}, False),
+        ({"mode": "demo", "hedging": True, "trading_allowed": True}, True),
+    ],
+)
+def test_only_hedging_demo_account_connects(desktop, monkeypatch, account, connected):
+    terminal = desktop.state / "terminal64.exe"
+    terminal.touch()
+    desktop.credentials["terminal"] = str(terminal)
+    started = []
+    monkeypatch.setattr(desktop, "start_process", lambda role, feed=False: started.append((role, feed)))
+    original = httpx.Client
+    monkeypatch.setattr(
+        httpx,
+        "Client",
+        lambda **kw: original(
+            transport=httpx.MockTransport(lambda _: httpx.Response(200, json=account)), **kw
+        ),
+    )
+    desktop.connect()
+    assert desktop.feed_connected is connected
+    assert (("worker", True) in started) is connected
+
+
+def test_demo_orders_wait_for_terminal_permissions(desktop, monkeypatch):
+    if desktop.mode != "demo":
+        return
+    terminal = desktop.state / "terminal64.exe"
+    terminal.touch()
+    desktop.credentials["terminal"] = str(terminal)
+    monkeypatch.setattr(desktop, "start_process", lambda *_: None)
+    original = httpx.Client
+    monkeypatch.setattr(
+        httpx,
+        "Client",
+        lambda **kw: original(
+            transport=httpx.MockTransport(
+                lambda _: httpx.Response(
+                    200, json={"mode": "demo", "hedging": True, "trading_allowed": False}
+                )
+            ),
+            **kw,
+        ),
+    )
+    assert "Enable MT5 Algo Trading" in desktop.connect()
+    assert not desktop.feed_connected
 
 
 @pytest.mark.skipif(os.name != "nt", reason="Windows DPAPI requires a Windows user profile")

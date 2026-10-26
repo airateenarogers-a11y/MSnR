@@ -4,7 +4,7 @@ Python trading research and monitoring service for the user-approved **Malaysian
 
 **Operational status:** local engineering validation is recorded in [VALIDATION.md](docs/VALIDATION.md). This repository is **not certified for live trading**. Real broker instruments, terminal behavior, historical edge and forward demo behavior require external validation. No profit, win-rate or native TradingView drawing accuracy is claimed. Default mode is `paper` and live execution requires a separate authorization manifest.
 
-**Windows one-file setup:** [Download Install-MSnR.cmd](https://github.com/airateenarogers-a11y/MSnR/raw/refs/heads/main/Install-MSnR.cmd), save it and double-click it. It installs the project and starts a local paper-mode control window. [One-file instructions](docs/ONE_FILE_WINDOWS.md).
+**Windows one-file setup:** [Download Install-MSnR.cmd](https://github.com/airateenarogers-a11y/MSnR/raw/refs/heads/main/Install-MSnR.cmd), save it and double-click it. It installs the project and starts an automatic demo-trading control window. [One-file instructions](docs/ONE_FILE_WINDOWS.md).
 
 **Manual installation:** [Download, installation and user guide](docs/RUN_GUIDE.md). It covers Windows with MT5, Linux/cloud, Docker, dashboard controls, Discord, backtesting, demo mode and troubleshooting.
 
