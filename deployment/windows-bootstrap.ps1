@@ -242,4 +242,12 @@ function Main {
     }
 }
 
-if (-not $LibraryOnly) { Main }
+if (-not $LibraryOnly) {
+    try { Main } catch {
+        if ($env:MSNR_SETUP_TEST -eq '1') {
+            $detail = ('MSnR bootstrap: ' + $_.Exception.Message + ' | ' + $_.ScriptStackTrace).Replace('%', '%25').Replace("`r", '%0D').Replace("`n", '%0A')
+            Write-Host "::error::$detail"
+        }
+        throw
+    }
+}
