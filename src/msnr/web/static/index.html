@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark"><title>MSnR — Trading Ledger</title><link rel="stylesheet" href="/static/app.css"><script src="/static/app.js" defer></script></head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<aside class="sidebar"><a class="brand" href="#overview"><span class="monogram">M<span>∕</span>S</span><span>MSnR<small>THE TRADING LEDGER</small></span></a>
+<div class="nav-label">WORKSPACE</div><nav aria-label="Primary navigation">
+<a href="#overview" data-view="overview" aria-current="page"><span>01</span>Overview</a>
+<a href="#signals" data-view="signals"><span>02</span>Live signals</a>
+<a href="#trades" data-view="trades"><span>03</span>Trades</a>
+<a href="#journal" data-view="journal"><span>04</span>Trading journal</a>
+<a href="#analytics" data-view="analytics"><span>05</span>Analytics</a>
+<a href="#backtesting" data-view="backtesting"><span>06</span>Backtesting</a>
+<a href="#reports" data-view="reports"><span>07</span>Reports</a>
+<a href="#settings" data-view="settings"><span>08</span>Settings</a>
+</nav><div class="sidebar-foot"><div class="rule"></div><p>Evidence before execution.</p><small>MSNR 2.0 × THE ALCHEMIST<br>STRATEGY V4</small><button id="login-open" class="quiet">Operator sign-in</button></div></aside>
+<div class="workspace"><header class="topbar"><span id="connection" class="connection">Checking system…</span><div class="top-actions"><span id="clock" class="mono"></span><span id="mode" class="pill">PAPER</span><button id="kill" class="danger">Suspend execution</button></div></header>
+<main id="main" tabindex="-1"><div class="page-head"><div><div class="eyebrow" id="eyebrow">CONTROL CENTER / 01</div><h1 id="title">A clear view of the market.</h1><p id="subtitle">Every decision begins with evidence. Every outcome stays in the ledger.</p></div><button id="refresh" class="quiet">↻ Refresh</button></div>
+<div id="error" role="alert" hidden></div><div id="notice" role="status" aria-live="polite"></div><section id="content" aria-label="Workspace content"><div class="empty">Loading the ledger…</div></section>
+<footer><span>MSnR · Evidence-driven execution</span><span>Times displayed in PKT · Markets carry risk</span></footer></main></div>
+<dialog id="login-dialog"><form id="login-form"><div class="eyebrow">OPERATOR ACCESS</div><h2>Sign in to the ledger</h2><p>Use the operator token configured on your server.</p><label>Operator token<input id="token" type="password" autocomplete="current-password" required></label><p id="login-error" role="alert"></p><div class="actions"><button type="button" id="login-cancel" class="quiet">Cancel</button><button type="submit" class="primary">Sign in</button></div></form></dialog>
+<dialog id="detail-dialog"><button class="quiet close-dialog" aria-label="Close details">Close ×</button><div id="detail"></div></dialog>
+</body></html>

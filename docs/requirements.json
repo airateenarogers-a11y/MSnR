@@ -1,0 +1,1601 @@
+[
+  {
+    "id": "V3-1.1",
+    "version": "v3",
+    "section": "1.1",
+    "title": "Pitchou.FX's \"2 Hours to Freedom\" Battle Plan & Philosophy",
+    "start_line": 69,
+    "end_line": 80,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 1.1 Pitchou.FX's \"2 Hours to Freedom\" Battle Plan & Philosophy\nPitchou.FX developed **Malaysian SNR Strategy [2.0]** to free retail traders from inconsistency, emotional chaos, and strategy-hopping. Built on the core motto *\"Stars can't shine without darkness,\"* Pitchou emphasizes structured daily discipline over screen addiction.\n\nThe **2 Hours to Freedom** daily battle plan dictates exactly how a trader spends 120 minutes each day:\n1. **Knowledge Phase (40 Minutes):** Study core concepts slowly and mindfully, visualizing setups on live charts.\n2. **Execution Phase (30 Minutes):** Complete practical exercises on live/historical charts with real-money discipline.\n3. **Trader's Notebook (20 Minutes):** Summarize concepts in an \"SNR War Journal,\" draw structural diagrams, and track growth.\n4. **Visualization Phase (20 Minutes):** Open TradingView/MT5, mark fresh SNR levels, draw trendlines, and track multi-timeframe storylines.\n5. **Mindset Phase (10 Minutes):** Practice deep breathing, mentalize disciplined risk management, and visualize flawless execution.\n\n**Weekly Ritual (\"The Mirror Day\" — Sunday):** Review the War Journal, redo one exercise from each day of the week, and compare current chart drawings against Day 1 to measure sharpening accuracy.\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-1.2",
+    "version": "v3",
+    "section": "1.2",
+    "title": "White SNT's \"Forex Alchemist\" Institutional Philosophy",
+    "start_line": 81,
+    "end_line": 88,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 1.2 White SNT's \"Forex Alchemist\" Institutional Philosophy\nWhite Srp / White SNT (certified funded trader across Topstep, FTMO, TopTier Trader, and The 5%ers) frames market speculation through medieval alchemy: transforming raw market data into liquid capital.\n\nThe **Forex Alchemist** framework treats the market as an institutional liquidity engine driven by smart money algorithms rather than random retail buying and selling:\n* **The Sharp Tool Principle:** Do not trade with blunt tools. Use high-precision institutional mechanics: Order Flow, Liquidity Sweeps, Order Blocks, Open Close Levels (OCL), ICT Session Liquidity, and SMT Divergence.\n* **Unwavering Confidence:** Created through the formula: `Knowledge + Experience + Insight = Unwavering Confidence`.\n* **Zero Fear / Systemic Execution:** Eliminate fear and greed by treating every trade as a probability trial inside a proven institutional edge.\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-1.3",
+    "version": "v3",
+    "section": "1.3",
+    "title": "Synthesis of Price Action (MSNR) and Smart Money Concepts (SMC)",
+    "start_line": 89,
+    "end_line": 97,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 1.3 Synthesis of Price Action (MSNR) and Smart Money Concepts (SMC)\nCombining both approaches creates a complete hybrid trading strategy:\n* **Pitchou.FX (MSNR)** provides the **structural backbone**: clean A/V level definitions, fresh/unfresh mitigation state tracking, trendline rules, and top-down Multi-Timeframe Storylines.\n* **White SNT (SMC/ICT)** provides the **institutional engine**: precise entry refinement using Open Close Levels (OCL), session liquidity timing (ICT Asian Range sweeps), Daye Quarterly Theory (QT) 90-minute time cycles, SMT intermarket divergence, and Circle Fibonacci retracements.\n\n---\n\n## 2. CANDLESTICK ANATOMY & PRICE STORY MECHANICS\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-2.1",
+    "version": "v3",
+    "section": "2.1",
+    "title": "The OHLC Breakdown (Open, High, Low, Close)",
+    "start_line": 98,
+    "end_line": 117,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 2.1 The OHLC Breakdown (Open, High, Low, Close)\nEvery candlestick represents four fundamental data points that reveal the underlying battle between buyers (bulls) and sellers (bears):\n* **Open (O):** The initial transaction price when the timeframe period opens.\n* **High (H):** The highest price point reached during the period, representing the maximum reach of bullish expansion.\n* **Low (L):** The lowest price point reached during the period, representing the maximum reach of bearish pressure.\n* **Close (C):** The final transaction price when the period closes, determining candle color and structural body boundaries.\n\n```\n       BULLISH CANDLE                        BEARISH CANDLE\n       High ----------                      High ----------\n         |                                    |\n       Close =========                      Open  =========\n         |           |                        |           |\n         |   Body    |                        |   Body    |\n         |           |                        |           |\n       Open  =========                      Close =========\n         |                                    |\n       Low  ----------                      Low  ----------\n```\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-2.2",
+    "version": "v3",
+    "section": "2.2",
+    "title": "Candle Range Theory (CRT) & Institutional Narrative",
+    "start_line": 118,
+    "end_line": 123,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 2.2 Candle Range Theory (CRT) & Institutional Narrative\n**Candle Range Theory (CRT)** states that an individual higher-timeframe (HTF) candlestick (such as a Daily, Weekly, or Monthly candle) represents an entire micro-trend cycle on lower timeframes:\n* The **Wick** represents liquidity sweeps and rejection tail-ends (manipulation/reversal phases on LTF).\n* The **Body** represents high-volume directional momentum (distribution/expansion phases on LTF).\n* **Price Story:** By evaluating where the candle opens relative to its High/Low extremes and where it closes, traders discern whether smart money accumulated or distributed liquidity during that timeframe.\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-2.3",
+    "version": "v3",
+    "section": "2.3",
+    "title": "Open Close Levels (OCL) — The Hidden Order Blocks",
+    "start_line": 124,
+    "end_line": 137,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 2.3 Open Close Levels (OCL) — The Hidden Order Blocks\nAn **Open Close Level (OCL)** is defined by White SNT as the horizontal price line where two adjacent candles meet at their Open and Close boundaries (for example, where a bullish candle closes and the next candle opens, or where a bearish candle closes and a bullish candle engulfs it).\n\n#### **Key OCL Properties:**\n1. **HTF Order Block Equivalence:** On a Higher Timeframe (e.g., 1H or 4H), an OCL appears as a simple boundary line. On Lower Timeframes (M15, M5, M1), that exact price level contains a refined **Order Block / Base Pattern**.\n2. **Fixed Period Moving Average Effect:** Mechanically, an OCL acts as a fixed institutional benchmark where market makers rebalance unfilled buy/sell orders.\n3. **P-Type & D-P Patterns:** OCLs form key pivot benchmarks where price retests prior institutional order injections before surging in the trend direction.\n\n---\n\n## 3. MALAYSIAN SUPPORT & RESISTANCE (MSNR) FOUNDATIONS\n\nIn Malaysian SNR, market structure is defined strictly using **three specific level types**. Micro-swings and random candles are filtered out by rigid structural definitions.\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-3.1",
+    "version": "v3",
+    "section": "3.1",
+    "title": "A-Shape Level (Resistance)",
+    "start_line": 138,
+    "end_line": 149,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 3.1 A-Shape Level (Resistance)\n* **Formation Rule:** Formed when a **bullish candle** is immediately followed by a **bearish candle**, creating a sharp peak.\n* **Market Function:** Acts as a **Resistance Ceiling**. It halts upward momentum and acts as a price level where selling interest overcomes buying pressure.\n\n```\n      A-SHAPE (RESISTANCE)\n          Peak (High)\n           /\\  <--- Resistance Line\n          /       Bullish  Bearish\n     Candle   Candle\n```\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-3.2",
+    "version": "v3",
+    "section": "3.2",
+    "title": "V-Shape Level (Support)",
+    "start_line": 150,
+    "end_line": 162,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 3.2 V-Shape Level (Support)\n* **Formation Rule:** Formed when a **bearish candle** is immediately followed by a **bullish candle**, creating a sharp trough.\n* **Market Function:** Acts as a **Support Floor**. It halts downward momentum and acts as a price level where buying interest overcomes selling pressure.\n\n```\n      V-SHAPE (SUPPORT)\n     Bearish  Bullish\n     Candle   Candle\n          \\  /\n           \\/  <--- Support Line\n         Trough (Low)\n```\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-3.3",
+    "version": "v3",
+    "section": "3.3",
+    "title": "GAP Levels (Bullish & Bearish GAPs)",
+    "start_line": 163,
+    "end_line": 180,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 3.3 GAP Levels (Bullish & Bearish GAPs)\n* **Formation Rule:** Formed between two consecutive candles moving aggressively in the **same direction** without wick/body overlap between the first candle's body/wick and the second candle's body/wick, leaving an open horizontal price gap.\n* **Bullish GAP Level:** Formed during an aggressive upward surge. The open gap zone acts as a future **Support Level**.\n* **Bearish GAP Level:** Formed during an aggressive downward drop. The open gap zone acts as a future **Resistance Level**.\n\n```\n    BULLISH GAP (SUPPORT)                 BEARISH GAP (RESISTANCE)\n       Candle 2 [Bull]                       Candle 1 [Bear]\n       ==============                        ==============\n       |            |                        |            |\n       ==============                        ==============\n      -------------- <--- GAP ZONE --->     --------------\n       ==============                        ==============\n       |            |                        |            |\n       ==============                        ==============\n       Candle 1 [Bull]                       Candle 2 [Bear]\n```\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-3.4",
+    "version": "v3",
+    "section": "3.4",
+    "title": "Fresh vs. Unfresh Level Mitigation Rules",
+    "start_line": 181,
+    "end_line": 195,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 3.4 Fresh vs. Unfresh Level Mitigation Rules\nIn MSNR, level freshness dictates trade probability:\n\n* **Fresh Level:**\n  1. An SNR level that has **never been touched by any subsequent candle wick**.\n  2. OR an SNR level that was **broken completely by a candle body close** (a clean body close breaks structure and creates/refreshes a new structural level, e.g., SBR or RBS).\n* **Unfresh Level:**\n  * An SNR level that has already been **touched or tested by a candle wick**. Once a wick touches the level, liquidity at that level is mitigated/exhausted, reducing probability for future direct bounces.\n\n```\n       [FRESH LEVEL]                           [UNFRESH LEVEL]\n   Never touched OR broken                  Touched by candle wick\n    cleanly by body close.                  (liquidity mitigated).\n```\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-3.5",
+    "version": "v3",
+    "section": "3.5",
+    "title": "The Confirmation Candle (CC) 3rd-Candle Repair Rule",
+    "start_line": 196,
+    "end_line": 207,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 3.5 The Confirmation Candle (CC) 3rd-Candle Repair Rule\nWhen an SNR level has been touched by a wick (making it unfresh), Pitchou.FX provides a rare structural rule that restores its validity: **The Confirmation Candle (CC) Rule**.\n\n* **Rule:** A level with a wick touch remains **valid and usable** if the **3rd candle immediately following the creation of the level** closes in the direction of the level:\n  * **CC for Support Levels:** The 3rd candle must close as a **GREEN (Bullish) Candle**.\n  * **CC for Resistance Levels:** The 3rd candle must close as a **RED (Bearish) Candle**.\n* **Usage Limit:** An SNR level can be traded up to **two times maximum**: First on a fresh touch with CC confirmation, second on a touch-and-breakout setup. Beyond two uses, probability drops significantly.\n\n---\n\n## 4. TRENDLINES & LIQUIDITY KEYS\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-4.1",
+    "version": "v3",
+    "section": "4.1",
+    "title": "All 8 Types of Trendlines (Pitchou.FX)",
+    "start_line": 208,
+    "end_line": 218,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 4.1 All 8 Types of Trendlines (Pitchou.FX)\nTrendlines connect consecutive A-shape peaks or V-shape troughs to track market slope and dynamic liquidity:\n1. **Bullish Reversal Trendline:** Connects declining peaks prior to a bullish reversal.\n2. **Bearish Reversal Trendline:** Connects ascending troughs prior to a bearish reversal.\n3. **Bullish QM Trendline:** Drawn through a Quasimodo structure confirming a bullish transition.\n4. **Bearish QM Trendline:** Drawn through a Quasimodo structure confirming a bearish transition.\n5. **Bullish Outer Trendline:** Drawn across major external low points of a market expansion.\n6. **Bearish Outer Trendline:** Drawn across major external high points of a market expansion.\n7. **Bullish Break & Retest Trendline:** Resistance trendline broken upward and retested as support.\n8. **Bearish Break & Retest Trendline:** Support trendline broken downward and retested as resistance.\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-4.2",
+    "version": "v3",
+    "section": "4.2",
+    "title": "The 5-Touch Limit & 3rd-Touch Golden Entry Rule",
+    "start_line": 219,
+    "end_line": 222,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 4.2 The 5-Touch Limit & 3rd-Touch Golden Entry Rule\n* **Maximum Touches:** A trendline remains valid for up to **5 touches**. Beyond 5 touches, the trendline is considered structurally exhausted.\n* **The 3rd Touch Rule:** Statistically, the **3rd touch** of a trendline delivers the highest-probability bounce or breakout trade setup.\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-4.3",
+    "version": "v3",
+    "section": "4.3",
+    "title": "Trendline Key (TL Key) & Inducement (IDM) Sweeps (White SNT)",
+    "start_line": 223,
+    "end_line": 232,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 4.3 Trendline Key (TL Key) & Inducement (IDM) Sweeps (White SNT)\nWhite SNT expands trendline mechanics by identifying trendlines as retail liquidity pools:\n* **Trendline Liquidity (TL Liquidity):** Retail traders place stop losses directly behind trendlines.\n* **Inducement (IDM):** Smart money pushes price to pierce a trendline (sweeping retail stop losses) before immediately reversing back into the true trend direction.\n* **Trendline Key (TL Key):** The exact price level where an IDM sweep intersects an HTF SNR or Open Close Level (OCL), creating a high-confluence entry zone.\n\n---\n\n## 5. BREAKOUT MECHANICS & QUASIMODO (QM) PATTERN\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-5.1",
+    "version": "v3",
+    "section": "5.1",
+    "title": "Valid Breakout Criteria (Candle Body Close vs. Wick Fakeout)",
+    "start_line": 233,
+    "end_line": 247,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 5.1 Valid Breakout Criteria (Candle Body Close vs. Wick Fakeout)\nIn Malaysian SNR, the distinction between a true breakout and a fakeout is absolute:\n* **Valid Breakout:** Confirmed **ONLY** when a candle **BODY CLOSES CLEARLY BEYOND** the SNR level or trendline.\n* **False Breakout (Fakeout / Wick Sweep):** Occurs when a candle wick pierces beyond the level but its **body closes inside** the level. This is a liquidity sweep, not a breakout.\n\n```\n      VALID BREAKOUT (BODY CLOSE)              FAKEOUT (WICK SWEEP)\n      ---------------------------              ---------------------------\n            |                                         |\n          ======  <-- Body closes                   ----- <-- Wick pierces\n          |    |      beyond line.                  |   |\n          ======                                    ===== <-- Body closes\n            |                                       |   |     inside line.\n```\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-5.2",
+    "version": "v3",
+    "section": "5.2",
+    "title": "Anatomy of the Quasimodo Pattern (High, Low, Higher High, Lower Low)",
+    "start_line": 248,
+    "end_line": 269,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 5.2 Anatomy of the Quasimodo Pattern (High, Low, Higher High, Lower Low)\nA breakout is structurally valid under MSNR **only if it forms a valid Quasimodo (QM) Pattern**:\n\n```\n       BEARISH QM PATTERN                      BULLISH QM PATTERN\n             HH (Higher High)                      HH (Higher High)\n            /  \\                                  /        H (High)  \\                           H (High)       /           \\                         /               /             LL (Lower Low)          /             LL (Lower Low)\n   L (Low)                               L (Low)\n```\n\n#### **Structural Criteria:**\n* **Bearish QM Pattern:**\n  1. **High (H):** Initial peak.\n  2. **Low (L):** Initial trough.\n  3. **Higher High (HH):** Price expands above High (H), sweeping liquidity.\n  4. **Lower Low (LL):** Price drops aggressively below Low (L), breaking structure with a candle body close to confirm a valid bearish breakout.\n* **Bullish QM Pattern:**\n  1. **Low (L):** Initial trough.\n  2. **High (H):** Initial peak.\n  3. **Lower Low (LL):** Price drops below Low (L), sweeping liquidity.\n  4. **Higher High (HH):** Price surges aggressively above High (H), breaking structure with a candle body close to confirm a valid bullish breakout.\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-5.3",
+    "version": "v3",
+    "section": "5.3",
+    "title": "Internal vs. External Breakouts",
+    "start_line": 270,
+    "end_line": 276,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 5.3 Internal vs. External Breakouts\nWhen price approaches a fresh SNR level, breakouts fall into two operational categories:\n* **External Bullish Breakout:** Price breaks the last A-shape level formed **BEFORE** touching the fresh SNR support level.\n* **Internal Bullish Breakout:** Price breaks the A-shape level formed **AFTER** touching the fresh SNR support level.\n* **External Bearish Breakout:** Price breaks the last V-shape level formed **BEFORE** touching the fresh SNR resistance level.\n* **Internal Bearish Breakout:** Price breaks the V-shape level formed **AFTER** touching the fresh SNR resistance level.\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-5.4",
+    "version": "v3",
+    "section": "5.4",
+    "title": "SNR Level Breakouts vs. Trendline Breakouts (Post-Touch Differences)",
+    "start_line": 277,
+    "end_line": 280,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 5.4 SNR Level Breakouts vs. Trendline Breakouts (Post-Touch Differences)\n* **Breakouts on SNR Levels:** The breakout **MUST occur AFTER the last touch on the SNR level**. If a QM forms before or without respecting the SNR level touch, it is invalid.\n* **Breakouts on Trendlines:** A QM pattern formed **after** the touch on a trendline is valid, but **early breakouts on trendlines are also fully valid** because trendlines adjust dynamically with price slope.\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-5.5",
+    "version": "v3",
+    "section": "5.5",
+    "title": "Quasimodo & SMC Equivalence (Turtle Soup, Order Block, MSS/BOS)",
+    "start_line": 281,
+    "end_line": 294,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 5.5 Quasimodo & SMC Equivalence (Turtle Soup, Order Block, MSS/BOS)\nWhite SNT bridges Malaysian SNR terms directly with institutional Smart Money Concepts (SMC):\n\n| Malaysian SNR Term | SMC / ICT Equivalence | Structural Role |\n| :--- | :--- | :--- |\n| **QM Apex (HH / LL)** | **Turtle Soup / Liquidity Sweep** | Sweeps stop-loss liquidity above peak or below trough. |\n| **Left Shoulder (LS)** | **Order Block (OB) / FVG / OCL** | Institutional rebalance zone where mitigation orders sit. |\n| **SBR / RBS Level** | **Breaker Block / Support-Resistance Flip** | Broken level flipped into opposing support or resistance. |\n| **QM Breakout (Part 2)** | **Market Structure Shift (MSS) / BOS** | Confirms structural trend shift via candle body close. |\n\n---\n\n## 6. MULTI-TIMEFRAME ALIGNMENT & TIMEFRAME STRUCTURE\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-6.1",
+    "version": "v3",
+    "section": "6.1",
+    "title": "Timeframe Rejection Closing Requirements (Monthly to 15M)",
+    "start_line": 295,
+    "end_line": 305,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 6.1 Timeframe Rejection Closing Requirements (Monthly to 15M)\nDifferent timeframes require different candle closing signatures to confirm rejections at key levels:\n\n* **Monthly Rejection:** Rejection wick **WITHOUT** requiring a monthly candle body close.\n* **Weekly Rejection:** Rejection wick **WITHOUT** requiring a weekly candle body close.\n* **Daily Rejection:** Requires **Daily candle body close**.\n* **4H Rejection:** Requires **4H candle body close**.\n* **1H Rejection:** Requires **4H or 1H candle body close**.\n* **30Min Rejection:** Requires **30Min candle body close**.\n* **15Min Rejection:** Requires **15Min candle body close**.\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-6.2",
+    "version": "v3",
+    "section": "6.2",
+    "title": "Standard MTF Alignment Mapping (HTF SNR -> LTF BO)",
+    "start_line": 306,
+    "end_line": 318,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 6.2 Standard MTF Alignment Mapping (HTF SNR -> LTF BO)\nTo confirm trend shifts and trade entries, follow this multi-timeframe alignment hierarchy:\n\n```\n  Monthly SNR Level / TL  ---> Rejection ---> Daily QM Breakout\n  Weekly SNR Level / TL   ---> Rejection ---> 4H QM Breakout\n  Daily SNR Level / TL    ---> Rejection ---> 1H QM Breakout\n  4H SNR Level / TL       ---> Rejection ---> 1H / 30Min / 15Min QM Breakout\n  1H SNR Level / TL       ---> Rejection ---> 30Min / 15Min QM Breakout\n  30Min SNR Level / TL    ---> Rejection ---> 5Min QM Breakout\n  15Min SNR Level / TL    ---> Rejection ---> 1Min QM Breakout\n```\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-6.3",
+    "version": "v3",
+    "section": "6.3",
+    "title": "Multi-Timeframe Confluence (Monthly + Weekly + Daily Alignment)",
+    "start_line": 319,
+    "end_line": 323,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 6.3 Multi-Timeframe Confluence (Monthly + Weekly + Daily Alignment)\n**MTF Alignment** occurs when Monthly, Weekly, and Daily levels align in the exact same price zone:\n* A Daily storyline breakout triggers before the Weekly breakout, which triggers before the Monthly breakout.\n* Aligning all three timeframes enables catching macro 500+ pip moves from early 1H/4H entries.\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-6.4",
+    "version": "v3",
+    "section": "6.4",
+    "title": "Rare Cases in MTF Breakouts",
+    "start_line": 324,
+    "end_line": 331,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 6.4 Rare Cases in MTF Breakouts\n1. **Rare HTF Early Breakouts:** When an HTF rejection creates long wicks, hidden LTF fresh levels inside those wicks can trigger an early breakout on a slightly higher LTF than standard (e.g., Weekly breakout on a Monthly SNR before Daily breakout).\n2. **Rare LTF Post-Touch Breakouts:** For intraday levels (4H, 1H, 30M, 15M), a breakout remains valid even if price breaks the reference A/V shape *after* touching the SNR level, provided a clean QM pattern assembles post-touch.\n\n---\n\n## 7. THE STORYLINE FRAMEWORK (MASTER NARRATIVE)\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-7.1",
+    "version": "v3",
+    "section": "7.1",
+    "title": "What is a Storyline? (The Movie Analogy & 3-Part Cycle)",
+    "start_line": 332,
+    "end_line": 346,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 7.1 What is a Storyline? (The Movie Analogy & 3-Part Cycle)\nThe **Storyline** is the sequential flow of price between SNR levels and trendlines across multiple timeframes.\n* **The Movie Analogy:** SNR levels = Key scenes; Trendlines = Plotlines; Breakouts/Rejections = Plot twists; Timeframes = Camera angles.\n\n#### **The 3 Storyline Phases:**\n1. **Starting Phase (Part 1):** Price originates at a key S/R/TL level and forms a **QM Pattern Breakout**, setting the new trend direction (**QMS Reversal Phase**).\n2. **Middle Phase (Part 2):** Trend expansion phase making higher highs/lows or lower highs/lows (**Continuation Phase**).\n3. **Ending Phase (Part 3):** Price approaches opposing HTF levels, shows exhaustion, and prepares for a reversal (**Exhaustion Phase**).\n\n```\n  PART 1: STARTING PHASE     --->     PART 2: MIDDLE PHASE     --->     PART 3: ENDING PHASE\n  QM Breakout at Fresh SNR            Trend Expansion & Moves           Exhaustion near Opposing\n  (Reversal Entry - QMS)              (Continuation Setups)             HTF Level (Prepare Reversal)\n```\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-7.2",
+    "version": "v3",
+    "section": "7.2",
+    "title": "Classic Storylines (Fresh SNR-Based)",
+    "start_line": 347,
+    "end_line": 364,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 7.2 Classic Storylines (Fresh SNR-Based)\nUsed when **fresh SNR levels exist** on the chart:\n* **Monthly Classic Storyline:** Begins at fresh Monthly SNR $\nightarrow$ Confirmed by Daily Breakout $\nightarrow$ Travels to opposing Monthly SNR.\n* **Weekly Classic Storyline:** Begins at fresh Weekly SNR $\nightarrow$ Confirmed by 4H Breakout $\nightarrow$ Travels to opposing Weekly SNR.\n* **Daily Classic Storyline:** Begins at fresh Daily SNR $\nightarrow$ Confirmed by 1H Breakout $\nightarrow$ Travels to opposing Daily SNR.\n* **Mini Classic Storylines ($4\text{H} \nightarrow 15\text{M}$):** Intraday storylines moving between fresh intraday levels ($4\text{H} \nightarrow 1\text{H}/30\text{M}/15\text{M}$; $1\text{H} \nightarrow 30\text{M}/15\text{M}$; $30\text{M} \nightarrow 5\text{M}$; $15\text{M} \nightarrow 1\text{M}$).\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-7.3",
+    "version": "v3",
+    "section": "7.3",
+    "title": "Advanced Storylines (Trendline-Based)",
+    "start_line": 365,
+    "end_line": 380,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 7.3 Advanced Storylines (Trendline-Based)\nUsed when **NO fresh SNR levels remain** on the chart:\n* **Monthly Advanced Storyline:** Built on Monthly Trendline $\nightarrow$ Confirmed by Daily Breakout at the trendline.\n* **Weekly Advanced Storyline:** Built on Weekly Trendline $\nightarrow$ Confirmed by 4H Breakout at the trendline.\n* **Daily Advanced Storyline:** Built on Daily Trendline $\nightarrow$ Confirmed by 1H Breakout at the trendline.\n\n```\n                      [Fresh SNR Levels Exist?]\n                           /                                     YES             NO\n                         /                             [Classic Storyline]    [Advanced Storyline]\n              (SNR Level Based)      (Trendline Based)\n```\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-7.4",
+    "version": "v3",
+    "section": "7.4",
+    "title": "Continuation Storylines (Middle & Ending Phases)",
+    "start_line": 381,
+    "end_line": 383,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 7.4 Continuation Storylines (Middle & Ending Phases)\nOnce a trend shift is confirmed in Part 1, price continues breaking intraday levels in the same direction without reversing. Continuation setups trade from **C.APEX**, **GAP**, and **SBR/RBS** levels.\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-7.5",
+    "version": "v3",
+    "section": "7.5",
+    "title": "Early Right Shoulder (ERS) Mechanics & Refinements",
+    "start_line": 384,
+    "end_line": 390,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 7.5 Early Right Shoulder (ERS) Mechanics & Refinements\nAn **Early Right Shoulder (ERS)** is a mini A-shape (bearish) or mini V-shape (bullish) level that forms *just before* the main breakout in a QM pattern. It creates an additional early entry checkpoint before the primary Left Shoulder test.\n\n---\n\n## 8. INSTITUTIONAL CONFLUENCES (WHITE SNT CONCEPTS)\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-8.1",
+    "version": "v3",
+    "section": "8.1",
+    "title": "ICT Session Liquidity (Asian Range, London Sweep, NY Distribution)",
+    "start_line": 391,
+    "end_line": 402,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 8.1 ICT Session Liquidity (Asian Range, London Sweep, NY Distribution)\nWhite SNT integrates ICT time-of-day liquidity boundaries:\n1. **Asian Range (Accumulation):** Price consolidates between 00:00 UTC and 06:00 UTC, creating Asian High and Asian Low liquidity boundaries.\n2. **London Session (Manipulation Sweep):** London open (07:00–10:00 UTC) expands beyond Asian High or Low to sweep liquidity into an HTF SNR level or Open Close Level (OCL).\n3. **New York Session (Distribution):** NY session (13:00–16:00 UTC) delivers the true directional expansion toward opposing HTF targets.\n\n```\n       [ASIAN RANGE]            [LONDON MANIPULATION]            [NEW YORK DISTRIBUTION]\n   Consolidation Range          Sweeps Asian High/Low            Expands aggressively toward\n   (Asian High & Low).          into HTF SNR / OCL.              master storyline targets.\n```\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-8.2",
+    "version": "v3",
+    "section": "8.2",
+    "title": "SMT Intermarket Divergence (Gold vs. Silver, EURUSD vs. GBPUSD)",
+    "start_line": 403,
+    "end_line": 421,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 8.2 SMT Intermarket Divergence (Gold vs. Silver, EURUSD vs. GBPUSD)\n**SMT (Smart Money Tool) Divergence** occurs when two highly correlated assets fail to confirm each other's swing highs or swing lows at key turning points:\n\n#### **Correlated Pairs Matrix:**\n* `XAUUSD` (Gold) vs. `XAGUSD` (Silver)\n* `EURUSD` vs. `GBPUSD`\n* `AUDUSD` vs. `NZDUSD`\n* `USDJPY` vs. `USDCHF` (Inverted)\n\n#### **SMT Mechanics:**\n* **Bullish SMT:** Asset A makes a Lower Low, but Asset B makes a Higher Low. Asset B shows underlying institutional strength, confirming a high-probability buy setup on both assets.\n* **Bearish SMT:** Asset A makes a Higher High, but Asset B makes a Lower High. Asset B shows underlying institutional weakness, confirming a high-probability sell setup.\n\n```\n   BULLISH SMT DIVERGENCE:\n   Asset A (XAUUSD):  High ----\\_____ Lower Low (Sweeps Liquidity)\n   Asset B (XAGUSD):  High ----\\_____ Higher Low (Holds Strength - BUY CONFIRMED!)\n```\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-8.3",
+    "version": "v3",
+    "section": "8.3",
+    "title": "Daye Quarterly Theory (QT) & 90-Minute Cycles (AMDX, XAMD)",
+    "start_line": 422,
+    "end_line": 434,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 8.3 Daye Quarterly Theory (QT) & 90-Minute Cycles (AMDX, XAMD)\nDaye Quarterly Theory divides trading days and sessions into four 90-minute quarterly cycles:\n* **Q1 (Accumulation - A):** Range-bound order building.\n* **Q2 (Manipulation - M):** False breakout / liquidity sweep.\n* **Q3 (Distribution - D):** True directional trend expansion (**Primary Entry Window**).\n* **Q4 (Continuation/Reversal - X):** Trend completion or retracement.\n\n#### **90-Minute Cycle Timetable (UTC):**\n* **Cycle 1 (Asia):** Q1: 00:00-01:30 | Q2: 01:30-03:00 | Q3: 03:00-04:30 | Q4: 04:30-06:00\n* **Cycle 2 (London):** Q1: 06:00-07:30 | Q2: 07:30-09:00 | Q3: 09:00-10:30 | Q4: 10:30-12:00\n* **Cycle 3 (NY AM):** Q1: 12:00-13:30 | Q2: 13:30-15:00 | Q3: 15:00-16:30 | Q4: 16:30-18:00\n* **Cycle 4 (NY PM):** Q1: 18:00-19:30 | Q2: 19:30-21:00 | Q3: 21:00-22:30 | Q4: 22:30-00:00\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-8.4",
+    "version": "v3",
+    "section": "8.4",
+    "title": "Circle Fibonacci & Fibo Storyline (\"Adding Wood from the Forest\")",
+    "start_line": 435,
+    "end_line": 447,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 8.4 Circle Fibonacci & Fibo Storyline (\"Adding Wood from the Forest\")\nWhite SNT uses custom Circle Fibonacci settings to map retracement waves and add scale-in positions:\n\n#### **Circle Fibonacci Ratios:**\n`0.0`, `0.109`, `0.127`, `0.145`, `0.214`, `0.232`, `0.25`, `0.618`, `0.636`, `0.654`, `0.786`, `0.804`, `0.822`, `1.0`, `1.109`, `1.272`, `1.618`, `1.893`, `2.0`\n\n#### **\"Adding Wood from the Forest\" Metaphor:**\nAfter entering an initial position (Order 1) at an H1 POI, as price expands and forms LTF retracements into key Circle Fibo levels (`0.109` or `1.893`), traders add scale-in orders (Order 2, Order 3) to compound profits safely along the storyline.\n\n---\n\n## 9. COMPLETE SETUP CATALOGS & EXECUTION MODELS\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-9.1",
+    "version": "v3",
+    "section": "9.1",
+    "title": "Pitchou.FX QMS Reversal Setups",
+    "start_line": 448,
+    "end_line": 458,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 9.1 Pitchou.FX QMS Reversal Setups\nUsed during **Part 1 of the Storyline** to capture trend births:\n1. **Apex Setup:** Direct entry at the QM Apex level after LTF refinement.\n2. **Left Shoulder (LS) Setup:** Entry at the Left Shoulder horizontal level.\n3. **SBR / RBS Setup:** Entry at broken support flipped to resistance (SBR) or broken resistance flipped to support (RBS).\n4. **ERS Setup:** Entry at the Early Right Shoulder level preceding the main breakout.\n5. **GAP QMS Setup:** Direct entry from a 4H or 1H GAP level (must align with LTF A/V levels).\n6. **QMC Setup:** Quasimodo Continuation pattern confirming ongoing momentum.\n7. **QM-to-QM Setup (LTF Nested):** Micro 1M/5M QM pattern forming inside an HTF QM entry zone.\n8. **Reversal TL-QM Failed Setup:** Capitalizing on a failed QM breakout by trading the immediate reversal off the failed Left Shoulder.\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-9.2",
+    "version": "v3",
+    "section": "9.2",
+    "title": "Pitchou.FX Continuation Setups",
+    "start_line": 459,
+    "end_line": 467,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 9.2 Pitchou.FX Continuation Setups\nUsed during **Parts 2 and 3 of the Storyline**:\n* **Continuation Apex (C.APEX)**\n* **GAP Level Retests**\n* **SBR / RBS Continuation Retests**\n\n#### **7 Streamlined LTF Setups for Fast Intraday Action ($30\text{M}$ and below):**\n1. Apex Setup | 2. LS Setup | 3. SBR/RBS Setup | 4. ERS Setup | 5. QMC Setup | 6. QM-to-QM Setup | 7. Reversal TL-QM Failed Setup\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-9.3",
+    "version": "v3",
+    "section": "9.3",
+    "title": "Pitchou.FX Confirmation Badges",
+    "start_line": 468,
+    "end_line": 486,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 9.3 Pitchou.FX Confirmation Badges\nBefore entering any setup, wait for at least one lower-timeframe confirmation badge:\n1. **Candle Rejection:** Strong candle closing decisively with a rejection wick at the SNR entry level.\n2. **Breaking Gap:** Gap breakout on 15M/5M with an engulfing candle away from entry.\n3. **Trendline Breakout:** Short-term trendline on 5M/1M broken by an engulfing candle.\n4. **Mini QM Confirmation:** Micro QM pattern forming on 1M/5M.\n5. **5Min EMA 9 Confirmation:** Engulfing candle breaking and holding beyond **EMA 9** (Period 9, Close).\n\n```\n   COMBINED CONFIRMATION TABLE (Pitchou.FX):\n   -------------------------------------------------------------------------------------\n   Confirmation Combo                 Execution Steps\n   -------------------------------------------------------------------------------------\n   MTF Rejection Cascade             15M Rejection -> 30M Rejection -> 1H Rejection\n   TL Break + EMA 9                   1M/5M Trendline Break -> 5M EMA 9 Engulfing Close\n   Candle Rejection + EMA 9           15M Candle Rejection -> 5M EMA 9 Cross & Hold\n   Multi-Confirmation Triple          5M EMA 9 + 5M Breaking Gap + 5M Trendline Break\n```\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-9.4",
+    "version": "v3",
+    "section": "9.4",
+    "title": "White SNT H1 POI Execution Models (EX 1 to EX 4)",
+    "start_line": 487,
+    "end_line": 527,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 9.4 White SNT H1 POI Execution Models (EX 1 to EX 4)\n\n#### **BUY EXECUTION MODELS (White SNT):**\n* **EX 1 (Direct H1 POI Reversal):** Price touches H1 POI $\nightarrow$ M15 market structure shift (MSS) $\nightarrow$ Retest of M1-M5 Order Block / OCL $\nightarrow$ **BUY Entry**.\n* **EX 2 (Inducement + OCL Sweeps):** Price reaches H1 POI $\nightarrow$ Sweeps M5 Inducement (IDM) $\nightarrow$ Touches key OCL inside Q3 of 90-min cycle $\nightarrow$ **BUY Entry**.\n* **EX 3 (Trendline Key + SMT):** Price touches H1 POI $\nightarrow$ Pierces M5 Trendline Key (TL Key) $\nightarrow$ Confirms Bullish SMT Divergence $\nightarrow$ **BUY Entry**.\n* **EX 4 (Circle Fibo Retracement):** Price bounces from H1 POI $\nightarrow$ Forms swing high $\nightarrow$ Retraces to Circle Fibo `0.109` / `0.25` level $\nightarrow$ **BUY Entry**.\n\n#### **SELL EXECUTION MODELS (White SNT):**\n* **EX 1 (Direct H1 POI Reversal):** Price touches H1 POI $\nightarrow$ M15 market structure shift down $\nightarrow$ Retest of M1-M5 Order Block / OCL $\nightarrow$ **SELL Entry**.\n* **EX 2 (Inducement + SBR Sweeps):** Price reaches H1 POI $\nightarrow$ Sweeps M3 Inducement $\nightarrow$ Retests key SBR level inside Q3 90-min cycle $\nightarrow$ **SELL Entry**.\n* **EX 3 (M3 Trendline Key Sweep):** Price reaches H1 POI $\nightarrow$ Sweeps M3 Trendline Key $\nightarrow$ Confirms Bearish SMT Divergence $\nightarrow$ **SELL Entry**.\n* **EX 4 (SBR + Fibo Storyline Scale-In):** Price drops from H1 POI $\nightarrow$ Retests broken SBR zone aligned with Circle Fibo `1.893` extension $\nightarrow$ **SELL Entry (\"Adding Wood\")**.\n\n---\n\n## 10. TRADING PSYCHOLOGY, RISK MANAGEMENT & FUNDED ACCOUNT FORMULAS\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-10.1",
+    "version": "v3",
+    "section": "10.1",
+    "title": "The Power of Four (Strategy, Psychology, Risk, Journaling)",
+    "start_line": 528,
+    "end_line": 539,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 10.1 The Power of Four (Strategy, Psychology, Risk, Journaling)\n```\n            +-----------------------------------+\n            |         THE POWER OF FOUR         |\n            +-----------------------------------+\n            | 1. STRATEGY      - The Engine     |\n            | 2. PSYCHOLOGY    - The Driver     |\n            | 3. RISK MGMT     - The Armor      |\n            | 4. JOURNALING    - The Map        |\n            +-----------------------------------+\n```\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-10.2",
+    "version": "v3",
+    "section": "10.2",
+    "title": "8 Emotional Psychology Traps & Behavioral Solutions",
+    "start_line": 540,
+    "end_line": 549,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 10.2 8 Emotional Psychology Traps & Behavioral Solutions\n1. **FOMO (Fear of Missing Out):** Chasing moving candles. *Solution:* **5-Second Rule** (Count 5-4-3-2-1; if setup is valid, execute; if invalid, walk away).\n2. **Greed:** Holding trades beyond targets. *Solution:* Fixed SL/TP rules. Never move or remove SL.\n3. **Fear:** Hesitation to enter valid setups. *Solution:* **Set & Forget Rule** (Set SL and TP, then close chart).\n4. **Revenge Trading:** Aggressively trying to recover losses. *Solution:* **3-Loss Rule** (Maximum 3 losses per day; stop trading immediately upon 3rd loss).\n5. **Overtrading:** Button addiction. *Solution:* **10-Minute Chart Detox** (Step away from screen for 10 minutes after every closed trade).\n6. **Lack of Focus:** Phone distractions. *Solution:* **No-Phone Rule** (Remove mobile phone during active trading sessions).\n7. **Overconfidence:** Risking big after win streaks. *Solution:* **1-Trade Reality Check** (Take a break after major wins; treat next trade like Day 1).\n8. **Attachment:** Removing SL out of hope. *Solution:* **One-and-Done Rule** (Accept outcome; trading is a business decision, not personal identity).\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-10.3",
+    "version": "v3",
+    "section": "10.3",
+    "title": "3-Phase Funded Account Formula (Prop Firm Rules)",
+    "start_line": 550,
+    "end_line": 567,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 10.3 3-Phase Funded Account Formula (Prop Firm Rules)\nDesigned for passing and maintaining prop firm accounts (Topstep, FTMO, 5%ers, TopTier):\n\n#### **Phase 1: Survival Mode (Drawdown Protection)**\n* **When Used:** Account start or recovering from drawdown.\n* **Formula:** $\text{Risk per Trade} = \text{Max Drawdown} \\div 30 \text{ trades}$ ($\u0007pprox 0.33\\%$ of account balance).\n* **Rule:** If total drawdown reaches $-3\\%$, cut risk per trade by $50\\%$.\n\n#### **Phase 2: Progression Mode (Smart Scaling)**\n* **When Used:** Account is in positive profit.\n* **Formula:** $\text{Risk per Trade} = \text{Account Balance} \\div 20 \text{ trades}$ ($0.5\\%$ of account balance).\n* **Rule:** After 3 consecutive winning trades, transition to Phase 3.\n\n#### **Phase 3: Aggressive Pass Mode (Target Pass)**\n* **When Used:** Account is near challenge profit target.\n* **Formula:** $\text{Risk per Trade} = \text{Account Balance} \\div 10 \text{ trades}$ ($1.0\\%$ of account balance).\n* **Rule:** If drawdown hits $-5\\%$, immediately revert to Phase 1.\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-10.4",
+    "version": "v3",
+    "section": "10.4",
+    "title": "Personal Account Flipping System",
+    "start_line": 568,
+    "end_line": 572,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 10.4 Personal Account Flipping System\n* **Phase 1 (Conservative Flip):** Risk $5\\%$ per trade ($\text{Balance} \\div 10$). No lot increase after losses.\n* **Phase 2 (Controlled Acceleration):** Risk $10\\%$ per trade ($\text{Balance} \\div 5$). Scale up only after 2 consecutive wins.\n* **Phase 3 (High-Velocity Flip):** Risk $30\\%$ per trade ($\text{Balance} \\div 3$). Stop trading if drawdown hits $-30\\%$.\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-10.5",
+    "version": "v3",
+    "section": "10.5",
+    "title": "Stop Loss & Take Profit Protocols",
+    "start_line": 573,
+    "end_line": 580,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 10.5 Stop Loss & Take Profit Protocols\n* **30-Pip Minimum SL Rule:** Placed beyond the extreme wick of the confirmation structure, maintaining a **minimum 30-pip buffer** (never use less than 30 pips on Gold/Forex to absorb market noise).\n* **Take Profit Protocol:** Set at opposing fresh SNR levels or trendlines. Partial profits (50%) taken at TP1 (first 1H/4H SBR/RBS zone), moving SL to Breakeven (BE), allowing runners to hit full HTF storyline targets.\n\n---\n\n## 11. AUTHOR COMPARISON, DIVERGENCE RESOLUTION & PRE-TRADE CHECKLISTS\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-11.1",
+    "version": "v3",
+    "section": "11.1",
+    "title": "Comparative Analysis Matrix",
+    "start_line": 581,
+    "end_line": 592,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 11.1 Comparative Analysis Matrix\n\n| Strategic Element | Pitchou.FX (Malaysian SNR 2.0) | White Srp / White SNT (The Alchemist) | Hybrid Confluence Strategy |\n| :--- | :--- | :--- | :--- |\n| **Core Method** | Mechanical Price Action & SNR Levels | Institutional Smart Money Concepts (SMC/ICT) | MSNR Structure + SMC Execution |\n| **Level Identification** | A-Shape, V-Shape, GAP Levels | Open Close Levels (OCL), Order Blocks | MSNR Levels refined by OCLs |\n| **Breakout Validation** | Candle Body Close beyond level | Liquidity Sweeps & Market Structure Shifts | Body Close for Storyline; Sweep for POI |\n| **Time Timing** | Timeframe Closing Rules (Daily, 4H, 1H) | ICT Sessions (Asia, London, NY) + Daye QT | Enter during Q3 of ICT Sessions |\n| **Divergence Tool** | Not utilized | SMT Intermarket Divergence | Confirm setups with SMT Divergence |\n| **Scale-In Method** | Multi-Rejection MTF Cascades | Circle Fibonacci (\"Adding Wood\") | Circle Fibo scale-ins on MTF storylines |\n| **Risk Management** | 3-Phase Funded Formula & 30-Pip SL | Fixed R:R & High-RR POI Target | 3-Phase Formula + 30-Pip SL Buffer |\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-11.2",
+    "version": "v3",
+    "section": "11.2",
+    "title": "Resolving Conflicts & Divergences",
+    "start_line": 593,
+    "end_line": 596,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 11.2 Resolving Conflicts & Divergences\n1. **Wick Sweeps vs. Breakouts:** Pitchou.FX treats a wick sweep as a fakeout; White SNT treats a wick sweep as a Turtle Soup / Liquidity Injection. **Resolution:** Use Pitchou's body close to confirm the **Master Storyline direction**, but use White SNT's wick sweep to enter at the **LTF Point of Interest (POI)**.\n2. **Level Freshness:** Pitchou flags any wick touch as unfresh; White SNT reuses OCLs if liquidity remains. **Resolution:** Prioritize fresh SNR levels (Classic Storyline); if un-fresh, require Pitchou's **Confirmation Candle (CC)** OR White SNT's **SMT Divergence**.\n",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V3-11.3",
+    "version": "v3",
+    "section": "11.3",
+    "title": "Step-by-Step Pre-Trade Checklist",
+    "start_line": 597,
+    "end_line": 626,
+    "source_sha256": "4c9bb07b086317a9182b63860972ad4b36dddd376842f33765e3c0cb944a6be6",
+    "text": "### 11.3 Step-by-Step Pre-Trade Checklist\n\n```\n  [ ] STEP 1: Higher Timeframe Storyline Analysis\n      - Identify Master Storyline (Monthly / Weekly / Daily).\n      - Determine Storyline Phase: Part 1 (Reversal), Part 2 (Middle), or Part 3 (Ending).\n      - Check if Fresh SNR Levels exist (Classic Storyline) or use Trendlines (Advanced Storyline).\n\n  [ ] STEP 2: Time Alignment & Session Check\n      - Check current ICT Session: London (07:00-10:00 UTC) or NY (13:00-16:00 UTC).\n      - Check Daye Quarterly Theory Cycle: Is it Q3 (Distribution Expansion Phase)?\n\n  [ ] STEP 3: Point of Interest (POI) & Confluence\n      - Price arrives at Fresh SNR Level / OCL / Order Block.\n      - Check for SMT Intermarket Divergence (e.g., Gold vs. Silver divergence).\n      - Check for Inducement (IDM) or Trendline Key (TL Key) sweep.\n\n  [ ] STEP 4: Lower Timeframe Confirmation Badge\n      - Zoom to 15M / 5M / 1M.\n      - Wait for Confirmation Badge: 15M Candle Rejection, 5M Breaking Gap, 5M Trendline Break, or 5M EMA 9 Hold.\n\n  [ ] STEP 5: Risk Management & Order Execution\n      - Calculate Position Size using 3-Phase Funded Formula (e.g., Phase 1 = 0.33% risk).\n      - Set Stop Loss: Beyond extreme wick + Mandatory 30-pip minimum buffer.\n      - Set Take Profit: TP1 at first opposing 1H/4H SBR/RBS; Final TP at opposing HTF SNR target.\n      - Execute trade, log in War Journal, and set to Set-and-Forget mode!\n```\n\n---\n*Unified Master Strategy Guide (v3) Compiled from \"MALAYSIAN SNR STRATEGY [2.0] by PITCHOU.FX\" and \"The Alchemist by White Srp / White SNT\"*",
+    "status": "Reference only — not executed",
+    "implementation": [
+      "docs/sources/strategy-v3.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V4-1.1",
+    "version": "v4",
+    "section": "1.1",
+    "title": "Pitchou.FX's Philosophy: Mechanical SNR, Storylines, & Daily Routine",
+    "start_line": 69,
+    "end_line": 79,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 1.1 Pitchou.FX's Philosophy: Mechanical SNR, Storylines, & Daily Routine\nPitchou.FX developed **Malaysian Support and Resistance (MSNR) Strategy 2.0** as a purely mechanical, objective price-action framework. The foundational belief is that price moves between well-defined structural levels (*Hoops*) along trendline paths (*Court Boundaries*). \n\nThe goal of Pitchou.FX's philosophy is **\"2 Hours to Freedom\"**—reducing chart screen time to just 1–2 focused hours per day by following a fixed daily routine:\n1. Mark Higher Timeframe (HTF) fresh SNR levels and trendlines before sessions start.\n2. Determine the active **Storyline** (from where price rejected and to where it is traveling).\n3. Wait for price to enter a key level and print a lower-timeframe **Confirmation Badge**.\n4. Set Stop Loss (SL) and Take Profit (TP), execute, and step away (*Set and Forget*).\n\nPitchou.FX eliminates subjectivity by requiring strict **candle body closes** for level breakouts and structural confirmations, removing the temptation to guess or overtrade.\n",
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V4-1.2",
+    "version": "v4",
+    "section": "1.2",
+    "title": "White SNT's Philosophy: Institutional SMC/ICT Hybrid & Certified Performance",
+    "start_line": 80,
+    "end_line": 89,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 1.2 White SNT's Philosophy: Institutional SMC/ICT Hybrid & Certified Performance\nWhite Srp (White SNT) presents **\"The Alchemist\"** approach, built on verified performance across major prop firms (Topstep, FTMO, TopTier Trader, The 5%ers). White SNT elevates classic Malaysian SNR by embedding institutional concepts from Smart Money Concepts (SMC) and Inner Circle Trader (ICT).\n\nWhile Pitchou.FX treats levels as pure price barriers, White SNT views them as **liquidity pools** where institutional market makers manipulate retail traders before expanding price. White SNT integrates:\n- **Open Close Levels (OCL)** as hidden institutional order blocks.\n- **ICT Time Sessions & Asia Range Liquidity** to identify session manipulation sweeps.\n- **SMT Intermarket Divergence** between correlated assets (e.g., Gold vs. Silver) to confirm institutional accumulation/distribution.\n- **Daye Quarterly Theory (QT)** 90-minute time cycles to pinpoint precise execution windows.\n- **Circle Fibonacci (Fibo Storyline)** to measure algorithmic wave expansions.\n",
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V4-1.3",
+    "version": "v4",
+    "section": "1.3",
+    "title": "Master Synthesis: How Price Action and Institutional Orderflow Combine",
+    "start_line": 90,
+    "end_line": 115,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 1.3 Master Synthesis: How Price Action and Institutional Orderflow Combine\nBy merging both authors' works, we obtain the ultimate hybrid framework:\n- **Pitchou.FX provides the Macro Map**: The multi-timeframe Storyline, fresh SNR level states, A/V shapes, and Quasimodo (QM) breakout rules tell you *WHERE* price is going and *WHAT* stage of the market move you are trading.\n- **White SNT provides the Micro Trigger**: Institutional order block refinement (OCL), ICT session timing, SMT divergence, and liquidity sweep confirmation tell you *WHEN* and *WHY* big banks are entering at that exact SNR level.\n\n```\n+-----------------------------------------------------------------------------------+\n|                            THE UNIFIED TRADING ENGINE                             |\n+-----------------------------------------------------------------------------------+\n|  PITCHOU.FX (MSNR 2.0)                 +  WHITE SNT (THE ALCHEMIST)               |\n|  - Storylines (Macro Direction)        |  - ICT Session Timing & Liquidity        |\n|  - Fresh A/V Shape SNR & GAPs          |  - Open Close Level (OCL / Hidden Base)   |\n|  - QM Structural Breakouts             |  - SMT Intermarket Divergence            |\n|  - MTF Alignment & Rejection Rules     |  - Daye Quarterly Theory (90-Min QT)     |\n+----------------------------------------+------------------------------------------+\n                                         |\n                                         v\n+-----------------------------------------------------------------------------------+\n|                  HIGH-PROBABILITY PRECISION EXECUTION (10/10 SETUP)               |\n|  1. HTF Storyline Target Identified (Pitchou.FX)                                  |\n|  2. Fresh SNR / OCL Level Test (Pitchou + White)                                  |\n|  3. ICT Session Manipulation & SMT Divergence Confirmation (White SNT)            |\n|  4. LTF Confirmation Badge / EMA 9 Hold Triggered (Pitchou.FX)                    |\n+-----------------------------------------------------------------------------------+\n```\n",
+    "status": "Narrative / glossary; no numeric probability or institutional-intent claim is executed",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V4-1.4",
+    "version": "v4",
+    "section": "1.4",
+    "title": "Terminology & Master Glossary",
+    "start_line": 116,
+    "end_line": 140,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 1.4 Terminology & Master Glossary\nTo eliminate confusion when reading charts, here is the master dictionary connecting Pitchou.FX and White SNT terms with standard Smart Money Concepts (SMC):\n\n| MSNR / Pitchou.FX Term | White SNT / Alchemist Term | SMC / ICT Equivalent | Definition |\n| :--- | :--- | :--- | :--- |\n| **A-Shape Level** | Resistance / Peak | Swing High Resistance | Formed when a bullish candle is followed immediately by a bearish candle. |\n| **V-Shape Level** | Support / Trough | Swing Low Support | Formed when a bearish candle is followed immediately by a bullish candle. |\n| **GAP Level** | Price Gap / Imbalance | Fair Value Gap (FVG) / Imbalance | Formed when two consecutive candles move strongly in the same direction. |\n| **SBR** | Support Becomes Resistance | Broken Support / Breaker Block | A previous support level broken down by a candle body close, turning into resistance. |\n| **RBS** | Resistance Becomes Support | Broken Resistance / Breaker Block | A previous resistance level broken up by a candle body close, turning into support. |\n| **Fresh Level** | Unmitigated Level | Clean Supply/Demand Zone | A level never touched by a wick, or broken clean through by a candle body. |\n| **Unfresh Level** | Mitigated Level | Tapped / Exhausted Level | A level touched by candle wicks without being broken by a body. |\n| **Confirmation Candle (CC)** | Repair Candle | Level Validation | The 3rd candle forming right after a level creation, matching level direction. |\n| **Quasimodo (QM)** | Market Structure Shift (MSS) | QM Pattern / Liquidity Sweep | A 4-point reversal structure (H-L-HH-LL or L-H-LL-HH). |\n| **QM Apex** | Swing Extreme / Sweep | Turtle Soup / Liquidity Sweep | The highest peak (bearish) or lowest trough (bullish) in a QM pattern. |\n| **Left Shoulder (LS)** | Entry POI / OCL | Order Block / Decision Level | The initial swing point before the apex in a QM structure. |\n| **Storyline** | Macro Trend / Narrative | HTF Orderflow / Target Vector | The directional journey of price from one HTF SNR level/trendline to another. |\n| **OCL** | Open Close Level | Hidden Base / HTF Moving Avg | Line where candle bodies open and close on HTF, revealing hidden LTF Order Blocks. |\n| **SMT Divergence** | SMT Divergence | Smart Money Tool Divergence | Non-conformation of highs/lows between correlated instruments (e.g., Gold vs. Silver). |\n| **QT Cycle** | Quarterly Theory | 90-Minute AMDX Cycle | Time-based accumulation, manipulation, distribution, and expansion cycles. |\n\n---\n\n## 2. Core Candlestick & Market Structure Mechanics\n",
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": []
+  },
+  {
+    "id": "V4-2.1",
+    "version": "v4",
+    "section": "2.1",
+    "title": "OHLC Anatomy & Price Story Reading (Open, High, Low, Close)",
+    "start_line": 141,
+    "end_line": 165,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 2.1 OHLC Anatomy & Price Story Reading (Open, High, Low, Close)\nEvery candlestick tells a story of the battle between buyers and sellers during a specific timeframe:\n- **Open (O)**: Starting price of the timeframe session.\n- **High (H)**: Maximum push by buyers (upper wick tip).\n- **Low (L)**: Maximum push by sellers (lower wick tip).\n- **Close (C)**: Final settlement price.\n\n```\n       BULLISH CANDLE                        BEARISH CANDLE\n       HIGH                                  HIGH\n         |                                     |\n    +----+----+  <-- CLOSE                +----+----+  <-- OPEN\n    |         |                           |         |\n    |  BODY   |                           |  BODY   |\n    |         |                           |         |\n    +----+----+  <-- OPEN                 +----+----+  <-- CLOSE\n         |                                     |\n        LOW                                   LOW\n```\n\n**Reading the Price Story**:\n- A long upper wick indicates seller rejection (supply entering).\n- A long lower wick indicates buyer rejection (demand entering).\n- A strong, full-bodied candle closing near its extreme shows overwhelming directional dominance.\n",
+    "status": "Implemented; primitive and representative pipeline tests",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ]
+  },
+  {
+    "id": "V4-2.2",
+    "version": "v4",
+    "section": "2.2",
+    "title": "Candle Range Theory (CRT) Fundamentals",
+    "start_line": 166,
+    "end_line": 173,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 2.2 Candle Range Theory (CRT) Fundamentals\nCandle Range Theory (CRT) evaluates price movement by analyzing whether price remains inside or expands outside a prior candle's High and Low range:\n- **Inside Bar (Accumulation)**: Price stays within the prior candle's High-Low range.\n- **Sweep / Manipulation**: Price wicks out of the High or Low of the CRT range to grab liquidity.\n- **Expansion / Distribution**: Price breaks and closes outside the CRT range, initiating a strong trend.\n\n*Note*: As White SNT emphasizes, trading SNR levels located *inside* an unexpanded CRT range yields poor risk-reward. Wait for the CRT boundary sweep or breakout first!\n",
+    "status": "Implemented; primitive and representative pipeline tests",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ]
+  },
+  {
+    "id": "V4-2.3",
+    "version": "v4",
+    "section": "2.3",
+    "title": "Open Close Level (OCL): The Hidden Moving Average & Hidden Base",
+    "start_line": 174,
+    "end_line": 192,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 2.3 Open Close Level (OCL): The Hidden Moving Average & Hidden Base\nWhite SNT introduces the **Open Close Level (OCL)** as one of the most powerful institutional concepts:\n- **What is OCL?**: An OCL is a horizontal line drawn at the exact price point where two adjacent candle bodies meet (where Candle 1 Closes and Candle 2 Opens).\n- **Institutional Meaning**: On higher timeframes (HTF like Daily or 4H), an OCL looks like a simple flat meeting point between candle bodies. However, when you zoom down to lower timeframes (15M, 5M, 1M), that exact price line reveals a **fresh Order Block / Hidden Supply & Demand Base**.\n- **OCL Properties**:\n  - Acts like a dynamic moving average with fixed structural support/resistance.\n  - Institutional orders sit stacked at OCLs. When price retests an HTF OCL, it reacts sharply.\n\n```\n  HTF View (Daily / 4H):                   LTF View (15M / 5M):\n  +-------+                                +-------+\n  |  RED  |                                |  OB   | <-- Order Block Base\n  | CANDLE|                                +-------+\n  +=======+  <-- OCL LINE (Close=Open) ========> Exact OCL Reaction Zone\n  | GREEN |                                +-------+\n  | CANDLE|                                | RALLY |\n  +-------+                                +-------+\n```\n",
+    "status": "Implemented; primitive and representative pipeline tests",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ]
+  },
+  {
+    "id": "V4-2.4",
+    "version": "v4",
+    "section": "2.4",
+    "title": "Structural Swings: Swing Highs, Swing Lows, BOS, and Market Structure Shift (MSS)",
+    "start_line": 193,
+    "end_line": 203,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 2.4 Structural Swings: Swing Highs, Swing Lows, BOS, and Market Structure Shift (MSS)\nMarket structure dictates whether a market is trending or reversing:\n- **Uptrend**: Series of Higher Highs (HH) and Higher Lows (HL).\n- **Downtrend**: Series of Lower Highs (LH) and Lower Lows (LL).\n- **Break of Structure (BOS)**: A candle body close beyond a previous swing in the direction of the current trend (confirming trend continuation).\n- **Market Structure Shift (MSS) / Choch**: A candle body close beyond the last key swing low in an uptrend (or key swing high in a downtrend), signaling structural reversal.\n\n---\n\n## 3. Malaysian Support & Resistance (MSNR) Foundations\n",
+    "status": "Implemented; primitive and representative pipeline tests",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ]
+  },
+  {
+    "id": "V4-3.1",
+    "version": "v4",
+    "section": "3.1",
+    "title": "Resistance: The A-Shape Level (Bullish Candle followed by Bearish Candle)",
+    "start_line": 204,
+    "end_line": 213,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 3.1 Resistance: The A-Shape Level (Bullish Candle followed by Bearish Candle)\nAn **A-Shape Level** represents Resistance (Supply). It is formed when a bullish candle is followed immediately by a bearish candle, forming a sharp peak (resembling the letter \"A\").\n\n```\n  A-SHAPE RESISTANCE (Peak)\n       [+]\n      /     GREEN   RED      <-- Horizontal line drawn at the peak body/wick high\n  CANDLE CANDLE\n```\n",
+    "status": "Implemented with user-approved junction, GAP and CC definitions",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ]
+  },
+  {
+    "id": "V4-3.2",
+    "version": "v4",
+    "section": "3.2",
+    "title": "Support: The V-Shape Level (Bearish Candle followed by Bullish Candle)",
+    "start_line": 214,
+    "end_line": 224,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 3.2 Support: The V-Shape Level (Bearish Candle followed by Bullish Candle)\nA **V-Shape Level** represents Support (Demand). It is formed when a bearish candle is followed immediately by a bullish candle, forming a sharp trough (resembling the letter \"V\").\n\n```\n  V-SHAPE SUPPORT (Trough)\n  RED   GREEN\n  CANDLE CANDLE\n      \\   /        <-- Horizontal line drawn at the trough body/wick low\n       [-]\n```\n",
+    "status": "Implemented with user-approved junction, GAP and CC definitions",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ]
+  },
+  {
+    "id": "V4-3.3",
+    "version": "v4",
+    "section": "3.3",
+    "title": "GAP Levels: Momentum Price Gaps (Bullish vs. Bearish)",
+    "start_line": 225,
+    "end_line": 241,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 3.3 GAP Levels: Momentum Price Gaps (Bullish vs. Bearish)\nA **GAP Level** occurs when two consecutive candles move aggressively in the same direction, leaving a structural gap or hidden order area:\n- **Bullish GAP**: Formed by two consecutive green candles.\n- **Bearish GAP**: Formed by two consecutive red candles.\n- **How GAP Levels Act**:\n  - A **Bullish GAP** acts as **Support** when price drops back to retest it.\n  - A **Bearish GAP** acts as **Resistance** when price rallies back to retest it.\n\n```\n  BULLISH GAP SUPPORT                BEARISH GAP RESISTANCE\n     +-------+                          +-------+\n     | GREEN |                          |  RED  |\n     +-------+                          +-------+\n     | GREEN | <-- GAP Line             |  RED  | <-- GAP Line\n     +-------+                          +-------+\n```\n",
+    "status": "Implemented with user-approved junction, GAP and CC definitions",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ]
+  },
+  {
+    "id": "V4-3.4",
+    "version": "v4",
+    "section": "3.4",
+    "title": "Broken Levels: Support Becomes Resistance (SBR) & Resistance Becomes Support (RBS)",
+    "start_line": 242,
+    "end_line": 246,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 3.4 Broken Levels: Support Becomes Resistance (SBR) & Resistance Becomes Support (RBS)\nWhen a market structure breaks, level roles flip cleanly:\n- **SBR (Support Becomes Resistance)**: A V-shape support or Bullish GAP is broken downward by a candle **body close**. Once broken, this level flips to act as **Resistance** for future rallies.\n- **RBS (Resistance Becomes Support)**: An A-shape resistance or Bearish GAP is broken upward by a candle **body close**. Once broken, this level flips to act as **Support** for future dips.\n",
+    "status": "Implemented with user-approved junction, GAP and CC definitions",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ]
+  },
+  {
+    "id": "V4-3.5",
+    "version": "v4",
+    "section": "3.5",
+    "title": "Freshness Rules: Never Touched, Touched by Wick (Unfresh), Broken by Body (Fresh Re-activation)",
+    "start_line": 247,
+    "end_line": 271,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 3.5 Freshness Rules: Never Touched, Touched by Wick (Unfresh), Broken by Body (Fresh Re-activation)\nLevel state management is the single most critical filter in MSNR:\n\n1. **Fresh Level (100% Active)**:\n   - The level has **never been touched** by any candle wick since its creation.\n   - *Power*: Highest probability level for a trade reaction.\n2. **Unfresh Level (Weakened / Expired)**:\n   - The level has been **poked or touched by a candle wick** without a body close beyond it.\n   - *Power*: Exhausted. Do NOT take trades directly from unfresh levels unless repaired by a Confirmation Candle (CC) or HTF storyline alignment.\n3. **Fresh Re-activation via Body Close**:\n   - When a level is **broken cleanly by a candle body close**, it transforms into an SBR or RBS level, turning **100% FRESH AGAIN** as a new broken level!\n\n```\n+-----------------------------------------------------------------------------------+\n|                            LEVEL FRESHNESS STATE MATRIX                           |\n+---------------------+---------------------------------+---------------------------+\n| Event               | Level State                     | Actionable Trade Status   |\n+---------------------+---------------------------------+---------------------------+\n| Newly Created       | 100% FRESH                      | READY FOR FIRST TOUCH     |\n| Touched by Wick     | UNFRESH (Mitigated)             | DO NOT TRADE (Avoid)      |\n| Repaired by CC      | FRESH REPAIRED                  | VALID FOR TRADE           |\n| Broken by Body      | FRESH SBR / RBS (Role Flip)     | READY FOR FIRST RETEST    |\n+---------------------+---------------------------------+---------------------------+\n```\n",
+    "status": "Implemented with user-approved junction, GAP and CC definitions",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ]
+  },
+  {
+    "id": "V4-3.6",
+    "version": "v4",
+    "section": "3.6",
+    "title": "The Confirmation Candle (CC) Rule: 3rd-Candle Level Repair Mechanism",
+    "start_line": 272,
+    "end_line": 283,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 3.6 The Confirmation Candle (CC) Rule: 3rd-Candle Level Repair Mechanism\nPitchou.FX outlines a rare, vital exception for unfresh levels called the **Confirmation Candle (CC) Rule**:\n- **Definition**: The **Confirmation Candle (CC)** is the 3rd candle that forms immediately after an A-shape or V-shape level is created.\n- **Condition**:\n  - On a **V-shape Support**, the 3rd candle MUST be a **Green (Bullish) Candle**.\n  - On an **A-shape Resistance**, the 3rd candle MUST be a **Red (Bearish) Candle**.\n- **Effect**: If an unfresh level possesses a valid CC, it is **repaired and treated as a valid Fresh Level** again!\n\n---\n\n## 4. Trendline Mechanics & Liquidity Keys\n",
+    "status": "Implemented with user-approved junction, GAP and CC definitions",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ]
+  },
+  {
+    "id": "V4-4.1",
+    "version": "v4",
+    "section": "4.1",
+    "title": "Pitchou.FX's Trendline Drawing Rules (A-Shape and V-Shape Anchor Points)",
+    "start_line": 284,
+    "end_line": 295,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 4.1 Pitchou.FX's Trendline Drawing Rules (A-Shape and V-Shape Anchor Points)\nIn Malaysian SNR, trendlines are drawn strictly through structural peaks and troughs:\n- **Uptrend Line (Support TL)**: Drawn by connecting two or more **V-Shape troughs** sloping upward.\n- **Downtrend Line (Resistance TL)**: Drawn by connecting two or more **A-Shape peaks** sloping downward.\n\n```\n  UPTREND LINE (Support TL)              DOWNTREND LINE (Resistance TL)\n             / Peak 2                               Peak 1             /                                               \\ Peak 2\n     V-Shape 2                                                   /                                                         V-Shape 1\n  V-Shape 1\n```\n",
+    "status": "Implemented; full positive/negative historical corpus not validated",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ]
+  },
+  {
+    "id": "V4-4.2",
+    "version": "v4",
+    "section": "4.2",
+    "title": "The 8 Trendline Types & The Strict 5-Touch Expiration Rule",
+    "start_line": 296,
+    "end_line": 306,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 4.2 The 8 Trendline Types & The Strict 5-Touch Expiration Rule\nTrendlines track structural liquidity. Pitchou.FX defines 8 distinct trendline variations based on timeframe and slope combinations.\n\n**The Strict 5-Touch Limit Rule**:\n- Every trendline has a maximum lifespan of **5 touches**.\n- **Touch 1 & 2**: Create and establish the trendline.\n- **Touch 3**: **THE GOLDEN TOUCH** — The highest probability entry touch!\n- **Touch 4**: Tradeable with strict lower-timeframe confirmation badges.\n- **Touch 5**: Final touch.\n- **After Touch 5**: The trendline is considered **EXPIRED & EXHAUSTED**. Expect a breakout on or after the 5th touch!\n",
+    "status": "Implemented; full positive/negative historical corpus not validated",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ]
+  },
+  {
+    "id": "V4-4.3",
+    "version": "v4",
+    "section": "4.3",
+    "title": "The 3rd Touch Rule: Maximum Probability Entry",
+    "start_line": 307,
+    "end_line": 309,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 4.3 The 3rd Touch Rule: Maximum Probability Entry\nThe 3rd touch on a trendline represents the sweet spot where trend direction is confirmed but liquidity has not been depleted. When a 3rd touch aligns with a **fresh SNR level**, it creates a 10/10 confluence trade setup!\n",
+    "status": "Implemented; full positive/negative historical corpus not validated",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ]
+  },
+  {
+    "id": "V4-4.4",
+    "version": "v4",
+    "section": "4.4",
+    "title": "White SNT's Trendline Key (TL Key) & Inducement (IDM) Liquidity Sweeps",
+    "start_line": 310,
+    "end_line": 319,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 4.4 White SNT's Trendline Key (TL Key) & Inducement (IDM) Liquidity Sweeps\nWhite SNT adds an institutional layer to trendlines:\n- **Retail Trap**: Retail traders buy blindly on trendline touches. Smart money induces retail to place orders above/below trendlines.\n- **Trendline Key (TL Key)**: A horizontal line drawn at the point where a trendline is cleanly broken.\n- **Inducement (IDM) Sweep**: Smart money pushes price past a trendline to trigger retail Stop Losses into an HTF OCL or fresh SNR level before violently reversing in the true direction.\n\n---\n\n## 5. Quasimodo (QM) Pattern Breakdown & Validation\n",
+    "status": "Implemented; full positive/negative historical corpus not validated",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ]
+  },
+  {
+    "id": "V4-5.1",
+    "version": "v4",
+    "section": "5.1",
+    "title": "Anatomy of Bearish QM (High, Low, Higher High, Lower Low)",
+    "start_line": 320,
+    "end_line": 337,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 5.1 Anatomy of Bearish QM (High, Low, Higher High, Lower Low)\nA **Bearish QM Pattern** signals a major reversal from a bullish trend to a bearish trend.\n\n**Key Levels of Bearish QM**:\n1. **High (H)**: The initial peak (A-shape).\n2. **Low (L)**: The first trough (V-shape) following the High.\n3. **Higher High (HH)**: The second peak, rising above the High (A-shape). Creates a buyer trap!\n4. **Lower Low (LL)**: The second trough, crashing cleanly below the first Low. **This body breakout confirms the Bearish QM Pattern!**\n\n```\n  BEARISH QM PATTERN ANATOMY\n            HH (Peak 2)\n           /      H (1) /         /\\  /      \\  ENTRY ZONE (Left Shoulder / SBR / Apex)\n    /  \\/        \\   |\n   /   L (1)      \\--+--> Retest Entry\n  /                                    LL (Breaks below L - Confirms QM!)\n```\n",
+    "status": "Implemented; body-close, external-reference and latest-touch tests",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ]
+  },
+  {
+    "id": "V4-5.2",
+    "version": "v4",
+    "section": "5.2",
+    "title": "Anatomy of Bullish QM (Low, High, Lower Low, Higher High)",
+    "start_line": 338,
+    "end_line": 359,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 5.2 Anatomy of Bullish QM (Low, High, Lower Low, Higher High)\nA **Bullish QM Pattern** signals a major reversal from a bearish trend to a bullish trend.\n\n**Key Levels of Bullish QM**:\n1. **Low (L)**: The initial trough (V-shape).\n2. **High (H)**: The first peak (A-shape) following the Low.\n3. **Lower Low (LL)**: The second trough, dipping below the Low (V-shape). Creates a seller trap!\n4. **Higher High (HH)**: The second peak, surging cleanly above the first High. **This body breakout confirms the Bullish QM Pattern!**\n\n```\n  BULLISH QM PATTERN ANATOMY\n                    HH (Breaks above H - Confirms QM!)\n                   /\n     H (1)        /  ENTRY ZONE (Left Shoulder / RBS / Apex)\n      /\\         /--+--> Retest Entry\n     /  \\       /\n    /    \\     /\n   /      \\   /\n  L (1)    \\ /\n            LL (Trough 2)\n```\n",
+    "status": "Implemented; body-close, external-reference and latest-touch tests",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ]
+  },
+  {
+    "id": "V4-5.3",
+    "version": "v4",
+    "section": "5.3",
+    "title": "Valid Breakout vs. Fakeout (Candle Body Close vs. Wick Sweep)",
+    "start_line": 360,
+    "end_line": 364,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 5.3 Valid Breakout vs. Fakeout (Candle Body Close vs. Wick Sweep)\nThe golden rule of Malaysian SNR breakout validation:\n- **Valid Breakout**: A candle **BODY MUST CLOSE** beyond the key structural level (beyond Low for Bearish QM, beyond High for Bullish QM).\n- **Fakeout / Invalid Breakout**: If a candle pokes past the level with a wick but the **body closes inside/behind the level**, it is a **FAKEOUT / LIQUIDITY SWEEP**. Do NOT treat it as a structural breakout!\n",
+    "status": "Implemented; body-close, external-reference and latest-touch tests",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ]
+  },
+  {
+    "id": "V4-5.4",
+    "version": "v4",
+    "section": "5.4",
+    "title": "External Breakout vs. Internal Breakout Rules",
+    "start_line": 365,
+    "end_line": 368,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 5.4 External Breakout vs. Internal Breakout Rules\n- **External Breakout (VALID)**: The breakout occurs on the level created **BEFORE** price touches the fresh SNR level. This breaks main market structure.\n- **Internal Breakout (INVALID)**: The breakout occurs on a level created **AFTER** price touches the fresh SNR level. Internal breakouts take place inside structure and do not confirm a trend shift.\n",
+    "status": "Implemented; body-close, external-reference and latest-touch tests",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ]
+  },
+  {
+    "id": "V4-5.5",
+    "version": "v4",
+    "section": "5.5",
+    "title": "Post-Touch Breakout Differences: SNR Levels vs. Trendlines",
+    "start_line": 369,
+    "end_line": 373,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 5.5 Post-Touch Breakout Differences: SNR Levels vs. Trendlines\nPitchou.FX identifies a critical structural difference:\n- **For SNR Levels**: The breakout MUST happen **after** the last touch on the SNR level. If a QM pattern forms before or during the touch without a post-touch breakout, it is invalid.\n- **For Trendlines**: A QM pattern formed **after or during** a trendline touch remains **FULLY VALID**, because trendlines adjust with market momentum!\n",
+    "status": "Implemented; body-close, external-reference and latest-touch tests",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ]
+  },
+  {
+    "id": "V4-5.6",
+    "version": "v4",
+    "section": "5.6",
+    "title": "SMC Cross-Over: QM Apex = Turtle Soup Sweep; Left Shoulder = Order Block / SBR / RBS",
+    "start_line": 374,
+    "end_line": 382,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 5.6 SMC Cross-Over: QM Apex = Turtle Soup Sweep; Left Shoulder = Order Block / SBR / RBS\nConnecting Pitchou.FX and White SNT:\n- **QM Apex**: Equivalent to an ICT **Turtle Soup / Liquidity Sweep** of previous highs/lows.\n- **QM Left Shoulder (LS)**: Equivalent to an **Order Block / Breaker Block / HTF OCL**. Price returns to the Left Shoulder to mitigate orders before launching the trend.\n\n---\n\n## 6. Timeframe Alignment & The Storyline Framework\n",
+    "status": "Implemented; body-close, external-reference and latest-touch tests",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ]
+  },
+  {
+    "id": "V4-6.1",
+    "version": "v4",
+    "section": "6.1",
+    "title": "Rejection Closing Rules Across Timeframes (Monthly/Weekly vs. Daily/4H/1H/30M/15M)",
+    "start_line": 383,
+    "end_line": 395,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 6.1 Rejection Closing Rules Across Timeframes (Monthly/Weekly vs. Daily/4H/1H/30M/15M)\nDifferent timeframes have different rules for validating a rejection at an SNR level:\n\n| Timeframe | Rejection Validation Rule (Pitchou.FX Section 3.1) |\n| :--- | :--- |\n| **Monthly (MN1)** | **Wick Rejection ONLY** (No candle body close required; wick alone confirms strength). |\n| **Weekly (W1)** | **Wick Rejection ONLY** (No candle body close required). |\n| **Daily (D1)** | **Candle Body Close Required** on Daily timeframe. |\n| **4-Hour (4H)** | **Candle Body Close Required** on 4H timeframe. |\n| **1-Hour (1H)** | **Candle Body Close Required** on 4H or 1H timeframe. |\n| **30-Min (30M)** | **Candle Body Close Required** on 30M timeframe. |\n| **15-Min (15M)** | **Candle Body Close Required** on 15M timeframe. |\n",
+    "status": "Implemented; advanced storyline requires verified complete level history",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ]
+  },
+  {
+    "id": "V4-6.2",
+    "version": "v4",
+    "section": "6.2",
+    "title": "The Timeframe Alignment Hierarchy (Monthly -> Daily, Weekly -> 4H, Daily -> 1H, etc.)",
+    "start_line": 396,
+    "end_line": 414,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 6.2 The Timeframe Alignment Hierarchy (Monthly -> Daily, Weekly -> 4H, Daily -> 1H, etc.)\nTo validate a trend shift on an HTF level, lower timeframes must confirm with a valid QM breakout:\n\n```\n+-----------------------------------------------------------------------------------+\n|                           TIMEFRAME BREAKOUT MAPPING HIERARCHY                    |\n+------------------------------+----------------------------------------------------+\n| HTF SNR Level / Trendline    | Lower Timeframe (LTF) Breakout Required            |\n+------------------------------+----------------------------------------------------+\n| Monthly (MN1) Level          | Daily (1D) QM Breakout                             |\n| Weekly (W1) Level            | 4-Hour (4H) QM Breakout                            |\n| Daily (1D) Level             | 1-Hour (1H) QM Breakout                            |\n| 4-Hour (4H) Level            | 1H / 30M / 15M QM Breakout                         |\n| 1-Hour (1H) Level            | 30M / 15M QM Breakout                              |\n| 30-Min (30M) Level           | 5-Min (5M) QM Breakout                             |\n| 15-Min (15M) Level           | 1-Min (1M) QM Breakout                             |\n+------------------------------+----------------------------------------------------+\n```\n",
+    "status": "Implemented; advanced storyline requires verified complete level history",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ]
+  },
+  {
+    "id": "V4-6.3",
+    "version": "v4",
+    "section": "6.3",
+    "title": "Classic Storyline Framework (Fresh SNR-Driven Price Movement)",
+    "start_line": 415,
+    "end_line": 422,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 6.3 Classic Storyline Framework (Fresh SNR-Driven Price Movement)\nA **Classic Storyline** occurs when price moves sequentially from one **fresh HTF SNR level** to another fresh HTF SNR level.\n- **Example (Bearish Weekly Classic Storyline)**:\n  1. Price reaches a fresh Weekly Resistance.\n  2. Weekly chart shows a rejection wick.\n  3. 4H chart confirms with a **Bearish 4H QM Breakout**.\n  4. The Bearish Weekly Storyline is officially born! Price travels down targeting the next fresh Weekly Support.\n",
+    "status": "Implemented; advanced storyline requires verified complete level history",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ]
+  },
+  {
+    "id": "V4-6.4",
+    "version": "v4",
+    "section": "6.4",
+    "title": "Advanced Storyline Framework (Trendline-Driven when Fresh Levels are Exhausted)",
+    "start_line": 423,
+    "end_line": 430,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 6.4 Advanced Storyline Framework (Trendline-Driven when Fresh Levels are Exhausted)\nWhen all fresh SNR levels on a higher timeframe have been touched and exhausted, the market switches to the **Advanced Storyline**:\n- Instead of using fresh SNR levels as endpoints, the **HTF Trendline** becomes the master structural reference.\n- **Example (Bearish Weekly Advanced Storyline)**:\n  1. Price reaches a Weekly Resistance Trendline (no fresh SNR level available).\n  2. 4H chart confirms with a **Bearish 4H QM Breakout** breaking the trendline structure.\n  3. The Bearish Weekly Advanced Storyline is active, targeting the Weekly Support Trendline!\n",
+    "status": "Implemented; advanced storyline requires verified complete level history",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ]
+  },
+  {
+    "id": "V4-6.5",
+    "version": "v4",
+    "section": "6.5",
+    "title": "The 3 Parts of a Storyline: Part 1 (Initiation / QM Reversal), Part 2 (Middle Expansion), Part 3 (Ending Exhaustion)",
+    "start_line": 431,
+    "end_line": 455,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 6.5 The 3 Parts of a Storyline: Part 1 (Initiation / QM Reversal), Part 2 (Middle Expansion), Part 3 (Ending Exhaustion)\nEvery Storyline (Monthly, Weekly, Daily, or Mini) unfolds in 3 distinct phases:\n\n```\n+-----------------------------------------------------------------------------------+\n|                             THE 3 PARTS OF A STORYLINE                            |\n+-------------------+-----------------------------+---------------------------------+\n| Storyline Phase   | Structural Event            | Active Trade Setups             |\n+-------------------+-----------------------------+---------------------------------+\n| **Part 1**        | Trend Initiation / Reversal | QMS Reversal Setups (Apex, LS)  |\n| **Part 2**        | Middle Trend Expansion      | Continuation Setups (C.APEX, SBR)|\n| **Part 3**        | Ending / Target Approach    | Final Continuation / Exit Prep  |\n+-------------------+-----------------------------+---------------------------------+\n```\n\n1. **Part 1 (Start / Initiation)**:\n   - Reversal off an HTF SNR level or trendline.\n   - Characterized by the initial **QM Pattern Formation** (Apex, Left Shoulder, SBR/RBS).\n2. **Part 2 (Middle / Expansion)**:\n   - Strong trend continuation phase making higher highs/lows (or lower highs/lows).\n   - Driven by **Continuation Levels** (Continuation Apex / C.APEX, GAPs, SBR/RBS).\n3. **Part 3 (End / Target Exhaustion)**:\n   - Price approaches the destination HTF SNR level or trendline.\n   - Trend momentum slows down; prepare to take profits before Part 1 of the opposite storyline begins.\n",
+    "status": "Implemented; advanced storyline requires verified complete level history",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ]
+  },
+  {
+    "id": "V4-6.6",
+    "version": "v4",
+    "section": "6.6",
+    "title": "Early Right Shoulder (ERS) Mechanics in QM Patterns",
+    "start_line": 456,
+    "end_line": 465,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 6.6 Early Right Shoulder (ERS) Mechanics in QM Patterns\nIn rare instances, before a QM pattern executes its major breakout, a mini A-shape or V-shape forms right before the main shoulder. This mini level is called the **Early Right Shoulder (ERS)**.\n- **Bullish ERS**: A mini V-shape forming right before the bullish breakout.\n- **Bearish ERS**: A mini A-shape forming right before the bearish breakout.\n- **Trading ERS**: ERS levels act as high-precision early entry checkpoints when aligned with a short-term trendline!\n\n---\n\n## 7. Institutional Confluences (White SNT's Alchemist Framework)\n",
+    "status": "Implemented; advanced storyline requires verified complete level history",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ]
+  },
+  {
+    "id": "V4-7.1",
+    "version": "v4",
+    "section": "7.1",
+    "title": "ICT Time Sessions: Asian Range Accumulation, London Manipulation, NY Distribution",
+    "start_line": 466,
+    "end_line": 486,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 7.1 ICT Time Sessions: Asian Range Accumulation, London Manipulation, NY Distribution\nWhite SNT incorporates ICT session timing to filter out low-probability market noise:\n\n```\n+-----------------------------------------------------------------------------------+\n|                             ICT SESSION LIQUIDITY CYCLE                           |\n+------------------+-----------------------+----------------------------------------+\n| Session          | Time Window (EST)     | Market Behavior & Role                 |\n+------------------+-----------------------+----------------------------------------+\n| **Asian Range**  | 7:00 PM - 12:00 AM    | Liquidity Accumulation (Sets High/Low) |\n| **London**       | 2:00 AM - 5:00 AM     | Judas Swing / Manipulation Sweep       |\n| **New York AM**  | 8:00 AM - 11:00 AM    | Main Trend Distribution & Expansion    |\n| **New York PM**  | 1:00 PM - 4:00 PM     | Reversal / Macro Re-balancing          |\n+------------------+-----------------------+----------------------------------------+\n```\n\n**Session Execution Rule**:\n- Identify the **Asia Range High and Low**.\n- During **London or NY Open**, wait for price to sweep the Asia High or Low into an **HTF OCL or fresh MSNR Level**.\n- Execute upon receiving a lower-timeframe MSNR confirmation badge!\n",
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ]
+  },
+  {
+    "id": "V4-7.2",
+    "version": "v4",
+    "section": "7.2",
+    "title": "Daye Quarterly Theory (QT): AMDX & XAMD Cycles & 90-Minute Intraday Cycles",
+    "start_line": 487,
+    "end_line": 500,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 7.2 Daye Quarterly Theory (QT): AMDX & XAMD Cycles & 90-Minute Intraday Cycles\nDaye Quarterly Theory divides time into 4 equal quarterly phases:\n- **Q1 (\"A\")**: Accumulation (Building initial range).\n- **Q2 (\"M\")**: Manipulation (Judas swing / false breakout sweep).\n- **Q3 (\"D\")**: Distribution (The true expansion move — **PRIMARY ENTRY ZONE!**).\n- **Q4 (\"X\")**: Continuation or Reversal (Macro completion).\n\n**The 90-Minute Intraday Cycles**:\n- **00:00 - 01:30** (Q1 Accumulation)\n- **01:30 - 03:00** (Q2 Manipulation)\n- **03:00 - 04:30** (Q3 Distribution — **Best London Entry!**)\n- **04:30 - 06:00** (Q4 Reversal/Continuation)\n- *(Repeats every 90 minutes across London and NY sessions)*.\n",
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ]
+  },
+  {
+    "id": "V4-7.3",
+    "version": "v4",
+    "section": "7.3",
+    "title": "SMT Intermarket Divergence: Correlated Pair Analysis (XAU/XAG, EUR/GBP, AUD/NZD, USD/JPY vs USD/CHF)",
+    "start_line": 501,
+    "end_line": 516,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 7.3 SMT Intermarket Divergence: Correlated Pair Analysis (XAU/XAG, EUR/GBP, AUD/NZD, USD/JPY vs USD/CHF)\n**Smart Money Tool (SMT) Divergence** occurs when two historically correlated instruments fail to confirm each other's highs or lows at a key level, signaling institutional accumulation.\n\n**Correlated Pair Matrix**:\n- **Gold (XAUUSD) vs. Silver (XAGUSD)**\n- **EURUSD vs. GBPUSD**\n- **AUDUSD vs. NZDUSD**\n- **USDJPY vs. USDCHF** (Inverted Correlation)\n\n```\n  BULLISH SMT DIVERGENCE (Accumulation):\n  XAUUSD: Makes a Lower Low (LL) into Support  <-- Sweeps Liquidity\n  XAGUSD: Holds a Higher Low (HL) at Support    <-- Shows Institutional Strength!\n  ==> CONFIRMS STRONG BULLISH REVERSAL ON BOTH PAIRS!\n```\n",
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ]
+  },
+  {
+    "id": "V4-7.4",
+    "version": "v4",
+    "section": "7.4",
+    "title": "Circle Fibonacci & FIBO Storyline: Custom Ratios (0.109, 0.25, 0.50, 0.707, 0.886, 1.0, 1.272, 1.618, 1.893, 2.0)",
+    "start_line": 517,
+    "end_line": 528,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 7.4 Circle Fibonacci & FIBO Storyline: Custom Ratios (0.109, 0.25, 0.50, 0.707, 0.886, 1.0, 1.272, 1.618, 1.893, 2.0)\nWhite SNT uses custom **Circle Fibonacci** settings to measure wave expansions:\n- **Retracement Levels**: `0.109`, `0.25`, `0.50` (Equilibrium), `0.707` (OTE), `0.886`.\n- **Target Expansion Levels**: `1.272`, `1.618`, `1.893`, `2.0`.\n\n**Fibo Storyline Application**:\nDraw Fibonacci from the **Swing Low to Swing High** of a confirmed QM pattern. The `1.893` and `2.0` extensions define the ultimate profit targets where the Fibo Storyline concludes!\n\n---\n\n## 8. Complete Setup Catalogs (QMS, Continuation, & POI Models)\n",
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ]
+  },
+  {
+    "id": "V4-8.1",
+    "version": "v4",
+    "section": "8.1",
+    "title": "Pitchou.FX's QMS Reversal Setups (Apex, Left Shoulder, SBR/RBS, ERS, GAP QMS)",
+    "start_line": 529,
+    "end_line": 549,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 8.1 Pitchou.FX's QMS Reversal Setups (Apex, Left Shoulder, SBR/RBS, ERS, GAP QMS)\nQMS setups are executed during **Part 1 of a Storyline** to catch trend reversals early:\n\n1. **APEX Setup**:\n   - Entry taken directly at the QM Apex level (the extreme peak or trough).\n   - *Confirmation*: Refined via lower-timeframe fresh levels ($4\text{H} \nightarrow 1\text{H} \nightarrow 30\text{M} \nightarrow 15\text{M}$).\n2. **Left Shoulder (LS) Setup**:\n   - Entry taken when price retraces to test the Left Shoulder of the QM pattern.\n   - *Confirmation*: 15M/5M Candle Rejection or 5Min EMA 9 hold.\n3. **SBR / RBS Setup**:\n   - Entry taken at the broken Support (SBR for sell) or broken Resistance (RBS for buy).\n   - *Confirmation*: Breaking Gap or 5M Trendline Breakout.\n4. **ERS Setup**:\n   - Entry taken at the Early Right Shoulder level when aligned with a short-term trendline.\n5. **GAP QMS Setup**:\n   - Entry taken at a GAP level inside the QM structure.\n   - *Alignment Rule*: A 4H GAP QM level MUST align with a 1H GAP and a 30M/15M A/V shape level!\n",
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ]
+  },
+  {
+    "id": "V4-8.2",
+    "version": "v4",
+    "section": "8.2",
+    "title": "Pitchou.FX's Continuation Setups (C.APEX, GAP Continuation, SBR/RBS Continuation)",
+    "start_line": 550,
+    "end_line": 558,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 8.2 Pitchou.FX's Continuation Setups (C.APEX, GAP Continuation, SBR/RBS Continuation)\nContinuation setups are executed during **Parts 2 & 3 of a Storyline** to ride trend momentum:\n1. **C.APEX (Continuation Apex) Setup**:\n   - Taking re-entries at newly formed swing extremes during an ongoing trend expansion.\n2. **GAP Continuation Setup**:\n   - Entering on pullbacks to fresh GAPs formed during strong trend bars.\n3. **SBR / RBS Continuation Setup**:\n   - Entering as price breaks intermediate levels and retests them from the opposite side.\n",
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ]
+  },
+  {
+    "id": "V4-8.3",
+    "version": "v4",
+    "section": "8.3",
+    "title": "Specialized Setups: QMC, QM-to-QM (LTF Nested), Reversal TL-QM Failed, Miss Setup, Double Apex, SNRC1",
+    "start_line": 559,
+    "end_line": 572,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 8.3 Specialized Setups: QMC, QM-to-QM (LTF Nested), Reversal TL-QM Failed, Miss Setup, Double Apex, SNRC1\n1. **QMC (Quasimodo Continuation)**:\n   - A continuation QM pattern forming inside Parts 2 & 3 to reinforce trend strength.\n2. **QM-to-QM (Nested LTF QM)**:\n   - A micro 1M/5M QM pattern forming inside the Left Shoulder zone of an HTF 4H/1H QM pattern.\n3. **Reversal TL-QM Failed**:\n   - Trading the violent reversal momentum when an expected QM pattern fails to break structure and collapses back through its Left Shoulder.\n4. **MISS Setup**:\n   - Price misses the main Left Shoulder by a few pips and reacts off an ERS or OCL level instead.\n5. **Double Apex Setup**:\n   - Double top/bottom forming at an HTF Apex before exploding in the storyline direction.\n6. **SNRC1 Setup**:\n   - Support/Resistance Continuation Type 1 — combining a fresh A/V shape with a 3rd touch trendline bounce.\n",
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ]
+  },
+  {
+    "id": "V4-8.4",
+    "version": "v4",
+    "section": "8.4",
+    "title": "White SNT's H1 POI Models: EX 1, EX 2, EX 3, EX 4 Execution Models",
+    "start_line": 573,
+    "end_line": 588,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 8.4 White SNT's H1 POI Models: EX 1, EX 2, EX 3, EX 4 Execution Models\nWhite SNT presents 4 standardized execution models connecting an **H1 Point of Interest (H1 POI)** to M1–M5 market entry:\n\n```\n+-----------------------------------------------------------------------------------+\n|                        WHITE SNT H1 POI EXECUTION MODELS                          |\n+------------+-----------------------+----------------------------------------------+\n| Model      | H1 POI Type           | LTF (M1-M5) Entry Trigger                    |\n+------------+-----------------------+----------------------------------------------+\n| **EX 1**   | H1 OCL / Fresh Base   | Direct M15 Shift + M1-M5 Re-entry at OCL     |\n| **EX 2**   | H1 SBR / RBS Level    | M3 Shift + Inducement Sweep + QT 90-Min Window|\n| **EX 3**   | H1 Trendline Key (TL) | M3 Trendline Key Breakout + SMT Divergence   |\n| **EX 4**   | H1 Liquidity Sweep    | Sweep of Asia High/Low into H1 POI + M5 MSS  |\n+------------+-----------------------+----------------------------------------------+\n```\n",
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ]
+  },
+  {
+    "id": "V4-8.5",
+    "version": "v4",
+    "section": "8.5",
+    "title": "The 5 Lower-Timeframe Confirmation Badges (Candle Rejection, Breaking Gap, Trendline Breakout, Mini QM, 5Min EMA 9)",
+    "start_line": 589,
+    "end_line": 614,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 8.5 The 5 Lower-Timeframe Confirmation Badges (Candle Rejection, Breaking Gap, Trendline Breakout, Mini QM, 5Min EMA 9)\nBefore executing any order at an SNR or POI level, you MUST observe at least one of these 5 **Confirmation Badges**:\n\n```\n+-----------------------------------------------------------------------------------+\n|                             THE 5 CONFIRMATION BADGES                             |\n+--------------------------+-----------------------+--------------------------------+\n| Badge Type               | Best Timeframes       | Trigger Condition              |\n+--------------------------+-----------------------+--------------------------------+\n| **1. Candle Rejection**  | 15M, 30M, 1H          | Candle closes with a long wick |\n|                          |                       | rejecting the SNR level.       |\n| **2. Breaking Gap**      | 5M, 15M               | Engulfing candle breaks gap    |\n|                          |                       | with strong momentum.          |\n| **3. Trendline Break**   | 1M, 5M                | Short-term trendline broken    |\n|                          |                       | by an engulfing candle.        |\n| **4. Mini QM**           | 1M, 5M                | Micro QM pattern forms inside  |\n|                          |                       | the entry level.               |\n| **5. 5Min EMA 9**        | 5M                    | Engulfing candle breaks & holds|\n|                          |                       | beyond EMA 9 (Length 9, Close).|\n+--------------------------+-----------------------+--------------------------------+\n```\n\n---\n\n## 9. Psychology, Risk Management, & Prop Firm Strategy\n",
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ]
+  },
+  {
+    "id": "V4-9.1",
+    "version": "v4",
+    "section": "9.1",
+    "title": "The Power of Four: Strategy, Psychology, Risk Management, Journaling",
+    "start_line": 615,
+    "end_line": 621,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 9.1 The Power of Four: Strategy, Psychology, Risk Management, Journaling\nPitchou.FX defines **The Power of Four** as the foundation of long-term trading survival:\n1. **Strategy (25%)**: MSNR 2.0 & Alchemist Rules.\n2. **Psychology (25%)**: Emotional control and discipline.\n3. **Risk Management (25%)**: Strict position sizing and capital preservation.\n4. **Journaling (25%)**: Reviewing trades daily to refine execution.\n",
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ]
+  },
+  {
+    "id": "V4-9.2",
+    "version": "v4",
+    "section": "9.2",
+    "title": "The 8 Emotional Traps & Operational Solutions (5-Second Rule, 3-Loss Rule, 10-Min Detox, Set & Forget)",
+    "start_line": 622,
+    "end_line": 641,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 9.2 The 8 Emotional Traps & Operational Solutions (5-Second Rule, 3-Loss Rule, 10-Min Detox, Set & Forget)\nTrading psychology fails due to predictable emotional traps. Here are the 8 traps and their operational fixes:\n\n1. **FOMO (Fear Of Missing Out)** $\nightarrow$ **Solution**: *The 5-Second Pause Rule*. If price has already moved away from the SNR zone, wait for the next pullback or do not enter.\n2. **Revenge Trading** $\nightarrow$ **Solution**: *The 3-Loss Rule*. If you take 3 consecutive losses in a day, close your platform immediately.\n3. **Greed / Over-leveraging** $\nightarrow$ **Solution**: Fixed lot size rules matching your risk percentage.\n4. **Fear of Execution / Hesitation** $\nightarrow$ **Solution**: Trust the lower-timeframe Confirmation Badges.\n5. **Over-analyzing / Chart Paralysis** $\nightarrow$ **Solution**: Stick strictly to HTF Storyline -> Fresh SNR -> LTF Badge.\n6. **Impatience during Drawdown** $\nightarrow$ **Solution**: *Set & Forget*. Place SL and TP, then close the chart.\n7. **Post-Win Euphoria** $\nightarrow$ **Solution**: *10-Minute Detox*. Walk away from charts after a big win before looking for new setups.\n8. **Lack of Accountability** $\nightarrow$ **Solution**: Mandatory daily trade logging with screenshots.\n",
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ]
+  },
+  {
+    "id": "V4-9.3",
+    "version": "v4",
+    "section": "9.3",
+    "title": "Pitchou.FX's 3-Phase Risk System for Prop Firm Challenges (Phase 1 0.33%, Phase 2 0.5%, Phase 3 1.0%)",
+    "start_line": 642,
+    "end_line": 659,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 9.3 Pitchou.FX's 3-Phase Risk System for Prop Firm Challenges (Phase 1 0.33%, Phase 2 0.5%, Phase 3 1.0%)\nTo pass prop firm evaluations (FTMO, Topstep, 5%ers) without breaching daily or maximum drawdown limits, use Pitchou.FX's **3-Phase Risk Formula**:\n\n```\n+-----------------------------------------------------------------------------------+\n|                        PROP FIRM 3-PHASE RISK SYSTEM                              |\n+-----------------+-------------------+---------------------+-----------------------+\n| Challenge Phase | Risk Per Trade    | Goal / Focus        | Example ($200K Acct)  |\n+-----------------+-------------------+---------------------+-----------------------+\n| **Phase 1**     | **0.33%**         | Capital Survival &  | Risk $660 / trade     |\n| (Defense)       |                   | Cushion Building    | (~2.2 Lots Gold)      |\n| **Phase 2**     | **0.50%**         | Steady Growth &     | Risk $1,000 / trade   |\n| (Progression)   | (After +3% profit)| Consistency         | (~3.3 Lots Gold)      |\n| **Phase 3**     | **1.00%**         | Aggressive Push to  | Risk $2,000 / trade   |\n| (Final Sprint)  | (Close to Target) | Pass Challenge      | (~6.5 Lots Gold)      |\n+-----------------+-------------------+---------------------+-----------------------+\n```\n",
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ]
+  },
+  {
+    "id": "V4-9.4",
+    "version": "v4",
+    "section": "9.4",
+    "title": "Stop Loss Rules: The 30-Pip Minimum Safety Rule & Confirmation-Based Placement",
+    "start_line": 660,
+    "end_line": 668,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 9.4 Stop Loss Rules: The 30-Pip Minimum Safety Rule & Confirmation-Based Placement\n- **The Mandatory 30-Pip Minimum Buffer Rule**:\n  - In forex and Gold trading, market noise and spread spikes can trigger tight stops.\n  - **Rule**: Your Stop Loss MUST be placed at least **30 pips (3.0 Gold points)** beyond the extreme wick of your entry level or confirmation candle!\n- **Confirmation-Based SL Placements**:\n  - *5M QM Confirmation*: SL placed 30 pips beyond the 5M Apex.\n  - *15M Candle Rejection*: SL placed 30 pips beyond the rejection wick tip.\n  - *Trendline Break*: SL placed 30 pips beyond the last swing point before the break.\n",
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ]
+  },
+  {
+    "id": "V4-9.5",
+    "version": "v4",
+    "section": "9.5",
+    "title": "Take Profit Hierarchy & Position Management (BE Trailing)",
+    "start_line": 669,
+    "end_line": 680,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 9.5 Take Profit Hierarchy & Position Management (BE Trailing)\n- **TP 1**: Nearest fresh 1H / 4H SBR or Bearish GAP (typically 1:3 RR).\n  - *Action*: Close 50% lot size and **move Stop Loss to Breakeven (BE)**.\n- **TP 2**: Next fresh Daily SNR level / Trendline (typically 1:5 to 1:7 RR).\n  - *Action*: Close an additional 30% lot size.\n- **Final TP**: Opposite HTF Storyline target (Weekly/Monthly level, 1:10+ RR).\n  - *Action*: Let the runner position hit full target risk-free!\n\n---\n\n## 10. Author Comparison, Conflict Resolution, & Step-by-Step Checklists\n",
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ]
+  },
+  {
+    "id": "V4-10.1",
+    "version": "v4",
+    "section": "10.1",
+    "title": "Side-by-Side Comparison Matrix (Pitchou.FX vs. White SNT)",
+    "start_line": 681,
+    "end_line": 691,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 10.1 Side-by-Side Comparison Matrix (Pitchou.FX vs. White SNT)\n\n| Feature / Dimension | Pitchou.FX (MSNR Strategy 2.0) | White SNT (The Alchemist SMC Hybrid) |\n| :--- | :--- | :--- |\n| **Core Analysis Tool** | Fresh SNR Levels (A/V shapes, GAPs) & Trendlines | Open Close Levels (OCL), Order Blocks, & ICT Sessions |\n| **Market Trend Map** | Multi-Timeframe Storylines (Parts 1, 2, 3) | Fibo Storylines & Daye Quarterly Theory (QT) Cycles |\n| **Breakout Criterion** | Mandatory Candle Body Close | Body Close for BOS; Wick Sweeps for Liquidity Hunts |\n| **Timing Mechanism** | 5 Confirmation Badges (EMA 9, Gap, Rejection) | ICT Sessions (London/NY Open) & 90-Min QT Windows |\n| **Confirmation Indicator**| 5Min EMA 9 (Length 9, Source Close) | SMT Intermarket Divergence (Gold vs. Silver) |\n| **Risk Management** | 3-Phase Prop Firm Model & 30-Pip Rule | Fixed % Risk per Trade with Fibo Targets |\n",
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ]
+  },
+  {
+    "id": "V4-10.2",
+    "version": "v4",
+    "section": "10.2",
+    "title": "Resolving Differences (Wick Touches vs. Liquidity Sweeps)",
+    "start_line": 692,
+    "end_line": 697,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 10.2 Resolving Differences (Wick Touches vs. Liquidity Sweeps)\n- **Difference**: Pitchou.FX considers a wick touch on an SNR level as making it *Unfresh*, whereas White SNT sees a wick touch as a *Liquidity Sweep* that creates a high-probability trade opportunity.\n- **Unified Resolution**:\n  - Treat a wick touch as exhausting a standard SNR level for direct retests (following Pitchou.FX).\n  - HOWEVER, if that wick touch sweeps an **Asia Range High/Low** or **HTF OCL** and shows **SMT Divergence** during an **ICT Session window** (following White SNT), execute the trade based on institutional liquidity sweep rules!\n",
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ]
+  },
+  {
+    "id": "V4-10.3",
+    "version": "v4",
+    "section": "10.3",
+    "title": "Pre-Trade Checklist (The 10-Step Execution Audit)",
+    "start_line": 698,
+    "end_line": 712,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 10.3 Pre-Trade Checklist (The 10-Step Execution Audit)\n\n```\n[ ] Step 1:  Identify Higher Timeframe (MN1 / W1 / D1) Storyline direction.\n[ ] Step 2:  Mark active fresh HTF SNR levels, GAPs, and Trendlines (check <5 touches).\n[ ] Step 3:  Verify Level State (Is the level 100% Fresh, CC Repaired, or Fresh SBR/RBS?).\n[ ] Step 4:  Check Open Close Levels (OCL) and H1 Points of Interest (POI).\n[ ] Step 5:  Check ICT Session Timing (Is it London Open or NY Open?).\n[ ] Step 6:  Check Daye QT Cycle (Is it Q3 Distribution in a 90-minute window?).\n[ ] Step 7:  Check SMT Divergence across correlated pairs (e.g., XAUUSD vs. XAGUSD).\n[ ] Step 8:  Wait for price to test the entry zone and print a LTF Confirmation Badge.\n[ ] Step 9:  Calculate lot size matching 3-Phase Risk System & set SL >= 30 pips beyond wick.\n[ ] Step 10: Execute order, set TP1 / TP2 / Final TP, and apply \"Set & Forget\" discipline!\n```\n",
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ]
+  },
+  {
+    "id": "V4-10.4",
+    "version": "v4",
+    "section": "10.4",
+    "title": "Post-Trade Journaling Protocol",
+    "start_line": 713,
+    "end_line": 723,
+    "source_sha256": "55f3df73bbbc186fd923d15a38fbba70db7cb65f9d5609410d4526413b8c910e",
+    "text": "### 10.4 Post-Trade Journaling Protocol\nAfter every trade execution, record:\n1. Chart screenshot at entry and chart screenshot at exit.\n2. HTF Storyline state & level freshness type.\n3. Confirmation badge used.\n4. Planned R:R vs. Executed R:R.\n5. Emotional state during trade execution (1 to 10 rating).\n6. Lessons learned & rules followed/broken.\n\n---\n*End of Unified Master Strategy Guide (v4)*",
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ]
+  }
+]

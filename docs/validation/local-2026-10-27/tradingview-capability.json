@@ -1,0 +1,7 @@
+{
+  "url": "https://www.tradingview.com/chart/O7UQR2ba/",
+  "native_drawings_verified": false,
+  "status": "browser_or_network_blocked",
+  "reason": "Page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://www.tradingview.com/chart/O7UQR2ba/\n",
+  "fallback": "Deterministic broker-data rendering remains available"
+}

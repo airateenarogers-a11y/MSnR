@@ -1,0 +1,5639 @@
+[
+  {
+    "id": "V4-1.1-L70",
+    "parent": "V4-1.1",
+    "source_line": 70,
+    "text": "Pitchou.FX developed **Malaysian Support and Resistance (MSNR) Strategy 2.0** as a purely mechanical, objective price-action framework. The foundational belief is that price moves between well-defined structural levels (*Hoops*) along trendline paths (*Court Boundaries*). ",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.1-L72",
+    "parent": "V4-1.1",
+    "source_line": 72,
+    "text": "The goal of Pitchou.FX's philosophy is **\"2 Hours to Freedom\"**—reducing chart screen time to just 1–2 focused hours per day by following a fixed daily routine:",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.1-L73",
+    "parent": "V4-1.1",
+    "source_line": 73,
+    "text": "1. Mark Higher Timeframe (HTF) fresh SNR levels and trendlines before sessions start.",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.1-L74",
+    "parent": "V4-1.1",
+    "source_line": 74,
+    "text": "2. Determine the active **Storyline** (from where price rejected and to where it is traveling).",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.1-L75",
+    "parent": "V4-1.1",
+    "source_line": 75,
+    "text": "3. Wait for price to enter a key level and print a lower-timeframe **Confirmation Badge**.",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.1-L76",
+    "parent": "V4-1.1",
+    "source_line": 76,
+    "text": "4. Set Stop Loss (SL) and Take Profit (TP), execute, and step away (*Set and Forget*).",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.1-L78",
+    "parent": "V4-1.1",
+    "source_line": 78,
+    "text": "Pitchou.FX eliminates subjectivity by requiring strict **candle body closes** for level breakouts and structural confirmations, removing the temptation to guess or overtrade.",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.2-L81",
+    "parent": "V4-1.2",
+    "source_line": 81,
+    "text": "White Srp (White SNT) presents **\"The Alchemist\"** approach, built on verified performance across major prop firms (Topstep, FTMO, TopTier Trader, The 5%ers). White SNT elevates classic Malaysian SNR by embedding institutional concepts from Smart Money Concepts (SMC) and Inner Circle Trader (ICT).",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.2-L83",
+    "parent": "V4-1.2",
+    "source_line": 83,
+    "text": "While Pitchou.FX treats levels as pure price barriers, White SNT views them as **liquidity pools** where institutional market makers manipulate retail traders before expanding price. White SNT integrates:",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.2-L84",
+    "parent": "V4-1.2",
+    "source_line": 84,
+    "text": "- **Open Close Levels (OCL)** as hidden institutional order blocks.",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.2-L85",
+    "parent": "V4-1.2",
+    "source_line": 85,
+    "text": "- **ICT Time Sessions & Asia Range Liquidity** to identify session manipulation sweeps.",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.2-L86",
+    "parent": "V4-1.2",
+    "source_line": 86,
+    "text": "- **SMT Intermarket Divergence** between correlated assets (e.g., Gold vs. Silver) to confirm institutional accumulation/distribution.",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.2-L87",
+    "parent": "V4-1.2",
+    "source_line": 87,
+    "text": "- **Daye Quarterly Theory (QT)** 90-minute time cycles to pinpoint precise execution windows.",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.2-L88",
+    "parent": "V4-1.2",
+    "source_line": 88,
+    "text": "- **Circle Fibonacci (Fibo Storyline)** to measure algorithmic wave expansions.",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.3-L91",
+    "parent": "V4-1.3",
+    "source_line": 91,
+    "text": "By merging both authors' works, we obtain the ultimate hybrid framework:",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / glossary; no numeric probability or institutional-intent claim is executed"
+  },
+  {
+    "id": "V4-1.3-L92",
+    "parent": "V4-1.3",
+    "source_line": 92,
+    "text": "- **Pitchou.FX provides the Macro Map**: The multi-timeframe Storyline, fresh SNR level states, A/V shapes, and Quasimodo (QM) breakout rules tell you *WHERE* price is going and *WHAT* stage of the market move you are trading.",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / glossary; no numeric probability or institutional-intent claim is executed"
+  },
+  {
+    "id": "V4-1.3-L93",
+    "parent": "V4-1.3",
+    "source_line": 93,
+    "text": "- **White SNT provides the Micro Trigger**: Institutional order block refinement (OCL), ICT session timing, SMT divergence, and liquidity sweep confirmation tell you *WHEN* and *WHY* big banks are entering at that exact SNR level.",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / glossary; no numeric probability or institutional-intent claim is executed"
+  },
+  {
+    "id": "V4-1.3-L97",
+    "parent": "V4-1.3",
+    "source_line": 97,
+    "text": "|                            THE UNIFIED TRADING ENGINE                             |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / glossary; no numeric probability or institutional-intent claim is executed"
+  },
+  {
+    "id": "V4-1.3-L99",
+    "parent": "V4-1.3",
+    "source_line": 99,
+    "text": "|  PITCHOU.FX (MSNR 2.0)                 +  WHITE SNT (THE ALCHEMIST)               |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / glossary; no numeric probability or institutional-intent claim is executed"
+  },
+  {
+    "id": "V4-1.3-L100",
+    "parent": "V4-1.3",
+    "source_line": 100,
+    "text": "|  - Storylines (Macro Direction)        |  - ICT Session Timing & Liquidity        |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / glossary; no numeric probability or institutional-intent claim is executed"
+  },
+  {
+    "id": "V4-1.3-L101",
+    "parent": "V4-1.3",
+    "source_line": 101,
+    "text": "|  - Fresh A/V Shape SNR & GAPs          |  - Open Close Level (OCL / Hidden Base)   |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / glossary; no numeric probability or institutional-intent claim is executed"
+  },
+  {
+    "id": "V4-1.3-L102",
+    "parent": "V4-1.3",
+    "source_line": 102,
+    "text": "|  - QM Structural Breakouts             |  - SMT Intermarket Divergence            |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / glossary; no numeric probability or institutional-intent claim is executed"
+  },
+  {
+    "id": "V4-1.3-L103",
+    "parent": "V4-1.3",
+    "source_line": 103,
+    "text": "|  - MTF Alignment & Rejection Rules     |  - Daye Quarterly Theory (90-Min QT)     |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / glossary; no numeric probability or institutional-intent claim is executed"
+  },
+  {
+    "id": "V4-1.3-L105",
+    "parent": "V4-1.3",
+    "source_line": 105,
+    "text": "                                         |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / glossary; no numeric probability or institutional-intent claim is executed"
+  },
+  {
+    "id": "V4-1.3-L108",
+    "parent": "V4-1.3",
+    "source_line": 108,
+    "text": "|                  HIGH-PROBABILITY PRECISION EXECUTION (10/10 SETUP)               |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / glossary; no numeric probability or institutional-intent claim is executed"
+  },
+  {
+    "id": "V4-1.3-L109",
+    "parent": "V4-1.3",
+    "source_line": 109,
+    "text": "|  1. HTF Storyline Target Identified (Pitchou.FX)                                  |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / glossary; no numeric probability or institutional-intent claim is executed"
+  },
+  {
+    "id": "V4-1.3-L110",
+    "parent": "V4-1.3",
+    "source_line": 110,
+    "text": "|  2. Fresh SNR / OCL Level Test (Pitchou + White)                                  |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / glossary; no numeric probability or institutional-intent claim is executed"
+  },
+  {
+    "id": "V4-1.3-L111",
+    "parent": "V4-1.3",
+    "source_line": 111,
+    "text": "|  3. ICT Session Manipulation & SMT Divergence Confirmation (White SNT)            |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / glossary; no numeric probability or institutional-intent claim is executed"
+  },
+  {
+    "id": "V4-1.3-L112",
+    "parent": "V4-1.3",
+    "source_line": 112,
+    "text": "|  4. LTF Confirmation Badge / EMA 9 Hold Triggered (Pitchou.FX)                    |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / glossary; no numeric probability or institutional-intent claim is executed"
+  },
+  {
+    "id": "V4-1.4-L117",
+    "parent": "V4-1.4",
+    "source_line": 117,
+    "text": "To eliminate confusion when reading charts, here is the master dictionary connecting Pitchou.FX and White SNT terms with standard Smart Money Concepts (SMC):",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.4-L119",
+    "parent": "V4-1.4",
+    "source_line": 119,
+    "text": "| MSNR / Pitchou.FX Term | White SNT / Alchemist Term | SMC / ICT Equivalent | Definition |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.4-L121",
+    "parent": "V4-1.4",
+    "source_line": 121,
+    "text": "| **A-Shape Level** | Resistance / Peak | Swing High Resistance | Formed when a bullish candle is followed immediately by a bearish candle. |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.4-L122",
+    "parent": "V4-1.4",
+    "source_line": 122,
+    "text": "| **V-Shape Level** | Support / Trough | Swing Low Support | Formed when a bearish candle is followed immediately by a bullish candle. |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.4-L123",
+    "parent": "V4-1.4",
+    "source_line": 123,
+    "text": "| **GAP Level** | Price Gap / Imbalance | Fair Value Gap (FVG) / Imbalance | Formed when two consecutive candles move strongly in the same direction. |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.4-L124",
+    "parent": "V4-1.4",
+    "source_line": 124,
+    "text": "| **SBR** | Support Becomes Resistance | Broken Support / Breaker Block | A previous support level broken down by a candle body close, turning into resistance. |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.4-L125",
+    "parent": "V4-1.4",
+    "source_line": 125,
+    "text": "| **RBS** | Resistance Becomes Support | Broken Resistance / Breaker Block | A previous resistance level broken up by a candle body close, turning into support. |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.4-L126",
+    "parent": "V4-1.4",
+    "source_line": 126,
+    "text": "| **Fresh Level** | Unmitigated Level | Clean Supply/Demand Zone | A level never touched by a wick, or broken clean through by a candle body. |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.4-L127",
+    "parent": "V4-1.4",
+    "source_line": 127,
+    "text": "| **Unfresh Level** | Mitigated Level | Tapped / Exhausted Level | A level touched by candle wicks without being broken by a body. |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.4-L128",
+    "parent": "V4-1.4",
+    "source_line": 128,
+    "text": "| **Confirmation Candle (CC)** | Repair Candle | Level Validation | The 3rd candle forming right after a level creation, matching level direction. |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.4-L129",
+    "parent": "V4-1.4",
+    "source_line": 129,
+    "text": "| **Quasimodo (QM)** | Market Structure Shift (MSS) | QM Pattern / Liquidity Sweep | A 4-point reversal structure (H-L-HH-LL or L-H-LL-HH). |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.4-L130",
+    "parent": "V4-1.4",
+    "source_line": 130,
+    "text": "| **QM Apex** | Swing Extreme / Sweep | Turtle Soup / Liquidity Sweep | The highest peak (bearish) or lowest trough (bullish) in a QM pattern. |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.4-L131",
+    "parent": "V4-1.4",
+    "source_line": 131,
+    "text": "| **Left Shoulder (LS)** | Entry POI / OCL | Order Block / Decision Level | The initial swing point before the apex in a QM structure. |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.4-L132",
+    "parent": "V4-1.4",
+    "source_line": 132,
+    "text": "| **Storyline** | Macro Trend / Narrative | HTF Orderflow / Target Vector | The directional journey of price from one HTF SNR level/trendline to another. |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.4-L133",
+    "parent": "V4-1.4",
+    "source_line": 133,
+    "text": "| **OCL** | Open Close Level | Hidden Base / HTF Moving Avg | Line where candle bodies open and close on HTF, revealing hidden LTF Order Blocks. |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.4-L134",
+    "parent": "V4-1.4",
+    "source_line": 134,
+    "text": "| **SMT Divergence** | SMT Divergence | Smart Money Tool Divergence | Non-conformation of highs/lows between correlated instruments (e.g., Gold vs. Silver). |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-1.4-L135",
+    "parent": "V4-1.4",
+    "source_line": 135,
+    "text": "| **QT Cycle** | Quarterly Theory | 90-Minute AMDX Cycle | Time-based accumulation, manipulation, distribution, and expansion cycles. |",
+    "implementation": [
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-2.1-L142",
+    "parent": "V4-2.1",
+    "source_line": 142,
+    "text": "Every candlestick tells a story of the battle between buyers and sellers during a specific timeframe:",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.1-L143",
+    "parent": "V4-2.1",
+    "source_line": 143,
+    "text": "- **Open (O)**: Starting price of the timeframe session.",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.1-L144",
+    "parent": "V4-2.1",
+    "source_line": 144,
+    "text": "- **High (H)**: Maximum push by buyers (upper wick tip).",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.1-L145",
+    "parent": "V4-2.1",
+    "source_line": 145,
+    "text": "- **Low (L)**: Maximum push by sellers (lower wick tip).",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.1-L146",
+    "parent": "V4-2.1",
+    "source_line": 146,
+    "text": "- **Close (C)**: Final settlement price.",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.1-L151",
+    "parent": "V4-2.1",
+    "source_line": 151,
+    "text": "         |                                     |",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.1-L153",
+    "parent": "V4-2.1",
+    "source_line": 153,
+    "text": "    |         |                           |         |",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.1-L154",
+    "parent": "V4-2.1",
+    "source_line": 154,
+    "text": "    |  BODY   |                           |  BODY   |",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.1-L155",
+    "parent": "V4-2.1",
+    "source_line": 155,
+    "text": "    |         |                           |         |",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.1-L157",
+    "parent": "V4-2.1",
+    "source_line": 157,
+    "text": "         |                                     |",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.1-L161",
+    "parent": "V4-2.1",
+    "source_line": 161,
+    "text": "**Reading the Price Story**:",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.1-L162",
+    "parent": "V4-2.1",
+    "source_line": 162,
+    "text": "- A long upper wick indicates seller rejection (supply entering).",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.1-L163",
+    "parent": "V4-2.1",
+    "source_line": 163,
+    "text": "- A long lower wick indicates buyer rejection (demand entering).",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.1-L164",
+    "parent": "V4-2.1",
+    "source_line": 164,
+    "text": "- A strong, full-bodied candle closing near its extreme shows overwhelming directional dominance.",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.2-L167",
+    "parent": "V4-2.2",
+    "source_line": 167,
+    "text": "Candle Range Theory (CRT) evaluates price movement by analyzing whether price remains inside or expands outside a prior candle's High and Low range:",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.2-L168",
+    "parent": "V4-2.2",
+    "source_line": 168,
+    "text": "- **Inside Bar (Accumulation)**: Price stays within the prior candle's High-Low range.",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.2-L169",
+    "parent": "V4-2.2",
+    "source_line": 169,
+    "text": "- **Sweep / Manipulation**: Price wicks out of the High or Low of the CRT range to grab liquidity.",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.2-L170",
+    "parent": "V4-2.2",
+    "source_line": 170,
+    "text": "- **Expansion / Distribution**: Price breaks and closes outside the CRT range, initiating a strong trend.",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.2-L172",
+    "parent": "V4-2.2",
+    "source_line": 172,
+    "text": "*Note*: As White SNT emphasizes, trading SNR levels located *inside* an unexpanded CRT range yields poor risk-reward. Wait for the CRT boundary sweep or breakout first!",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.3-L175",
+    "parent": "V4-2.3",
+    "source_line": 175,
+    "text": "White SNT introduces the **Open Close Level (OCL)** as one of the most powerful institutional concepts:",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.3-L176",
+    "parent": "V4-2.3",
+    "source_line": 176,
+    "text": "- **What is OCL?**: An OCL is a horizontal line drawn at the exact price point where two adjacent candle bodies meet (where Candle 1 Closes and Candle 2 Opens).",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.3-L177",
+    "parent": "V4-2.3",
+    "source_line": 177,
+    "text": "- **Institutional Meaning**: On higher timeframes (HTF like Daily or 4H), an OCL looks like a simple flat meeting point between candle bodies. However, when you zoom down to lower timeframes (15M, 5M, 1M), that exact price line reveals a **fresh Order Block / Hidden Supply & Demand Base**.",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.3-L178",
+    "parent": "V4-2.3",
+    "source_line": 178,
+    "text": "- **OCL Properties**:",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.3-L179",
+    "parent": "V4-2.3",
+    "source_line": 179,
+    "text": "  - Acts like a dynamic moving average with fixed structural support/resistance.",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.3-L180",
+    "parent": "V4-2.3",
+    "source_line": 180,
+    "text": "  - Institutional orders sit stacked at OCLs. When price retests an HTF OCL, it reacts sharply.",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.3-L185",
+    "parent": "V4-2.3",
+    "source_line": 185,
+    "text": "  |  RED  |                                |  OB   | <-- Order Block Base",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.3-L186",
+    "parent": "V4-2.3",
+    "source_line": 186,
+    "text": "  | CANDLE|                                +-------+",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.3-L188",
+    "parent": "V4-2.3",
+    "source_line": 188,
+    "text": "  | GREEN |                                +-------+",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.3-L189",
+    "parent": "V4-2.3",
+    "source_line": 189,
+    "text": "  | CANDLE|                                | RALLY |",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.4-L195",
+    "parent": "V4-2.4",
+    "source_line": 195,
+    "text": "- **Uptrend**: Series of Higher Highs (HH) and Higher Lows (HL).",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.4-L196",
+    "parent": "V4-2.4",
+    "source_line": 196,
+    "text": "- **Downtrend**: Series of Lower Highs (LH) and Lower Lows (LL).",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.4-L197",
+    "parent": "V4-2.4",
+    "source_line": 197,
+    "text": "- **Break of Structure (BOS)**: A candle body close beyond a previous swing in the direction of the current trend (confirming trend continuation).",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-2.4-L198",
+    "parent": "V4-2.4",
+    "source_line": 198,
+    "text": "- **Market Structure Shift (MSS) / Choch**: A candle body close beyond the last key swing low in an uptrend (or key swing high in a downtrend), signaling structural reversal.",
+    "implementation": [
+      "src/msnr/domain.py",
+      "src/msnr/data.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; primitive and representative pipeline tests"
+  },
+  {
+    "id": "V4-3.1-L205",
+    "parent": "V4-3.1",
+    "source_line": 205,
+    "text": "An **A-Shape Level** represents Resistance (Supply). It is formed when a bullish candle is followed immediately by a bearish candle, forming a sharp peak (resembling the letter \"A\").",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.1-L210",
+    "parent": "V4-3.1",
+    "source_line": 210,
+    "text": "      /     GREEN   RED      <-- Horizontal line drawn at the peak body/wick high",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.2-L215",
+    "parent": "V4-3.2",
+    "source_line": 215,
+    "text": "A **V-Shape Level** represents Support (Demand). It is formed when a bearish candle is followed immediately by a bullish candle, forming a sharp trough (resembling the letter \"V\").",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.3-L226",
+    "parent": "V4-3.3",
+    "source_line": 226,
+    "text": "A **GAP Level** occurs when two consecutive candles move aggressively in the same direction, leaving a structural gap or hidden order area:",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.3-L227",
+    "parent": "V4-3.3",
+    "source_line": 227,
+    "text": "- **Bullish GAP**: Formed by two consecutive green candles.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.3-L228",
+    "parent": "V4-3.3",
+    "source_line": 228,
+    "text": "- **Bearish GAP**: Formed by two consecutive red candles.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.3-L229",
+    "parent": "V4-3.3",
+    "source_line": 229,
+    "text": "- **How GAP Levels Act**:",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.3-L230",
+    "parent": "V4-3.3",
+    "source_line": 230,
+    "text": "  - A **Bullish GAP** acts as **Support** when price drops back to retest it.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.3-L231",
+    "parent": "V4-3.3",
+    "source_line": 231,
+    "text": "  - A **Bearish GAP** acts as **Resistance** when price rallies back to retest it.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.3-L236",
+    "parent": "V4-3.3",
+    "source_line": 236,
+    "text": "     | GREEN |                          |  RED  |",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.3-L238",
+    "parent": "V4-3.3",
+    "source_line": 238,
+    "text": "     | GREEN | <-- GAP Line             |  RED  | <-- GAP Line",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.4-L244",
+    "parent": "V4-3.4",
+    "source_line": 244,
+    "text": "- **SBR (Support Becomes Resistance)**: A V-shape support or Bullish GAP is broken downward by a candle **body close**. Once broken, this level flips to act as **Resistance** for future rallies.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.4-L245",
+    "parent": "V4-3.4",
+    "source_line": 245,
+    "text": "- **RBS (Resistance Becomes Support)**: An A-shape resistance or Bearish GAP is broken upward by a candle **body close**. Once broken, this level flips to act as **Support** for future dips.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.5-L250",
+    "parent": "V4-3.5",
+    "source_line": 250,
+    "text": "1. **Fresh Level (100% Active)**:",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.5-L251",
+    "parent": "V4-3.5",
+    "source_line": 251,
+    "text": "   - The level has **never been touched** by any candle wick since its creation.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.5-L252",
+    "parent": "V4-3.5",
+    "source_line": 252,
+    "text": "   - *Power*: Highest probability level for a trade reaction.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.5-L253",
+    "parent": "V4-3.5",
+    "source_line": 253,
+    "text": "2. **Unfresh Level (Weakened / Expired)**:",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.5-L254",
+    "parent": "V4-3.5",
+    "source_line": 254,
+    "text": "   - The level has been **poked or touched by a candle wick** without a body close beyond it.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.5-L255",
+    "parent": "V4-3.5",
+    "source_line": 255,
+    "text": "   - *Power*: Exhausted. Do NOT take trades directly from unfresh levels unless repaired by a Confirmation Candle (CC) or HTF storyline alignment.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.5-L256",
+    "parent": "V4-3.5",
+    "source_line": 256,
+    "text": "3. **Fresh Re-activation via Body Close**:",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.5-L257",
+    "parent": "V4-3.5",
+    "source_line": 257,
+    "text": "   - When a level is **broken cleanly by a candle body close**, it transforms into an SBR or RBS level, turning **100% FRESH AGAIN** as a new broken level!",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.5-L261",
+    "parent": "V4-3.5",
+    "source_line": 261,
+    "text": "|                            LEVEL FRESHNESS STATE MATRIX                           |",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.5-L263",
+    "parent": "V4-3.5",
+    "source_line": 263,
+    "text": "| Event               | Level State                     | Actionable Trade Status   |",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.5-L265",
+    "parent": "V4-3.5",
+    "source_line": 265,
+    "text": "| Newly Created       | 100% FRESH                      | READY FOR FIRST TOUCH     |",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.5-L266",
+    "parent": "V4-3.5",
+    "source_line": 266,
+    "text": "| Touched by Wick     | UNFRESH (Mitigated)             | DO NOT TRADE (Avoid)      |",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.5-L267",
+    "parent": "V4-3.5",
+    "source_line": 267,
+    "text": "| Repaired by CC      | FRESH REPAIRED                  | VALID FOR TRADE           |",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.5-L268",
+    "parent": "V4-3.5",
+    "source_line": 268,
+    "text": "| Broken by Body      | FRESH SBR / RBS (Role Flip)     | READY FOR FIRST RETEST    |",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.6-L273",
+    "parent": "V4-3.6",
+    "source_line": 273,
+    "text": "Pitchou.FX outlines a rare, vital exception for unfresh levels called the **Confirmation Candle (CC) Rule**:",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.6-L274",
+    "parent": "V4-3.6",
+    "source_line": 274,
+    "text": "- **Definition**: The **Confirmation Candle (CC)** is the 3rd candle that forms immediately after an A-shape or V-shape level is created.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.6-L275",
+    "parent": "V4-3.6",
+    "source_line": 275,
+    "text": "- **Condition**:",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.6-L276",
+    "parent": "V4-3.6",
+    "source_line": 276,
+    "text": "  - On a **V-shape Support**, the 3rd candle MUST be a **Green (Bullish) Candle**.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.6-L277",
+    "parent": "V4-3.6",
+    "source_line": 277,
+    "text": "  - On an **A-shape Resistance**, the 3rd candle MUST be a **Red (Bearish) Candle**.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-3.6-L278",
+    "parent": "V4-3.6",
+    "source_line": 278,
+    "text": "- **Effect**: If an unfresh level possesses a valid CC, it is **repaired and treated as a valid Fresh Level** again!",
+    "implementation": [
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented with user-approved junction, GAP and CC definitions"
+  },
+  {
+    "id": "V4-4.1-L285",
+    "parent": "V4-4.1",
+    "source_line": 285,
+    "text": "In Malaysian SNR, trendlines are drawn strictly through structural peaks and troughs:",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; full positive/negative historical corpus not validated"
+  },
+  {
+    "id": "V4-4.1-L286",
+    "parent": "V4-4.1",
+    "source_line": 286,
+    "text": "- **Uptrend Line (Support TL)**: Drawn by connecting two or more **V-Shape troughs** sloping upward.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; full positive/negative historical corpus not validated"
+  },
+  {
+    "id": "V4-4.1-L287",
+    "parent": "V4-4.1",
+    "source_line": 287,
+    "text": "- **Downtrend Line (Resistance TL)**: Drawn by connecting two or more **A-Shape peaks** sloping downward.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; full positive/negative historical corpus not validated"
+  },
+  {
+    "id": "V4-4.1-L291",
+    "parent": "V4-4.1",
+    "source_line": 291,
+    "text": "             / Peak 2                               Peak 1             /                                               \\ Peak 2",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; full positive/negative historical corpus not validated"
+  },
+  {
+    "id": "V4-4.1-L292",
+    "parent": "V4-4.1",
+    "source_line": 292,
+    "text": "     V-Shape 2                                                   /                                                         V-Shape 1",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; full positive/negative historical corpus not validated"
+  },
+  {
+    "id": "V4-4.2-L297",
+    "parent": "V4-4.2",
+    "source_line": 297,
+    "text": "Trendlines track structural liquidity. Pitchou.FX defines 8 distinct trendline variations based on timeframe and slope combinations.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; full positive/negative historical corpus not validated"
+  },
+  {
+    "id": "V4-4.2-L299",
+    "parent": "V4-4.2",
+    "source_line": 299,
+    "text": "**The Strict 5-Touch Limit Rule**:",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; full positive/negative historical corpus not validated"
+  },
+  {
+    "id": "V4-4.2-L300",
+    "parent": "V4-4.2",
+    "source_line": 300,
+    "text": "- Every trendline has a maximum lifespan of **5 touches**.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; full positive/negative historical corpus not validated"
+  },
+  {
+    "id": "V4-4.2-L301",
+    "parent": "V4-4.2",
+    "source_line": 301,
+    "text": "- **Touch 1 & 2**: Create and establish the trendline.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; full positive/negative historical corpus not validated"
+  },
+  {
+    "id": "V4-4.2-L302",
+    "parent": "V4-4.2",
+    "source_line": 302,
+    "text": "- **Touch 3**: **THE GOLDEN TOUCH** — The highest probability entry touch!",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; full positive/negative historical corpus not validated"
+  },
+  {
+    "id": "V4-4.2-L303",
+    "parent": "V4-4.2",
+    "source_line": 303,
+    "text": "- **Touch 4**: Tradeable with strict lower-timeframe confirmation badges.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; full positive/negative historical corpus not validated"
+  },
+  {
+    "id": "V4-4.2-L304",
+    "parent": "V4-4.2",
+    "source_line": 304,
+    "text": "- **Touch 5**: Final touch.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; full positive/negative historical corpus not validated"
+  },
+  {
+    "id": "V4-4.2-L305",
+    "parent": "V4-4.2",
+    "source_line": 305,
+    "text": "- **After Touch 5**: The trendline is considered **EXPIRED & EXHAUSTED**. Expect a breakout on or after the 5th touch!",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; full positive/negative historical corpus not validated"
+  },
+  {
+    "id": "V4-4.3-L308",
+    "parent": "V4-4.3",
+    "source_line": 308,
+    "text": "The 3rd touch on a trendline represents the sweet spot where trend direction is confirmed but liquidity has not been depleted. When a 3rd touch aligns with a **fresh SNR level**, it creates a 10/10 confluence trade setup!",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; full positive/negative historical corpus not validated"
+  },
+  {
+    "id": "V4-4.4-L312",
+    "parent": "V4-4.4",
+    "source_line": 312,
+    "text": "- **Retail Trap**: Retail traders buy blindly on trendline touches. Smart money induces retail to place orders above/below trendlines.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; full positive/negative historical corpus not validated"
+  },
+  {
+    "id": "V4-4.4-L313",
+    "parent": "V4-4.4",
+    "source_line": 313,
+    "text": "- **Trendline Key (TL Key)**: A horizontal line drawn at the point where a trendline is cleanly broken.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; full positive/negative historical corpus not validated"
+  },
+  {
+    "id": "V4-4.4-L314",
+    "parent": "V4-4.4",
+    "source_line": 314,
+    "text": "- **Inducement (IDM) Sweep**: Smart money pushes price past a trendline to trigger retail Stop Losses into an HTF OCL or fresh SNR level before violently reversing in the true direction.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; full positive/negative historical corpus not validated"
+  },
+  {
+    "id": "V4-5.1-L321",
+    "parent": "V4-5.1",
+    "source_line": 321,
+    "text": "A **Bearish QM Pattern** signals a major reversal from a bullish trend to a bearish trend.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.1-L323",
+    "parent": "V4-5.1",
+    "source_line": 323,
+    "text": "**Key Levels of Bearish QM**:",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.1-L324",
+    "parent": "V4-5.1",
+    "source_line": 324,
+    "text": "1. **High (H)**: The initial peak (A-shape).",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.1-L325",
+    "parent": "V4-5.1",
+    "source_line": 325,
+    "text": "2. **Low (L)**: The first trough (V-shape) following the High.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.1-L326",
+    "parent": "V4-5.1",
+    "source_line": 326,
+    "text": "3. **Higher High (HH)**: The second peak, rising above the High (A-shape). Creates a buyer trap!",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.1-L327",
+    "parent": "V4-5.1",
+    "source_line": 327,
+    "text": "4. **Lower Low (LL)**: The second trough, crashing cleanly below the first Low. **This body breakout confirms the Bearish QM Pattern!**",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.1-L332",
+    "parent": "V4-5.1",
+    "source_line": 332,
+    "text": "           /      H (1) /         /\\  /      \\  ENTRY ZONE (Left Shoulder / SBR / Apex)",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.1-L335",
+    "parent": "V4-5.1",
+    "source_line": 335,
+    "text": "  /                                    LL (Breaks below L - Confirms QM!)",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.2-L339",
+    "parent": "V4-5.2",
+    "source_line": 339,
+    "text": "A **Bullish QM Pattern** signals a major reversal from a bearish trend to a bullish trend.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.2-L341",
+    "parent": "V4-5.2",
+    "source_line": 341,
+    "text": "**Key Levels of Bullish QM**:",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.2-L342",
+    "parent": "V4-5.2",
+    "source_line": 342,
+    "text": "1. **Low (L)**: The initial trough (V-shape).",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.2-L343",
+    "parent": "V4-5.2",
+    "source_line": 343,
+    "text": "2. **High (H)**: The first peak (A-shape) following the Low.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.2-L344",
+    "parent": "V4-5.2",
+    "source_line": 344,
+    "text": "3. **Lower Low (LL)**: The second trough, dipping below the Low (V-shape). Creates a seller trap!",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.2-L345",
+    "parent": "V4-5.2",
+    "source_line": 345,
+    "text": "4. **Higher High (HH)**: The second peak, surging cleanly above the first High. **This body breakout confirms the Bullish QM Pattern!**",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.3-L362",
+    "parent": "V4-5.3",
+    "source_line": 362,
+    "text": "- **Valid Breakout**: A candle **BODY MUST CLOSE** beyond the key structural level (beyond Low for Bearish QM, beyond High for Bullish QM).",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.3-L363",
+    "parent": "V4-5.3",
+    "source_line": 363,
+    "text": "- **Fakeout / Invalid Breakout**: If a candle pokes past the level with a wick but the **body closes inside/behind the level**, it is a **FAKEOUT / LIQUIDITY SWEEP**. Do NOT treat it as a structural breakout!",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.4-L366",
+    "parent": "V4-5.4",
+    "source_line": 366,
+    "text": "- **External Breakout (VALID)**: The breakout occurs on the level created **BEFORE** price touches the fresh SNR level. This breaks main market structure.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.4-L367",
+    "parent": "V4-5.4",
+    "source_line": 367,
+    "text": "- **Internal Breakout (INVALID)**: The breakout occurs on a level created **AFTER** price touches the fresh SNR level. Internal breakouts take place inside structure and do not confirm a trend shift.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.5-L371",
+    "parent": "V4-5.5",
+    "source_line": 371,
+    "text": "- **For SNR Levels**: The breakout MUST happen **after** the last touch on the SNR level. If a QM pattern forms before or during the touch without a post-touch breakout, it is invalid.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.5-L372",
+    "parent": "V4-5.5",
+    "source_line": 372,
+    "text": "- **For Trendlines**: A QM pattern formed **after or during** a trendline touch remains **FULLY VALID**, because trendlines adjust with market momentum!",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.6-L376",
+    "parent": "V4-5.6",
+    "source_line": 376,
+    "text": "- **QM Apex**: Equivalent to an ICT **Turtle Soup / Liquidity Sweep** of previous highs/lows.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-5.6-L377",
+    "parent": "V4-5.6",
+    "source_line": 377,
+    "text": "- **QM Left Shoulder (LS)**: Equivalent to an **Order Block / Breaker Block / HTF OCL**. Price returns to the Left Shoulder to mitigate orders before launching the trend.",
+    "implementation": [
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py"
+    ],
+    "status": "Implemented; body-close, external-reference and latest-touch tests"
+  },
+  {
+    "id": "V4-6.1-L384",
+    "parent": "V4-6.1",
+    "source_line": 384,
+    "text": "Different timeframes have different rules for validating a rejection at an SNR level:",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.1-L386",
+    "parent": "V4-6.1",
+    "source_line": 386,
+    "text": "| Timeframe | Rejection Validation Rule (Pitchou.FX Section 3.1) |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.1-L388",
+    "parent": "V4-6.1",
+    "source_line": 388,
+    "text": "| **Monthly (MN1)** | **Wick Rejection ONLY** (No candle body close required; wick alone confirms strength). |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.1-L389",
+    "parent": "V4-6.1",
+    "source_line": 389,
+    "text": "| **Weekly (W1)** | **Wick Rejection ONLY** (No candle body close required). |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.1-L390",
+    "parent": "V4-6.1",
+    "source_line": 390,
+    "text": "| **Daily (D1)** | **Candle Body Close Required** on Daily timeframe. |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.1-L391",
+    "parent": "V4-6.1",
+    "source_line": 391,
+    "text": "| **4-Hour (4H)** | **Candle Body Close Required** on 4H timeframe. |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.1-L392",
+    "parent": "V4-6.1",
+    "source_line": 392,
+    "text": "| **1-Hour (1H)** | **Candle Body Close Required** on 4H or 1H timeframe. |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.1-L393",
+    "parent": "V4-6.1",
+    "source_line": 393,
+    "text": "| **30-Min (30M)** | **Candle Body Close Required** on 30M timeframe. |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.1-L394",
+    "parent": "V4-6.1",
+    "source_line": 394,
+    "text": "| **15-Min (15M)** | **Candle Body Close Required** on 15M timeframe. |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.2-L397",
+    "parent": "V4-6.2",
+    "source_line": 397,
+    "text": "To validate a trend shift on an HTF level, lower timeframes must confirm with a valid QM breakout:",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.2-L401",
+    "parent": "V4-6.2",
+    "source_line": 401,
+    "text": "|                           TIMEFRAME BREAKOUT MAPPING HIERARCHY                    |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.2-L403",
+    "parent": "V4-6.2",
+    "source_line": 403,
+    "text": "| HTF SNR Level / Trendline    | Lower Timeframe (LTF) Breakout Required            |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.2-L405",
+    "parent": "V4-6.2",
+    "source_line": 405,
+    "text": "| Monthly (MN1) Level          | Daily (1D) QM Breakout                             |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.2-L406",
+    "parent": "V4-6.2",
+    "source_line": 406,
+    "text": "| Weekly (W1) Level            | 4-Hour (4H) QM Breakout                            |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.2-L407",
+    "parent": "V4-6.2",
+    "source_line": 407,
+    "text": "| Daily (1D) Level             | 1-Hour (1H) QM Breakout                            |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.2-L408",
+    "parent": "V4-6.2",
+    "source_line": 408,
+    "text": "| 4-Hour (4H) Level            | 1H / 30M / 15M QM Breakout                         |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.2-L409",
+    "parent": "V4-6.2",
+    "source_line": 409,
+    "text": "| 1-Hour (1H) Level            | 30M / 15M QM Breakout                              |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.2-L410",
+    "parent": "V4-6.2",
+    "source_line": 410,
+    "text": "| 30-Min (30M) Level           | 5-Min (5M) QM Breakout                             |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.2-L411",
+    "parent": "V4-6.2",
+    "source_line": 411,
+    "text": "| 15-Min (15M) Level           | 1-Min (1M) QM Breakout                             |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.3-L416",
+    "parent": "V4-6.3",
+    "source_line": 416,
+    "text": "A **Classic Storyline** occurs when price moves sequentially from one **fresh HTF SNR level** to another fresh HTF SNR level.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.3-L417",
+    "parent": "V4-6.3",
+    "source_line": 417,
+    "text": "- **Example (Bearish Weekly Classic Storyline)**:",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.3-L418",
+    "parent": "V4-6.3",
+    "source_line": 418,
+    "text": "  1. Price reaches a fresh Weekly Resistance.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.3-L419",
+    "parent": "V4-6.3",
+    "source_line": 419,
+    "text": "  2. Weekly chart shows a rejection wick.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.3-L420",
+    "parent": "V4-6.3",
+    "source_line": 420,
+    "text": "  3. 4H chart confirms with a **Bearish 4H QM Breakout**.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.3-L421",
+    "parent": "V4-6.3",
+    "source_line": 421,
+    "text": "  4. The Bearish Weekly Storyline is officially born! Price travels down targeting the next fresh Weekly Support.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.4-L424",
+    "parent": "V4-6.4",
+    "source_line": 424,
+    "text": "When all fresh SNR levels on a higher timeframe have been touched and exhausted, the market switches to the **Advanced Storyline**:",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.4-L425",
+    "parent": "V4-6.4",
+    "source_line": 425,
+    "text": "- Instead of using fresh SNR levels as endpoints, the **HTF Trendline** becomes the master structural reference.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.4-L426",
+    "parent": "V4-6.4",
+    "source_line": 426,
+    "text": "- **Example (Bearish Weekly Advanced Storyline)**:",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.4-L427",
+    "parent": "V4-6.4",
+    "source_line": 427,
+    "text": "  1. Price reaches a Weekly Resistance Trendline (no fresh SNR level available).",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.4-L428",
+    "parent": "V4-6.4",
+    "source_line": 428,
+    "text": "  2. 4H chart confirms with a **Bearish 4H QM Breakout** breaking the trendline structure.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.4-L429",
+    "parent": "V4-6.4",
+    "source_line": 429,
+    "text": "  3. The Bearish Weekly Advanced Storyline is active, targeting the Weekly Support Trendline!",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.5-L432",
+    "parent": "V4-6.5",
+    "source_line": 432,
+    "text": "Every Storyline (Monthly, Weekly, Daily, or Mini) unfolds in 3 distinct phases:",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.5-L436",
+    "parent": "V4-6.5",
+    "source_line": 436,
+    "text": "|                             THE 3 PARTS OF A STORYLINE                            |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.5-L438",
+    "parent": "V4-6.5",
+    "source_line": 438,
+    "text": "| Storyline Phase   | Structural Event            | Active Trade Setups             |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.5-L440",
+    "parent": "V4-6.5",
+    "source_line": 440,
+    "text": "| **Part 1**        | Trend Initiation / Reversal | QMS Reversal Setups (Apex, LS)  |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.5-L441",
+    "parent": "V4-6.5",
+    "source_line": 441,
+    "text": "| **Part 2**        | Middle Trend Expansion      | Continuation Setups (C.APEX, SBR)|",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.5-L442",
+    "parent": "V4-6.5",
+    "source_line": 442,
+    "text": "| **Part 3**        | Ending / Target Approach    | Final Continuation / Exit Prep  |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.5-L446",
+    "parent": "V4-6.5",
+    "source_line": 446,
+    "text": "1. **Part 1 (Start / Initiation)**:",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.5-L447",
+    "parent": "V4-6.5",
+    "source_line": 447,
+    "text": "   - Reversal off an HTF SNR level or trendline.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.5-L448",
+    "parent": "V4-6.5",
+    "source_line": 448,
+    "text": "   - Characterized by the initial **QM Pattern Formation** (Apex, Left Shoulder, SBR/RBS).",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.5-L449",
+    "parent": "V4-6.5",
+    "source_line": 449,
+    "text": "2. **Part 2 (Middle / Expansion)**:",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.5-L450",
+    "parent": "V4-6.5",
+    "source_line": 450,
+    "text": "   - Strong trend continuation phase making higher highs/lows (or lower highs/lows).",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.5-L451",
+    "parent": "V4-6.5",
+    "source_line": 451,
+    "text": "   - Driven by **Continuation Levels** (Continuation Apex / C.APEX, GAPs, SBR/RBS).",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.5-L452",
+    "parent": "V4-6.5",
+    "source_line": 452,
+    "text": "3. **Part 3 (End / Target Exhaustion)**:",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.5-L453",
+    "parent": "V4-6.5",
+    "source_line": 453,
+    "text": "   - Price approaches the destination HTF SNR level or trendline.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.5-L454",
+    "parent": "V4-6.5",
+    "source_line": 454,
+    "text": "   - Trend momentum slows down; prepare to take profits before Part 1 of the opposite storyline begins.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.6-L457",
+    "parent": "V4-6.6",
+    "source_line": 457,
+    "text": "In rare instances, before a QM pattern executes its major breakout, a mini A-shape or V-shape forms right before the main shoulder. This mini level is called the **Early Right Shoulder (ERS)**.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.6-L458",
+    "parent": "V4-6.6",
+    "source_line": 458,
+    "text": "- **Bullish ERS**: A mini V-shape forming right before the bullish breakout.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.6-L459",
+    "parent": "V4-6.6",
+    "source_line": 459,
+    "text": "- **Bearish ERS**: A mini A-shape forming right before the bearish breakout.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-6.6-L460",
+    "parent": "V4-6.6",
+    "source_line": 460,
+    "text": "- **Trading ERS**: ERS levels act as high-precision early entry checkpoints when aligned with a short-term trendline!",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/data.py"
+    ],
+    "tests": [
+      "tests/test_engine_pipeline.py",
+      "tests/test_strategy.py"
+    ],
+    "status": "Implemented; advanced storyline requires verified complete level history"
+  },
+  {
+    "id": "V4-7.1-L467",
+    "parent": "V4-7.1",
+    "source_line": 467,
+    "text": "White SNT incorporates ICT session timing to filter out low-probability market noise:",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.1-L471",
+    "parent": "V4-7.1",
+    "source_line": 471,
+    "text": "|                             ICT SESSION LIQUIDITY CYCLE                           |",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.1-L473",
+    "parent": "V4-7.1",
+    "source_line": 473,
+    "text": "| Session          | Time Window (EST)     | Market Behavior & Role                 |",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.1-L475",
+    "parent": "V4-7.1",
+    "source_line": 475,
+    "text": "| **Asian Range**  | 7:00 PM - 12:00 AM    | Liquidity Accumulation (Sets High/Low) |",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.1-L476",
+    "parent": "V4-7.1",
+    "source_line": 476,
+    "text": "| **London**       | 2:00 AM - 5:00 AM     | Judas Swing / Manipulation Sweep       |",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.1-L477",
+    "parent": "V4-7.1",
+    "source_line": 477,
+    "text": "| **New York AM**  | 8:00 AM - 11:00 AM    | Main Trend Distribution & Expansion    |",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.1-L478",
+    "parent": "V4-7.1",
+    "source_line": 478,
+    "text": "| **New York PM**  | 1:00 PM - 4:00 PM     | Reversal / Macro Re-balancing          |",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.1-L482",
+    "parent": "V4-7.1",
+    "source_line": 482,
+    "text": "**Session Execution Rule**:",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.1-L483",
+    "parent": "V4-7.1",
+    "source_line": 483,
+    "text": "- Identify the **Asia Range High and Low**.",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.1-L484",
+    "parent": "V4-7.1",
+    "source_line": 484,
+    "text": "- During **London or NY Open**, wait for price to sweep the Asia High or Low into an **HTF OCL or fresh MSNR Level**.",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.1-L485",
+    "parent": "V4-7.1",
+    "source_line": 485,
+    "text": "- Execute upon receiving a lower-timeframe MSNR confirmation badge!",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.2-L489",
+    "parent": "V4-7.2",
+    "source_line": 489,
+    "text": "- **Q1 (\"A\")**: Accumulation (Building initial range).",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.2-L490",
+    "parent": "V4-7.2",
+    "source_line": 490,
+    "text": "- **Q2 (\"M\")**: Manipulation (Judas swing / false breakout sweep).",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.2-L491",
+    "parent": "V4-7.2",
+    "source_line": 491,
+    "text": "- **Q3 (\"D\")**: Distribution (The true expansion move — **PRIMARY ENTRY ZONE!**).",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.2-L492",
+    "parent": "V4-7.2",
+    "source_line": 492,
+    "text": "- **Q4 (\"X\")**: Continuation or Reversal (Macro completion).",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.2-L494",
+    "parent": "V4-7.2",
+    "source_line": 494,
+    "text": "**The 90-Minute Intraday Cycles**:",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.2-L495",
+    "parent": "V4-7.2",
+    "source_line": 495,
+    "text": "- **00:00 - 01:30** (Q1 Accumulation)",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.2-L496",
+    "parent": "V4-7.2",
+    "source_line": 496,
+    "text": "- **01:30 - 03:00** (Q2 Manipulation)",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.2-L497",
+    "parent": "V4-7.2",
+    "source_line": 497,
+    "text": "- **03:00 - 04:30** (Q3 Distribution — **Best London Entry!**)",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.2-L498",
+    "parent": "V4-7.2",
+    "source_line": 498,
+    "text": "- **04:30 - 06:00** (Q4 Reversal/Continuation)",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.2-L499",
+    "parent": "V4-7.2",
+    "source_line": 499,
+    "text": "- *(Repeats every 90 minutes across London and NY sessions)*.",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.3-L502",
+    "parent": "V4-7.3",
+    "source_line": 502,
+    "text": "**Smart Money Tool (SMT) Divergence** occurs when two historically correlated instruments fail to confirm each other's highs or lows at a key level, signaling institutional accumulation.",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.3-L504",
+    "parent": "V4-7.3",
+    "source_line": 504,
+    "text": "**Correlated Pair Matrix**:",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.3-L505",
+    "parent": "V4-7.3",
+    "source_line": 505,
+    "text": "- **Gold (XAUUSD) vs. Silver (XAGUSD)**",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.3-L506",
+    "parent": "V4-7.3",
+    "source_line": 506,
+    "text": "- **EURUSD vs. GBPUSD**",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.3-L507",
+    "parent": "V4-7.3",
+    "source_line": 507,
+    "text": "- **AUDUSD vs. NZDUSD**",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.3-L508",
+    "parent": "V4-7.3",
+    "source_line": 508,
+    "text": "- **USDJPY vs. USDCHF** (Inverted Correlation)",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.3-L513",
+    "parent": "V4-7.3",
+    "source_line": 513,
+    "text": "  XAGUSD: Holds a Higher Low (HL) at Support    <-- Shows Institutional Strength!",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.4-L518",
+    "parent": "V4-7.4",
+    "source_line": 518,
+    "text": "White SNT uses custom **Circle Fibonacci** settings to measure wave expansions:",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.4-L519",
+    "parent": "V4-7.4",
+    "source_line": 519,
+    "text": "- **Retracement Levels**: `0.109`, `0.25`, `0.50` (Equilibrium), `0.707` (OTE), `0.886`.",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.4-L520",
+    "parent": "V4-7.4",
+    "source_line": 520,
+    "text": "- **Target Expansion Levels**: `1.272`, `1.618`, `1.893`, `2.0`.",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.4-L522",
+    "parent": "V4-7.4",
+    "source_line": 522,
+    "text": "**Fibo Storyline Application**:",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-7.4-L523",
+    "parent": "V4-7.4",
+    "source_line": 523,
+    "text": "Draw Fibonacci from the **Swing Low to Swing High** of a confirmed QM pattern. The `1.893` and `2.0` extensions define the ultimate profit targets where the Fibo Storyline concludes!",
+    "implementation": [
+      "src/msnr/clock.py",
+      "src/msnr/strategy/primitives.py",
+      "src/msnr/strategy/engine.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Implemented with approved NY/DST and SMT scope; real peer/feed validation pending"
+  },
+  {
+    "id": "V4-8.1-L530",
+    "parent": "V4-8.1",
+    "source_line": 530,
+    "text": "QMS setups are executed during **Part 1 of a Storyline** to catch trend reversals early:",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.1-L532",
+    "parent": "V4-8.1",
+    "source_line": 532,
+    "text": "1. **APEX Setup**:",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.1-L533",
+    "parent": "V4-8.1",
+    "source_line": 533,
+    "text": "   - Entry taken directly at the QM Apex level (the extreme peak or trough).",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.1-L534",
+    "parent": "V4-8.1",
+    "source_line": 534,
+    "text": "   - *Confirmation*: Refined via lower-timeframe fresh levels ($4\text{H} ",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.1-L538",
+    "parent": "V4-8.1",
+    "source_line": 538,
+    "text": "2. **Left Shoulder (LS) Setup**:",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.1-L539",
+    "parent": "V4-8.1",
+    "source_line": 539,
+    "text": "   - Entry taken when price retraces to test the Left Shoulder of the QM pattern.",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.1-L540",
+    "parent": "V4-8.1",
+    "source_line": 540,
+    "text": "   - *Confirmation*: 15M/5M Candle Rejection or 5Min EMA 9 hold.",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.1-L541",
+    "parent": "V4-8.1",
+    "source_line": 541,
+    "text": "3. **SBR / RBS Setup**:",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.1-L542",
+    "parent": "V4-8.1",
+    "source_line": 542,
+    "text": "   - Entry taken at the broken Support (SBR for sell) or broken Resistance (RBS for buy).",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.1-L543",
+    "parent": "V4-8.1",
+    "source_line": 543,
+    "text": "   - *Confirmation*: Breaking Gap or 5M Trendline Breakout.",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.1-L544",
+    "parent": "V4-8.1",
+    "source_line": 544,
+    "text": "4. **ERS Setup**:",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.1-L545",
+    "parent": "V4-8.1",
+    "source_line": 545,
+    "text": "   - Entry taken at the Early Right Shoulder level when aligned with a short-term trendline.",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.1-L546",
+    "parent": "V4-8.1",
+    "source_line": 546,
+    "text": "5. **GAP QMS Setup**:",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.1-L547",
+    "parent": "V4-8.1",
+    "source_line": 547,
+    "text": "   - Entry taken at a GAP level inside the QM structure.",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.1-L548",
+    "parent": "V4-8.1",
+    "source_line": 548,
+    "text": "   - *Alignment Rule*: A 4H GAP QM level MUST align with a 1H GAP and a 30M/15M A/V shape level!",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.2-L551",
+    "parent": "V4-8.2",
+    "source_line": 551,
+    "text": "Continuation setups are executed during **Parts 2 & 3 of a Storyline** to ride trend momentum:",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.2-L552",
+    "parent": "V4-8.2",
+    "source_line": 552,
+    "text": "1. **C.APEX (Continuation Apex) Setup**:",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.2-L553",
+    "parent": "V4-8.2",
+    "source_line": 553,
+    "text": "   - Taking re-entries at newly formed swing extremes during an ongoing trend expansion.",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.2-L554",
+    "parent": "V4-8.2",
+    "source_line": 554,
+    "text": "2. **GAP Continuation Setup**:",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.2-L555",
+    "parent": "V4-8.2",
+    "source_line": 555,
+    "text": "   - Entering on pullbacks to fresh GAPs formed during strong trend bars.",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.2-L556",
+    "parent": "V4-8.2",
+    "source_line": 556,
+    "text": "3. **SBR / RBS Continuation Setup**:",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.2-L557",
+    "parent": "V4-8.2",
+    "source_line": 557,
+    "text": "   - Entering as price breaks intermediate levels and retests them from the opposite side.",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.3-L560",
+    "parent": "V4-8.3",
+    "source_line": 560,
+    "text": "1. **QMC (Quasimodo Continuation)**:",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.3-L561",
+    "parent": "V4-8.3",
+    "source_line": 561,
+    "text": "   - A continuation QM pattern forming inside Parts 2 & 3 to reinforce trend strength.",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.3-L562",
+    "parent": "V4-8.3",
+    "source_line": 562,
+    "text": "2. **QM-to-QM (Nested LTF QM)**:",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.3-L563",
+    "parent": "V4-8.3",
+    "source_line": 563,
+    "text": "   - A micro 1M/5M QM pattern forming inside the Left Shoulder zone of an HTF 4H/1H QM pattern.",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.3-L564",
+    "parent": "V4-8.3",
+    "source_line": 564,
+    "text": "3. **Reversal TL-QM Failed**:",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.3-L565",
+    "parent": "V4-8.3",
+    "source_line": 565,
+    "text": "   - Trading the violent reversal momentum when an expected QM pattern fails to break structure and collapses back through its Left Shoulder.",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.3-L566",
+    "parent": "V4-8.3",
+    "source_line": 566,
+    "text": "4. **MISS Setup**:",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.3-L567",
+    "parent": "V4-8.3",
+    "source_line": 567,
+    "text": "   - Price misses the main Left Shoulder by a few pips and reacts off an ERS or OCL level instead.",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.3-L568",
+    "parent": "V4-8.3",
+    "source_line": 568,
+    "text": "5. **Double Apex Setup**:",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.3-L569",
+    "parent": "V4-8.3",
+    "source_line": 569,
+    "text": "   - Double top/bottom forming at an HTF Apex before exploding in the storyline direction.",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.3-L570",
+    "parent": "V4-8.3",
+    "source_line": 570,
+    "text": "6. **SNRC1 Setup**:",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.3-L571",
+    "parent": "V4-8.3",
+    "source_line": 571,
+    "text": "   - Support/Resistance Continuation Type 1 — combining a fresh A/V shape with a 3rd touch trendline bounce.",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.4-L574",
+    "parent": "V4-8.4",
+    "source_line": 574,
+    "text": "White SNT presents 4 standardized execution models connecting an **H1 Point of Interest (H1 POI)** to M1–M5 market entry:",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.4-L578",
+    "parent": "V4-8.4",
+    "source_line": 578,
+    "text": "|                        WHITE SNT H1 POI EXECUTION MODELS                          |",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.4-L580",
+    "parent": "V4-8.4",
+    "source_line": 580,
+    "text": "| Model      | H1 POI Type           | LTF (M1-M5) Entry Trigger                    |",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.4-L582",
+    "parent": "V4-8.4",
+    "source_line": 582,
+    "text": "| **EX 1**   | H1 OCL / Fresh Base   | Direct M15 Shift + M1-M5 Re-entry at OCL     |",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.4-L583",
+    "parent": "V4-8.4",
+    "source_line": 583,
+    "text": "| **EX 2**   | H1 SBR / RBS Level    | M3 Shift + Inducement Sweep + QT 90-Min Window|",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.4-L584",
+    "parent": "V4-8.4",
+    "source_line": 584,
+    "text": "| **EX 3**   | H1 Trendline Key (TL) | M3 Trendline Key Breakout + SMT Divergence   |",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.4-L585",
+    "parent": "V4-8.4",
+    "source_line": 585,
+    "text": "| **EX 4**   | H1 Liquidity Sweep    | Sweep of Asia High/Low into H1 POI + M5 MSS  |",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.5-L590",
+    "parent": "V4-8.5",
+    "source_line": 590,
+    "text": "Before executing any order at an SNR or POI level, you MUST observe at least one of these 5 **Confirmation Badges**:",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.5-L594",
+    "parent": "V4-8.5",
+    "source_line": 594,
+    "text": "|                             THE 5 CONFIRMATION BADGES                             |",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.5-L596",
+    "parent": "V4-8.5",
+    "source_line": 596,
+    "text": "| Badge Type               | Best Timeframes       | Trigger Condition              |",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.5-L598",
+    "parent": "V4-8.5",
+    "source_line": 598,
+    "text": "| **1. Candle Rejection**  | 15M, 30M, 1H          | Candle closes with a long wick |",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.5-L599",
+    "parent": "V4-8.5",
+    "source_line": 599,
+    "text": "|                          |                       | rejecting the SNR level.       |",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.5-L600",
+    "parent": "V4-8.5",
+    "source_line": 600,
+    "text": "| **2. Breaking Gap**      | 5M, 15M               | Engulfing candle breaks gap    |",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.5-L601",
+    "parent": "V4-8.5",
+    "source_line": 601,
+    "text": "|                          |                       | with strong momentum.          |",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.5-L602",
+    "parent": "V4-8.5",
+    "source_line": 602,
+    "text": "| **3. Trendline Break**   | 1M, 5M                | Short-term trendline broken    |",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.5-L603",
+    "parent": "V4-8.5",
+    "source_line": 603,
+    "text": "|                          |                       | by an engulfing candle.        |",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.5-L604",
+    "parent": "V4-8.5",
+    "source_line": 604,
+    "text": "| **4. Mini QM**           | 1M, 5M                | Micro QM pattern forms inside  |",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.5-L605",
+    "parent": "V4-8.5",
+    "source_line": 605,
+    "text": "|                          |                       | the entry level.               |",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.5-L606",
+    "parent": "V4-8.5",
+    "source_line": 606,
+    "text": "| **5. 5Min EMA 9**        | 5M                    | Engulfing candle breaks & holds|",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-8.5-L607",
+    "parent": "V4-8.5",
+    "source_line": 607,
+    "text": "|                          |                       | beyond EMA 9 (Length 9, Close).|",
+    "implementation": [
+      "src/msnr/strategy/catalog.py",
+      "src/msnr/strategy/engine.py",
+      "src/msnr/strategy/primitives.py"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_engine_pipeline.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "18 named models gated; raw-candle LS/nested-QM pipeline tested; all-model historical validation pending"
+  },
+  {
+    "id": "V4-9.1-L616",
+    "parent": "V4-9.1",
+    "source_line": 616,
+    "text": "Pitchou.FX defines **The Power of Four** as the foundation of long-term trading survival:",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-9.1-L617",
+    "parent": "V4-9.1",
+    "source_line": 617,
+    "text": "1. **Strategy (25%)**: MSNR 2.0 & Alchemist Rules.",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-9.1-L618",
+    "parent": "V4-9.1",
+    "source_line": 618,
+    "text": "2. **Psychology (25%)**: Emotional control and discipline.",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-9.1-L619",
+    "parent": "V4-9.1",
+    "source_line": 619,
+    "text": "3. **Risk Management (25%)**: Strict position sizing and capital preservation.",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-9.1-L620",
+    "parent": "V4-9.1",
+    "source_line": 620,
+    "text": "4. **Journaling (25%)**: Reviewing trades daily to refine execution.",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-9.2-L623",
+    "parent": "V4-9.2",
+    "source_line": 623,
+    "text": "Trading psychology fails due to predictable emotional traps. Here are the 8 traps and their operational fixes:",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.2-L625",
+    "parent": "V4-9.2",
+    "source_line": 625,
+    "text": "1. **FOMO (Fear Of Missing Out)** $",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.2-L626",
+    "parent": "V4-9.2",
+    "source_line": 626,
+    "text": "ightarrow$ **Solution**: *The 5-Second Pause Rule*. If price has already moved away from the SNR zone, wait for the next pullback or do not enter.",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.2-L627",
+    "parent": "V4-9.2",
+    "source_line": 627,
+    "text": "2. **Revenge Trading** $",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.2-L628",
+    "parent": "V4-9.2",
+    "source_line": 628,
+    "text": "ightarrow$ **Solution**: *The 3-Loss Rule*. If you take 3 consecutive losses in a day, close your platform immediately.",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.2-L629",
+    "parent": "V4-9.2",
+    "source_line": 629,
+    "text": "3. **Greed / Over-leveraging** $",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.2-L630",
+    "parent": "V4-9.2",
+    "source_line": 630,
+    "text": "ightarrow$ **Solution**: Fixed lot size rules matching your risk percentage.",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.2-L631",
+    "parent": "V4-9.2",
+    "source_line": 631,
+    "text": "4. **Fear of Execution / Hesitation** $",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.2-L632",
+    "parent": "V4-9.2",
+    "source_line": 632,
+    "text": "ightarrow$ **Solution**: Trust the lower-timeframe Confirmation Badges.",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.2-L633",
+    "parent": "V4-9.2",
+    "source_line": 633,
+    "text": "5. **Over-analyzing / Chart Paralysis** $",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.2-L634",
+    "parent": "V4-9.2",
+    "source_line": 634,
+    "text": "ightarrow$ **Solution**: Stick strictly to HTF Storyline -> Fresh SNR -> LTF Badge.",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.2-L635",
+    "parent": "V4-9.2",
+    "source_line": 635,
+    "text": "6. **Impatience during Drawdown** $",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.2-L636",
+    "parent": "V4-9.2",
+    "source_line": 636,
+    "text": "ightarrow$ **Solution**: *Set & Forget*. Place SL and TP, then close the chart.",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.2-L637",
+    "parent": "V4-9.2",
+    "source_line": 637,
+    "text": "7. **Post-Win Euphoria** $",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.2-L638",
+    "parent": "V4-9.2",
+    "source_line": 638,
+    "text": "ightarrow$ **Solution**: *10-Minute Detox*. Walk away from charts after a big win before looking for new setups.",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.2-L639",
+    "parent": "V4-9.2",
+    "source_line": 639,
+    "text": "8. **Lack of Accountability** $",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.2-L640",
+    "parent": "V4-9.2",
+    "source_line": 640,
+    "text": "ightarrow$ **Solution**: Mandatory daily trade logging with screenshots.",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.3-L643",
+    "parent": "V4-9.3",
+    "source_line": 643,
+    "text": "To pass prop firm evaluations (FTMO, Topstep, 5%ers) without breaching daily or maximum drawdown limits, use Pitchou.FX's **3-Phase Risk Formula**:",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.3-L647",
+    "parent": "V4-9.3",
+    "source_line": 647,
+    "text": "|                        PROP FIRM 3-PHASE RISK SYSTEM                              |",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.3-L649",
+    "parent": "V4-9.3",
+    "source_line": 649,
+    "text": "| Challenge Phase | Risk Per Trade    | Goal / Focus        | Example ($200K Acct)  |",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.3-L651",
+    "parent": "V4-9.3",
+    "source_line": 651,
+    "text": "| **Phase 1**     | **0.33%**         | Capital Survival &  | Risk $660 / trade     |",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.3-L652",
+    "parent": "V4-9.3",
+    "source_line": 652,
+    "text": "| (Defense)       |                   | Cushion Building    | (~2.2 Lots Gold)      |",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.3-L653",
+    "parent": "V4-9.3",
+    "source_line": 653,
+    "text": "| **Phase 2**     | **0.50%**         | Steady Growth &     | Risk $1,000 / trade   |",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.3-L654",
+    "parent": "V4-9.3",
+    "source_line": 654,
+    "text": "| (Progression)   | (After +3% profit)| Consistency         | (~3.3 Lots Gold)      |",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.3-L655",
+    "parent": "V4-9.3",
+    "source_line": 655,
+    "text": "| **Phase 3**     | **1.00%**         | Aggressive Push to  | Risk $2,000 / trade   |",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.3-L656",
+    "parent": "V4-9.3",
+    "source_line": 656,
+    "text": "| (Final Sprint)  | (Close to Target) | Pass Challenge      | (~6.5 Lots Gold)      |",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.4-L661",
+    "parent": "V4-9.4",
+    "source_line": 661,
+    "text": "- **The Mandatory 30-Pip Minimum Buffer Rule**:",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.4-L662",
+    "parent": "V4-9.4",
+    "source_line": 662,
+    "text": "  - In forex and Gold trading, market noise and spread spikes can trigger tight stops.",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.4-L663",
+    "parent": "V4-9.4",
+    "source_line": 663,
+    "text": "  - **Rule**: Your Stop Loss MUST be placed at least **30 pips (3.0 Gold points)** beyond the extreme wick of your entry level or confirmation candle!",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.4-L664",
+    "parent": "V4-9.4",
+    "source_line": 664,
+    "text": "- **Confirmation-Based SL Placements**:",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.4-L665",
+    "parent": "V4-9.4",
+    "source_line": 665,
+    "text": "  - *5M QM Confirmation*: SL placed 30 pips beyond the 5M Apex.",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.4-L666",
+    "parent": "V4-9.4",
+    "source_line": 666,
+    "text": "  - *15M Candle Rejection*: SL placed 30 pips beyond the rejection wick tip.",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.4-L667",
+    "parent": "V4-9.4",
+    "source_line": 667,
+    "text": "  - *Trendline Break*: SL placed 30 pips beyond the last swing point before the break.",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.5-L670",
+    "parent": "V4-9.5",
+    "source_line": 670,
+    "text": "- **TP 1**: Nearest fresh 1H / 4H SBR or Bearish GAP (typically 1:3 RR).",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.5-L671",
+    "parent": "V4-9.5",
+    "source_line": 671,
+    "text": "  - *Action*: Close 50% lot size and **move Stop Loss to Breakeven (BE)**.",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.5-L672",
+    "parent": "V4-9.5",
+    "source_line": 672,
+    "text": "- **TP 2**: Next fresh Daily SNR level / Trendline (typically 1:5 to 1:7 RR).",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.5-L673",
+    "parent": "V4-9.5",
+    "source_line": 673,
+    "text": "  - *Action*: Close an additional 30% lot size.",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.5-L674",
+    "parent": "V4-9.5",
+    "source_line": 674,
+    "text": "- **Final TP**: Opposite HTF Storyline target (Weekly/Monthly level, 1:10+ RR).",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.5-L675",
+    "parent": "V4-9.5",
+    "source_line": 675,
+    "text": "  - *Action*: Let the runner position hit full target risk-free!",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-9.5-L679",
+    "parent": "V4-9.5",
+    "source_line": 679,
+    "text": "## 10. Author Comparison, Conflict Resolution, & Step-by-Step Checklists",
+    "implementation": [
+      "src/msnr/risk.py",
+      "src/msnr/execution.py",
+      "src/msnr/worker.py",
+      "src/msnr/analytics.py"
+    ],
+    "tests": [
+      "tests/test_execution.py",
+      "tests/test_recovery_and_controls.py",
+      "tests/test_bridge_and_worker.py"
+    ],
+    "status": "Implemented risk and management controls; live MT5 verification pending; human guidance remains human"
+  },
+  {
+    "id": "V4-10.1-L683",
+    "parent": "V4-10.1",
+    "source_line": 683,
+    "text": "| Feature / Dimension | Pitchou.FX (MSNR Strategy 2.0) | White SNT (The Alchemist SMC Hybrid) |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-10.1-L685",
+    "parent": "V4-10.1",
+    "source_line": 685,
+    "text": "| **Core Analysis Tool** | Fresh SNR Levels (A/V shapes, GAPs) & Trendlines | Open Close Levels (OCL), Order Blocks, & ICT Sessions |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-10.1-L686",
+    "parent": "V4-10.1",
+    "source_line": 686,
+    "text": "| **Market Trend Map** | Multi-Timeframe Storylines (Parts 1, 2, 3) | Fibo Storylines & Daye Quarterly Theory (QT) Cycles |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-10.1-L687",
+    "parent": "V4-10.1",
+    "source_line": 687,
+    "text": "| **Breakout Criterion** | Mandatory Candle Body Close | Body Close for BOS; Wick Sweeps for Liquidity Hunts |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-10.1-L688",
+    "parent": "V4-10.1",
+    "source_line": 688,
+    "text": "| **Timing Mechanism** | 5 Confirmation Badges (EMA 9, Gap, Rejection) | ICT Sessions (London/NY Open) & 90-Min QT Windows |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-10.1-L689",
+    "parent": "V4-10.1",
+    "source_line": 689,
+    "text": "| **Confirmation Indicator**| 5Min EMA 9 (Length 9, Source Close) | SMT Intermarket Divergence (Gold vs. Silver) |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-10.1-L690",
+    "parent": "V4-10.1",
+    "source_line": 690,
+    "text": "| **Risk Management** | 3-Phase Prop Firm Model & 30-Pip Rule | Fixed % Risk per Trade with Fibo Targets |",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Narrative / human protocol; documented, not fabricated as a machine confirmation"
+  },
+  {
+    "id": "V4-10.2-L693",
+    "parent": "V4-10.2",
+    "source_line": 693,
+    "text": "- **Difference**: Pitchou.FX considers a wick touch on an SNR level as making it *Unfresh*, whereas White SNT sees a wick touch as a *Liquidity Sweep* that creates a high-probability trade opportunity.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  },
+  {
+    "id": "V4-10.2-L694",
+    "parent": "V4-10.2",
+    "source_line": 694,
+    "text": "- **Unified Resolution**:",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  },
+  {
+    "id": "V4-10.2-L695",
+    "parent": "V4-10.2",
+    "source_line": 695,
+    "text": "  - Treat a wick touch as exhausting a standard SNR level for direct retests (following Pitchou.FX).",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  },
+  {
+    "id": "V4-10.2-L696",
+    "parent": "V4-10.2",
+    "source_line": 696,
+    "text": "  - HOWEVER, if that wick touch sweeps an **Asia Range High/Low** or **HTF OCL** and shows **SMT Divergence** during an **ICT Session window** (following White SNT), execute the trade based on institutional liquidity sweep rules!",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  },
+  {
+    "id": "V4-10.3-L701",
+    "parent": "V4-10.3",
+    "source_line": 701,
+    "text": "[ ] Step 1:  Identify Higher Timeframe (MN1 / W1 / D1) Storyline direction.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  },
+  {
+    "id": "V4-10.3-L702",
+    "parent": "V4-10.3",
+    "source_line": 702,
+    "text": "[ ] Step 2:  Mark active fresh HTF SNR levels, GAPs, and Trendlines (check <5 touches).",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  },
+  {
+    "id": "V4-10.3-L703",
+    "parent": "V4-10.3",
+    "source_line": 703,
+    "text": "[ ] Step 3:  Verify Level State (Is the level 100% Fresh, CC Repaired, or Fresh SBR/RBS?).",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  },
+  {
+    "id": "V4-10.3-L704",
+    "parent": "V4-10.3",
+    "source_line": 704,
+    "text": "[ ] Step 4:  Check Open Close Levels (OCL) and H1 Points of Interest (POI).",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  },
+  {
+    "id": "V4-10.3-L705",
+    "parent": "V4-10.3",
+    "source_line": 705,
+    "text": "[ ] Step 5:  Check ICT Session Timing (Is it London Open or NY Open?).",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  },
+  {
+    "id": "V4-10.3-L706",
+    "parent": "V4-10.3",
+    "source_line": 706,
+    "text": "[ ] Step 6:  Check Daye QT Cycle (Is it Q3 Distribution in a 90-minute window?).",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  },
+  {
+    "id": "V4-10.3-L707",
+    "parent": "V4-10.3",
+    "source_line": 707,
+    "text": "[ ] Step 7:  Check SMT Divergence across correlated pairs (e.g., XAUUSD vs. XAGUSD).",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  },
+  {
+    "id": "V4-10.3-L708",
+    "parent": "V4-10.3",
+    "source_line": 708,
+    "text": "[ ] Step 8:  Wait for price to test the entry zone and print a LTF Confirmation Badge.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  },
+  {
+    "id": "V4-10.3-L709",
+    "parent": "V4-10.3",
+    "source_line": 709,
+    "text": "[ ] Step 9:  Calculate lot size matching 3-Phase Risk System & set SL >= 30 pips beyond wick.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  },
+  {
+    "id": "V4-10.3-L710",
+    "parent": "V4-10.3",
+    "source_line": 710,
+    "text": "[ ] Step 10: Execute order, set TP1 / TP2 / Final TP, and apply \"Set & Forget\" discipline!",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  },
+  {
+    "id": "V4-10.4-L715",
+    "parent": "V4-10.4",
+    "source_line": 715,
+    "text": "1. Chart screenshot at entry and chart screenshot at exit.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  },
+  {
+    "id": "V4-10.4-L716",
+    "parent": "V4-10.4",
+    "source_line": 716,
+    "text": "2. HTF Storyline state & level freshness type.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  },
+  {
+    "id": "V4-10.4-L717",
+    "parent": "V4-10.4",
+    "source_line": 717,
+    "text": "3. Confirmation badge used.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  },
+  {
+    "id": "V4-10.4-L718",
+    "parent": "V4-10.4",
+    "source_line": 718,
+    "text": "4. Planned R:R vs. Executed R:R.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  },
+  {
+    "id": "V4-10.4-L719",
+    "parent": "V4-10.4",
+    "source_line": 719,
+    "text": "5. Emotional state during trade execution (1 to 10 rating).",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  },
+  {
+    "id": "V4-10.4-L720",
+    "parent": "V4-10.4",
+    "source_line": 720,
+    "text": "6. Lessons learned & rules followed/broken.",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  },
+  {
+    "id": "V4-10.4-L723",
+    "parent": "V4-10.4",
+    "source_line": 723,
+    "text": "*End of Unified Master Strategy Guide (v4)*",
+    "implementation": [
+      "src/msnr/strategy/engine.py",
+      "src/msnr/store.py",
+      "src/msnr/api.py",
+      "docs/DECISIONS.md"
+    ],
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_execution.py",
+      "tests/test_integrations.py"
+    ],
+    "status": "Conflict decisions versioned; checklist evidence and append-only journaling implemented"
+  }
+]

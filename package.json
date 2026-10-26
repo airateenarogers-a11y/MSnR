@@ -1,0 +1,7 @@
+{
+  "name": "msnr-browser-verification",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Optional browser accessibility validation; dashboard has no runtime Node dependency",
+  "devDependencies": {"axe-core": "4.10.3"}
+}

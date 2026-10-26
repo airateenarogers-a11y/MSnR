@@ -1,0 +1,20 @@
+{
+  "validated_at": "2026-10-26T23:00:43.624207+00:00",
+  "image_id": "sha256:b7d18d74588291703afebf71aee4185c519c63a44aea717004b141146a573ab9",
+  "health": {
+    "status": "ok",
+    "database": "available",
+    "live_trading": "disabled_without_authorization"
+  },
+  "authenticated_status": 200,
+  "unauthenticated_status": 401,
+  "mode": "paper",
+  "container_uid": 10001,
+  "worker": {
+    "at": "2026-10-26T23:00:43.319869+00:00",
+    "reason": "MT5 Windows bridge is not configured",
+    "status": "waiting_for_market_data"
+  },
+  "journal_integrity": true,
+  "scope": "Disposable Linux container; no broker or Discord credentials"
+}

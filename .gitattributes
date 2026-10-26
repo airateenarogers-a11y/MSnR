@@ -1,0 +1,4 @@
+* text=auto eol=lf
+# Uploaded strategy documents retain their exact bytes and original whitespace.
+docs/sources/*.md -text -whitespace
+*.png binary

@@ -1,0 +1,7 @@
+# Replace the hostname; configure private network access as appropriate.
+trading.example.com {
+    encode zstd gzip
+    reverse_proxy 127.0.0.1:8000
+}
+# Windows bridge TLS endpoint belongs on the Windows host / its approved gateway.
+# Keep the terminal API bound to loopback. Do not expose it without TLS and bearer authentication.

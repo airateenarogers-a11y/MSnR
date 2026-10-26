@@ -1,0 +1,15 @@
+name: verification
+on: [push, pull_request]
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: bash scripts/install.sh
+      - run: .venv/bin/ruff check src tests scripts
+      - run: .venv/bin/pytest --cov=msnr --cov-report=term-missing
+      # Real Chrome tests run only when MSNR_CHROME_EXECUTABLE is configured.
+      # MT5 integration and broker forwarding require a separate Windows demo host.

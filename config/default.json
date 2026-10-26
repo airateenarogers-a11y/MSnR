@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "mode": "paper",
+  "instruments": [
+    {
+      "symbol": "XAUUSDm",
+      "peer": [
+        "XAGUSDm",
+        "XAGUSD"
+      ],
+      "stop_buffer": 3.0,
+      "pip_size": 0.1,
+      "max_spread": 0.6
+    },
+    {
+      "symbol": "EURUSDm",
+      "peer": [
+        "GBPUSDm",
+        "GBPUSD"
+      ],
+      "stop_buffer": 0.003,
+      "pip_size": 0.0001,
+      "max_spread": 0.00025
+    },
+    {
+      "symbol": "USDJPYm",
+      "peer": [
+        "USDCHFm",
+        "USDCHF"
+      ],
+      "inverse_peer": false,
+      "stop_buffer": 0.3,
+      "pip_size": 0.01,
+      "max_spread": 0.025
+    },
+    {
+      "symbol": "BTCUSDm",
+      "peer": [
+        "ETHUSDm"
+      ],
+      "stop_buffer": 500,
+      "pip_size": 1,
+      "max_spread": 100
+    },
+    {
+      "symbol": "ETHUSDm",
+      "peer": [
+        "BTCUSDm"
+      ],
+      "stop_buffer": 30,
+      "pip_size": 1,
+      "max_spread": 6
+    },
+    {
+      "symbol": "USOILm",
+      "peer": [
+        "UKOILm",
+        "XLE"
+      ],
+      "stop_buffer": 0.5,
+      "pip_size": 0.01,
+      "max_spread": 0.08
+    },
+    {
+      "symbol": "TSLA",
+      "peer": [
+        "QQQ",
+        "NVDA"
+      ],
+      "stop_buffer": 1.5,
+      "pip_size": 0.01,
+      "max_spread": 0.3
+    },
+    {
+      "symbol": "GOOGL",
+      "peer": [
+        "MSFT",
+        "QQQ"
+      ],
+      "stop_buffer": 1.5,
+      "pip_size": 0.01,
+      "max_spread": 0.3
+    }
+  ],
+  "policy": {
+    "gap_body_junction": true,
+    "max_entry_touch": 4,
+    "mirror_sell_targets": true,
+    "partial_original_volume": true,
+    "rejection_wick_body_ratio": 2,
+    "ema_hold_bars": 1,
+    "alignment_ticks": 1,
+    "miss_pips": 3,
+    "double_apex_ticks": 2,
+    "big_win_r": 3,
+    "part3_remaining_fraction": 0.2,
+    "part3_continuation_breakouts": 2,
+    "cooldown_minutes": 10,
+    "prop_target_fraction": 0.1,
+    "phase3_target_distance": 0.02
+  },
+  "risk": {}
+}
