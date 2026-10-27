@@ -10,8 +10,23 @@ $SourceUrl = "https://codeload.github.com/airateenarogers-a11y/MSnR/zip/$SourceC
 $script:UpgradeBackup = $null
 
 function Invoke-Native([string]$Executable, [string[]]$Arguments) {
-    & $Executable @Arguments
-    if ($LASTEXITCODE -ne 0) { throw "Command failed with exit code $LASTEXITCODE. Review the output above." }
+    if (-not (Test-Path -LiteralPath $Executable -PathType Leaf)) { throw 'The required executable is missing.' }
+    $tail = New-Object 'System.Collections.Generic.Queue[string]'
+    $priorPreference = $ErrorActionPreference
+    try {
+        $ErrorActionPreference = 'Continue'
+        & $Executable @Arguments 2>&1 | ForEach-Object {
+            $line = $_.ToString()
+            Write-Host $line
+            $tail.Enqueue($line)
+            if ($tail.Count -gt 14) { $null = $tail.Dequeue() }
+        }
+        $exitCode = $LASTEXITCODE
+    } finally { $ErrorActionPreference = $priorPreference }
+    if ($exitCode -ne 0) {
+        $detail = if ($env:MSNR_SETUP_TEST -eq '1') { ' ' + ($tail.ToArray() -join ' | ') } else { ' Review the output above.' }
+        throw "Command failed with exit code $exitCode.$detail"
+    }
 }
 
 function Assert-ArchiveHash([string]$Path, [string]$Expected) {
