@@ -28,7 +28,7 @@ This downloads dependencies with the committed hashes on the host, builds a loca
 
 Run `scripts/start.sh` and `scripts/worker.sh` as separate supervised processes. Installation persists files; server/worker processes must restart after a restored cloud snapshot. Use the existing isolated checkout; do not create a Git worktree unless explicitly requested.
 
-SIGTERM/SIGINT stops the worker gracefully and releases its lease. Abrupt death may retain a lease for up to ten minutes. A second worker must not bypass it while the original may still be trading. Use one worker per database/account. Database locks serialize reservation and outbox claims. Keep SQLite on local durable storage.
+SIGTERM/SIGINT stops the worker gracefully and releases its lease. After abrupt death, a new worker may recover the lock only when its recorded local PID and creation identity prove the old process ended. Legacy locks without this metadata remain valid until their ten-minute expiry. A live or inaccessible owner must not be bypassed. Use one worker per database/account. Database locks serialize reservation and outbox claims. Keep SQLite on local durable storage.
 
 The kill switch stops **new execution**, not existing protective stops or position management. It does not silently liquidate an account. Critical failures set a separate persistent suspension. Reconcile and review uncertain intents before clearing that suspension through an authenticated operational action; never edit order statuses to "retry" an unknown submission.
 

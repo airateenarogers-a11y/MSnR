@@ -2,7 +2,7 @@
 
 Python trading research and monitoring service for the user-approved **Malaysian SNR / Alchemist v4** specification. The repository includes rule evaluation, a durable event journal, paper execution, a Windows MT5 bridge, chart rendering, Discord delivery, historical replay, reports and a responsive dashboard.
 
-**Operational status:** local engineering validation is recorded in [VALIDATION.md](docs/VALIDATION.md). This repository is **not certified for live trading**. Real broker instruments, terminal behavior, historical edge and forward demo behavior require external validation. No profit, win-rate or native TradingView drawing accuracy is claimed. Default mode is `paper` and live execution requires a separate authorization manifest.
+**Operational status:** local engineering validation is recorded in [VALIDATION.md](docs/VALIDATION.md). This repository is **not certified for live trading**. Real broker instruments, terminal behavior, historical edge and forward demo behavior require external validation. No profit, win-rate or native TradingView drawing accuracy is claimed. The base CLI configuration defaults to `paper`; the Windows launcher uses a separate authorized `demo` profile. Live execution requires a separate authorization manifest.
 
 **Windows one-file setup:** [Download Install-MSnR.cmd](https://github.com/airateenarogers-a11y/MSnR/raw/refs/heads/main/Install-MSnR.cmd), save it and double-click it. It installs the project and starts an automatic demo-trading control window. [One-file instructions](docs/ONE_FILE_WINDOWS.md).
 

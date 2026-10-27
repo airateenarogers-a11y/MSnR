@@ -30,10 +30,10 @@ jobs:
       - name: Test desktop lifecycle and Windows credential encryption
         shell: pwsh
         run: |
-          .venv/Scripts/python -m pytest -q tests/test_desktop.py
+          .venv/Scripts/python -m pytest -q tests/test_desktop.py tests/test_worker_recovery.py
           $env:PSModulePath = ''
           powershell -NoProfile -File deployment/test-windows-bootstrap.ps1
-      - name: Verify the standalone installer twice
+      - name: Verify install, upgrade and restart
         if: github.ref != 'refs/heads/installer-source'
         shell: pwsh
         run: |
@@ -42,6 +42,20 @@ jobs:
             $env:MSNR_INSTALL_ROOT = Join-Path $env:RUNNER_TEMP 'MSnR installer test with spaces'
             & .\Install-MSnR.cmd
             if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+            $app = Join-Path $env:MSNR_INSTALL_ROOT 'app'
+            $vault = Join-Path $app 'var/desktop/credentials.dpapi'
+            $before = (Get-FileHash $vault -Algorithm SHA256).Hash
+            $journal = Join-Path $app 'var/desktop/upgrade-sentinel.txt'
+            Set-Content $journal 'preserve this runtime record'
+            $marker = Join-Path $app '.msnr-source.json'
+            $release = Get-Content $marker -Raw | ConvertFrom-Json
+            $release.commit = '0' * 40
+            $release | ConvertTo-Json | Set-Content $marker
+            & .\Install-MSnR.cmd
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+            if ((Get-FileHash $vault -Algorithm SHA256).Hash -ne $before) { throw 'Upgrade changed encrypted credentials' }
+            if ((Get-Content $journal) -ne 'preserve this runtime record') { throw 'Upgrade lost runtime state' }
+            if (-not (Test-Path (Join-Path $env:MSNR_INSTALL_ROOT 'backups/app-*'))) { throw 'Upgrade backup missing' }
             & .\Install-MSnR.cmd
             if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           }

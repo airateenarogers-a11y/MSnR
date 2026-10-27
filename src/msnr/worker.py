@@ -6,6 +6,7 @@ import logging
 import os
 from pathlib import Path
 import signal as os_signal
+import socket
 import threading
 from uuid import uuid4
 
@@ -22,11 +23,16 @@ from .integrations.mt5 import MT5Bridge
 from .reports import schedule_reports
 from .store import Store
 from .strategy.engine import Engine, Snapshot
+from .process_identity import identity
 
 log = logging.getLogger("msnr")
 
 
 class LeaseUnavailable(RuntimeError):
+    pass
+
+
+class WorkerStopping(Exception):
     pass
 
 
@@ -43,6 +49,9 @@ class Worker:
             Discord(store, os.environ["MSNR_DISCORD_WEBHOOK"]) if os.getenv("MSNR_DISCORD_WEBHOOK") else None
         )
         self.owner = str(uuid4())
+        self.process_id = os.getpid()
+        self.process_identity = identity(self.process_id)
+        self.host = socket.gethostname()
         self.stop_event = threading.Event()
         self.recovered = False
 
@@ -50,10 +59,56 @@ class Worker:
         with self.store.transaction() as db:
             old = self.store.state("worker_lease", None, db)
             if old and old["owner"] != self.owner and datetime.fromisoformat(old["until"]) > now:
-                raise LeaseUnavailable("Another worker owns this database")
+                ended = False
+                if old.get("host") == self.host and old.get("process_identity") and old.get("pid"):
+                    try:
+                        ended = identity(old["pid"]) != old["process_identity"]
+                    except (OSError, ValueError):
+                        pass
+                if not ended:
+                    raise LeaseUnavailable("Another worker holds the database lease until " + old["until"])
+                self.store.event(
+                    "worker.lease_recovered",
+                    self.owner,
+                    {"previous_owner": old["owner"], "reason": "Prior local process has ended"},
+                    now,
+                    db,
+                )
             self.store.set_state(
-                "worker_lease", {"owner": self.owner, "until": iso(now + timedelta(minutes=10))}, db
+                "worker_lease",
+                {
+                    "owner": self.owner,
+                    "until": iso(now + timedelta(minutes=10)),
+                    "pid": self.process_id,
+                    "process_identity": self.process_identity,
+                    "host": self.host,
+                },
+                db,
             )
+
+    def stop_requested(self):
+        stop_file = os.getenv("MSNR_WORKER_STOP_FILE")
+        return self.stop_event.is_set() or bool(stop_file and Path(stop_file).is_file())
+
+    def _bars(self, symbol):
+        bars = {}
+        for timeframe in TIMEFRAMES:
+            if self.stop_requested():
+                raise WorkerStopping()
+            now = utcnow()
+            self.lease(now)
+            self.store.set_state(
+                "worker_health",
+                {
+                    "at": iso(now),
+                    "status": "loading_market_data",
+                    "symbol": symbol,
+                    "timeframe": timeframe,
+                    "mode": self.settings.mode,
+                },
+            )
+            bars[timeframe] = self.bridge.bars(symbol, timeframe, 500)
+        return bars
 
     def once(self):
         now = utcnow()
@@ -98,6 +153,8 @@ class Worker:
         symbol_list = {s["symbol"] for s in self.bridge.symbols()}
         statuses = {}
         for instrument in self.settings.instruments:
+            if self.stop_requested():
+                return
             self.lease(utcnow())
             has_positions = bool(
                 self.store.rows(
@@ -148,7 +205,7 @@ class Worker:
                         else "cooldown"
                     }
                     continue
-                bars = {tf: self.bridge.bars(selected, tf, 500) for tf in TIMEFRAMES}
+                bars = self._bars(selected)
                 closed = [b for b in bars["M1"] if b.end <= now]
                 if not closed:
                     statuses[selected] = {"status": "missing_data"}
@@ -162,7 +219,7 @@ class Worker:
                 for peer in instrument.peer:
                     if peer in symbol_list:
                         peer_specs[peer] = self.bridge.spec(peer)
-                        peers[peer] = {tf: self.bridge.bars(peer, tf, 500) for tf in TIMEFRAMES}
+                        peers[peer] = self._bars(peer)
                         break
                 quote = self.bridge.quote(selected)
                 now = utcnow()
@@ -185,6 +242,8 @@ class Worker:
                     },
                 )
                 for s in evaluation.signals:
+                    if self.stop_requested():
+                        return
                     if not self.store.add_signal(s):
                         continue
                     chart = render(s, [b for b in bars[s.timeframe] if b.end <= now], Path("var/charts"))
@@ -203,6 +262,8 @@ class Worker:
                         fresh_quote = self.bridge.quote(selected)
                         trade_time = utcnow()
                         self.store.set_state("quote:" + selected, fresh_quote.model_dump(mode="json"))
+                        if self.stop_requested():
+                            return
                         self.execution.submit(
                             s,
                             fresh_quote,
@@ -215,6 +276,8 @@ class Worker:
                         fresh_spec = self.bridge.spec(selected)
                         fresh_account = self.bridge.account()
                         trade_time = utcnow()
+                        if self.stop_requested():
+                            return
                         self.execution.submit(
                             s,
                             fresh_quote,
@@ -228,6 +291,8 @@ class Worker:
                     "last_bar": iso(closed[-1].end),
                     "signals": len(evaluation.signals),
                 }
+            except WorkerStopping:
+                return
             except Exception as exc:
                 statuses[selected] = {"status": "error", "error_type": type(exc).__name__}
                 self.store.set_state("suspended", True)
@@ -244,6 +309,8 @@ class Worker:
         self.store.set_state(
             "worker_health", {"at": iso(utcnow()), "status": "running", "mode": self.settings.mode}
         )
+        if self.stop_requested():
+            return
         schedule_reports(self.store, now, self.settings.risk.paper_balance)
         if self.discord and self.store.state("notifications_enabled", True):
             self.discord.deliver_one(now)
@@ -349,14 +416,19 @@ class Worker:
             signals.append(os_signal.SIGBREAK)
         for sig in signals:
             os_signal.signal(sig, lambda *_: self.stop_event.set())
-        while not self.stop_event.is_set():
-            stop_file = os.getenv("MSNR_WORKER_STOP_FILE")
-            if stop_file and Path(stop_file).is_file():
-                break
+        while not self.stop_requested():
             try:
                 self.once()
-            except LeaseUnavailable:
-                log.error('{"event":"worker.lease_unavailable","action":"exit_without_mutation"}')
+            except LeaseUnavailable as exc:
+                log.error(
+                    json.dumps(
+                        {
+                            "event": "worker.lease_unavailable",
+                            "reason": str(exc),
+                            "action": "exit_without_mutation",
+                        }
+                    )
+                )
                 break
             except Exception as exc:
                 log.error(json.dumps({"event": "worker.error", "type": type(exc).__name__}))
@@ -376,5 +448,14 @@ class Worker:
             old = self.store.state("worker_lease", None, db)
             if old and old["owner"] == self.owner:
                 self.store.set_state("worker_lease", None, db)
+                self.store.set_state(
+                    "worker_health",
+                    {
+                        "at": iso(utcnow()),
+                        "status": "stopped",
+                        "reason": "Worker stopped; no new setups evaluated",
+                    },
+                    db,
+                )
         if self.bridge:
             self.bridge.close()

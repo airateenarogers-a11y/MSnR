@@ -11,6 +11,7 @@ from pathlib import Path
 import secrets
 import signal
 import socket
+import sqlite3
 import subprocess
 import sys
 import threading
@@ -20,6 +21,8 @@ import webbrowser
 import httpx
 
 from .config import load
+from .clock import utcnow, PKT
+from datetime import datetime
 
 
 def atomic_json(path: Path, value):
@@ -294,6 +297,48 @@ class Supervisor:
         if stop_file:
             stop_file.unlink(missing_ok=True)
 
+    def database_state(self, key):
+        try:
+            connection = sqlite3.connect(self.database.as_uri() + "?mode=ro", uri=True, timeout=0.25)
+            try:
+                row = connection.execute("SELECT value FROM state WHERE key=?", (key,)).fetchone()
+                return json.loads(row[0]) if row else None
+            finally:
+                connection.close()
+        except (sqlite3.Error, OSError, ValueError):
+            return None
+
+    def worker_problem(self):
+        process = self.processes.get("worker")
+        if process is None or process.poll() is None:
+            return None
+        message = (
+            f"Worker stopped (exit {process.returncode}). No new orders can be evaluated by this worker."
+        )
+        lease = self.database_state("worker_lease")
+        if lease and datetime.fromisoformat(lease["until"]) > utcnow():
+            if lease.get("process_identity"):
+                message += " Connect MT5 will verify the recorded owner before attempting safe recovery."
+            else:
+                until = datetime.fromisoformat(lease["until"]).astimezone(PKT).strftime("%d %b %H:%M:%S PKT")
+                message += (
+                    f" A legacy worker lock expires at {until} if not renewed. Close other MSnR instances."
+                )
+        return message + " Inspect worker.log, then use Connect MT5 to retry."
+
+    def wait_worker(self, timeout=15):
+        deadline = time.monotonic() + timeout
+        while time.monotonic() < deadline:
+            problem = self.worker_problem()
+            if problem:
+                raise RuntimeError(problem)
+            process = self.processes.get("worker")
+            lease = self.database_state("worker_lease")
+            if process and process.poll() is None and lease and lease.get("pid") == process.pid:
+                return
+            time.sleep(0.1)
+        raise RuntimeError("Worker startup has not been confirmed. Check worker.log before retrying.")
+
     def start(self):
         self.start_process("dashboard")
         with httpx.Client(trust_env=False, timeout=1) as client:
@@ -314,6 +359,7 @@ class Supervisor:
             else:
                 raise RuntimeError("Dashboard did not become healthy; check its log and firewall.")
         self.start_process("worker", self.feed_connected)
+        self.wait_worker()
         atomic_json(self.state / "running.json", {"url": self.url, "mode": self.mode})
 
     def connect(self):
@@ -323,24 +369,39 @@ class Supervisor:
         self.start_process("bridge")
         try:
             with httpx.Client(trust_env=False, timeout=2) as client:
-                response = client.get(
-                    f"http://127.0.0.1:{self.bridge_port}/account",
-                    headers={"Authorization": "Bearer " + self.credentials["bridge"]},
-                )
-                response.raise_for_status()
-                account = response.json()
+                deadline = time.monotonic() + 10
+                while True:
+                    try:
+                        response = client.get(
+                            f"http://127.0.0.1:{self.bridge_port}/account",
+                            headers={"Authorization": "Bearer " + self.credentials["bridge"]},
+                        )
+                        response.raise_for_status()
+                        account = response.json()
+                        break
+                    except httpx.ConnectError:
+                        if time.monotonic() >= deadline:
+                            raise
+                        time.sleep(0.2)
             if account.get("mode") != "demo" or not account.get("hedging"):
                 return "MT5 must be signed in to a hedging DEMO account. The worker remains disconnected."
             if self.mode == "demo" and not account.get("trading_allowed"):
                 return "Enable MT5 Algo Trading and allow external Python trading, then click Connect MT5."
         except (httpx.HTTPError, ValueError):
             return "Waiting for MT5 demo login. Keep the terminal open, then click Connect MT5 again."
-        if not self.feed_connected:
+        process = self.processes.get("worker")
+        if not self.feed_connected or process is None or process.poll() is not None:
+            self.feed_connected = False
             self.stop_process("worker")
             self.start_process("worker", feed=True)
+            self.wait_worker()
             self.feed_connected = True
+        if self.database_state("suspended") or self.database_state("kill"):
+            return (
+                "Worker running with MT5. New execution is suspended; review the dashboard before resuming."
+            )
         return (
-            "Automatic DEMO execution enabled. Every strategy and risk condition must pass before an order."
+            "Worker running with MT5 DEMO connection. Every strategy and risk condition must pass before an order."
             if self.mode == "demo"
             else "MT5 demo feed connected. Executions remain simulated in PAPER mode."
         )
@@ -348,6 +409,7 @@ class Supervisor:
     def restart_worker(self):
         self.stop_process("worker")
         self.start_process("worker", self.feed_connected)
+        self.wait_worker()
 
     def close(self):
         try:
@@ -489,6 +551,11 @@ def gui(supervisor: Supervisor, vault: Vault):
                     for role, p in list(supervisor.processes.items())
                 )
             )
+            if not busy:
+                problem = supervisor.worker_problem()
+                if problem:
+                    supervisor.feed_connected = False
+                    status.set(problem)
             window.after(1000, refresh)
 
     def startup():

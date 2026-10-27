@@ -7,6 +7,7 @@ $ProgressPreference = 'SilentlyContinue'
 $SourceCommit = '__SOURCE_COMMIT__'
 $SourceSha256 = '__SOURCE_SHA256__'
 $SourceUrl = "https://codeload.github.com/airateenarogers-a11y/MSnR/zip/$SourceCommit"
+$script:UpgradeBackup = $null
 
 function Invoke-Native([string]$Executable, [string[]]$Arguments) {
     & $Executable @Arguments
@@ -149,16 +150,29 @@ function Install-Terminal([string]$Downloads) {
     }
 }
 
+function Assert-InstallationStopped([string]$App) {
+    $processes = @(Get-CimInstance Win32_Process -Filter "Name='python.exe' OR Name='pythonw.exe' OR Name='msnr.exe'")
+    foreach ($process in $processes) {
+        $localExecutable = $process.ExecutablePath -and $process.ExecutablePath.StartsWith($App + '\', [StringComparison]::OrdinalIgnoreCase)
+        $localCommand = $process.CommandLine -and ($process.CommandLine.IndexOf($App, [StringComparison]::OrdinalIgnoreCase) -ge 0 -or $process.CommandLine -match '-m\s+msnr\.(cli|desktop)')
+        if ($localExecutable -or $localCommand) { throw 'Close all MSnR control, dashboard, bridge and worker processes before updating. Leave your MT5 terminal running.' }
+    }
+}
+
 function Install-Project([string]$Root, [string]$Downloads) {
     $app = Join-Path $Root 'app'
     $marker = Join-Path $app '.msnr-source.json'
+    $upgrade = $false
     if (Test-Path -LiteralPath $app) {
         if (-not (Test-Path -LiteralPath $marker)) { throw "An unrecognized app folder exists at $app. It will not be overwritten." }
         $installed = Get-Content -LiteralPath $marker -Raw | ConvertFrom-Json
-        if ($installed.commit -ne $SourceCommit -or $installed.sha256 -ne $SourceSha256) {
-            throw 'This installation belongs to another source release. Back up its journal and follow the upgrade guide; it will not be overwritten.'
+        if ($installed.commit -eq $SourceCommit -and $installed.sha256 -eq $SourceSha256) { return $app }
+        if ($installed.commit -notmatch '^[0-9a-f]{40}$' -or $installed.sha256 -notmatch '^[0-9a-f]{64}$') {
+            throw 'Installed release metadata is invalid; the installation will not be changed.'
         }
-        return $app
+        Assert-InstallationStopped $app
+        $upgrade = $true
+        Write-Host 'Preparing an update. The existing installation and journal will be backed up.'
     }
     $archive = Join-Path $Downloads "source-$SourceCommit.zip"
     if (Test-Path -LiteralPath $archive) {
@@ -185,7 +199,25 @@ function Install-Project([string]$Root, [string]$Downloads) {
             if (-not (Test-Path -LiteralPath (Join-Path $source $required) -PathType Leaf)) { throw 'The project archive is incomplete.' }
         }
         @{ commit = $SourceCommit; sha256 = $SourceSha256 } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $source '.msnr-source.json') -Encoding UTF8
-        Move-Item -LiteralPath $source -Destination $app
+        if ($upgrade) {
+            Assert-InstallationStopped $app
+            # All application processes are stopped. Preserve complete SQLite/WAL state,
+            # encrypted credentials, configuration, charts and browser profiles together.
+            foreach ($name in @('var', '.env')) {
+                $existing = Join-Path $app $name
+                if (Test-Path -LiteralPath $existing) { Copy-Item -LiteralPath $existing -Destination (Join-Path $source $name) -Recurse -Force }
+            }
+            $backups = Join-Path $Root 'backups'
+            New-Item -ItemType Directory -Path $backups -Force | Out-Null
+            $backup = Join-Path $backups ('app-' + $installed.commit.Substring(0, 8) + '-' + [guid]::NewGuid().ToString('N'))
+            Move-Item -LiteralPath $app -Destination $backup
+            try { Move-Item -LiteralPath $source -Destination $app }
+            catch { Move-Item -LiteralPath $backup -Destination $app; throw }
+            $script:UpgradeBackup = $backup
+            Write-Host "Previous installation preserved at $backup"
+        } else {
+            Move-Item -LiteralPath $source -Destination $app
+        }
     } finally {
         if (Test-Path -LiteralPath $stage) { Remove-Item -LiteralPath $stage -Recurse -Force }
     }
@@ -206,20 +238,35 @@ function Main {
         $downloads = Join-Path $root 'downloads'
         New-Item -ItemType Directory -Path $downloads -Force | Out-Null
         $python = Install-Python $downloads
+        Set-Location -LiteralPath $root
         $app = Install-Project $root $downloads
-        Set-Location -LiteralPath $app
-        $venv = Join-Path $app '.venv\Scripts\python.exe'
-        if (-not (Test-Path -LiteralPath $venv)) { Invoke-Native $python @('-m', 'venv', '.venv') }
-        $stamp = Join-Path $app '.desktop-dependencies-ready'
-        if (-not (Test-Path -LiteralPath $stamp)) {
-            Write-Host 'Installing hash-verified Python and MT5 dependencies. This can take several minutes...'
-            $env:PIP_CACHE_DIR = Join-Path $root 'downloads\pip-cache'
-            Invoke-Native $venv @('-m', 'pip', 'install', '--require-hashes', '-r', 'requirements-windows.lock')
-            Invoke-Native $venv @('-m', 'pip', 'install', '--no-deps', '--no-build-isolation', '-e', '.')
-            Invoke-Native $venv @('-m', 'pip', 'check')
-            [IO.File]::WriteAllText($stamp, $SourceCommit)
+        try {
+            Set-Location -LiteralPath $app
+            $venv = Join-Path $app '.venv\Scripts\python.exe'
+            if (-not (Test-Path -LiteralPath $venv)) { Invoke-Native $python @('-m', 'venv', '.venv') }
+            $stamp = Join-Path $app '.desktop-dependencies-ready'
+            if (-not (Test-Path -LiteralPath $stamp)) {
+                Write-Host 'Installing hash-verified Python and MT5 dependencies. This can take several minutes...'
+                $env:PIP_CACHE_DIR = Join-Path $root 'downloads\pip-cache'
+                Invoke-Native $venv @('-m', 'pip', 'install', '--require-hashes', '-r', 'requirements-windows.lock')
+                Invoke-Native $venv @('-m', 'pip', 'install', '--no-deps', '--no-build-isolation', '-e', '.')
+                Invoke-Native $venv @('-m', 'pip', 'check')
+                [IO.File]::WriteAllText($stamp, $SourceCommit)
+            }
+            Invoke-Native $venv @('-c', 'import msnr.desktop, MetaTrader5, tkinter')
+        } catch {
+            if ($script:UpgradeBackup) {
+                Set-Location -LiteralPath $root
+                $failed = Join-Path $root ('failed-update-' + [guid]::NewGuid().ToString('N'))
+                Move-Item -LiteralPath $app -Destination $failed
+                Move-Item -LiteralPath $script:UpgradeBackup -Destination $app
+                Write-Host 'Dependency installation failed. The previous application and journal have been restored.'
+                $script:UpgradeBackup = $null
+            }
+            throw
         }
-        Invoke-Native $venv @('-c', 'import msnr.desktop, MetaTrader5, tkinter')
+        # Never roll back the data after new services could have started trading.
+        $script:UpgradeBackup = $null
         if ($env:MSNR_SETUP_TEST -ne '1') {
             Install-ChartBrowser $downloads
             $terminal = Install-Terminal $downloads

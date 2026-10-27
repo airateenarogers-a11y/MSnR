@@ -142,7 +142,11 @@ def create_app(settings: Settings | None = None, store: Store | None = None):
     @app.get("/api/status", dependencies=[Depends(read_access)])
     def status():
         worker = store.state("worker_health", None)
-        fresh = bool(worker and (utcnow() - datetime.fromisoformat(worker["at"])).total_seconds() < 30)
+        fresh = bool(
+            worker
+            and worker.get("status") in ("running", "loading_market_data")
+            and (utcnow() - datetime.fromisoformat(worker["at"])).total_seconds() < 30
+        )
         return {
             "mode": settings.mode,
             "policy_hash": settings.policy.digest,

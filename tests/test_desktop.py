@@ -53,6 +53,48 @@ def test_repeat_start_auth_and_shutdown_release_actual_lease(desktop):
     assert not list(desktop.state.glob("stop-*"))
 
 
+def test_crashed_worker_restarts_without_waiting_ten_minutes(desktop):
+    desktop.start()
+    store = Store(desktop.database)
+    old = store.state("worker_lease")
+    process = desktop.processes["worker"]
+    process.kill()
+    process.wait(timeout=5)
+    assert "Worker stopped" in desktop.worker_problem()
+    assert store.state("worker_lease") == old
+    desktop.start()
+    assert desktop.processes["worker"].pid != process.pid
+    assert store.state("worker_lease")["pid"] == desktop.processes["worker"].pid
+    assert store.rows("SELECT * FROM events WHERE kind='worker.lease_recovered'")
+
+
+def test_reconnect_restarts_a_dead_worker_even_after_connection_flag(desktop, monkeypatch):
+    from types import SimpleNamespace
+
+    terminal = desktop.state / "terminal64.exe"
+    terminal.touch()
+    desktop.credentials["terminal"] = str(terminal)
+    desktop.feed_connected = True
+    desktop.processes["worker"] = SimpleNamespace(poll=lambda: 1, returncode=1)
+    started = []
+    monkeypatch.setattr(desktop, "stop_process", lambda role: desktop.processes.pop(role, None))
+    monkeypatch.setattr(desktop, "start_process", lambda role, feed=False: started.append((role, feed)))
+    monkeypatch.setattr(desktop, "wait_worker", lambda: None)
+    original = httpx.Client
+    monkeypatch.setattr(
+        httpx,
+        "Client",
+        lambda **kw: original(
+            transport=httpx.MockTransport(
+                lambda _: httpx.Response(200, json={"mode": "demo", "hedging": True, "trading_allowed": True})
+            ),
+            **kw,
+        ),
+    )
+    assert "Worker running" in desktop.connect() or desktop.mode == "paper"
+    assert ("worker", True) in started
+
+
 def test_inherited_live_flags_and_broker_password_are_not_used(desktop, monkeypatch):
     monkeypatch.setenv("MSNR_BRIDGE_ALLOW_LIVE", "EXPLICITLY_AUTHORIZED")
     monkeypatch.setenv("MT5_PASSWORD", "unrelated-account-password")
@@ -118,6 +160,7 @@ def test_only_hedging_demo_account_connects(desktop, monkeypatch, account, conne
     desktop.credentials["terminal"] = str(terminal)
     started = []
     monkeypatch.setattr(desktop, "start_process", lambda role, feed=False: started.append((role, feed)))
+    monkeypatch.setattr(desktop, "wait_worker", lambda: None)
     original = httpx.Client
     monkeypatch.setattr(
         httpx,
