@@ -34,6 +34,7 @@ def trades(store: Store) -> list[dict]:
                 "setup": signal["setup"],
                 "status": row["status"],
                 "mode": json.loads(row["payload"])["mode"],
+                "account_id": json.loads(row["payload"]).get("account_id"),
                 "risk_phase": json.loads(row["payload"]).get("risk_phase", 1),
                 "opened_at": row["created_at"],
                 "closed_at": fills[-1]["at"] if row["status"] == "closed" and fills else None,
@@ -47,7 +48,9 @@ def trades(store: Store) -> list[dict]:
                 "costs": sum(f["cost"] for f in values),
                 "risk_cash": row["risk"],
                 "realized_r": net / row["risk"] if row["risk"] > 0 and row["status"] == "closed" else None,
-                "session": session(datetime.fromisoformat(row["created_at"])),
+                "session": session(
+                    datetime.fromisoformat(row["created_at"]), signal.get("policy_version", "v4")
+                ),
                 "reason": signal["reason"],
                 "confirmations": [e["rule"] for e in signal["evidence"]],
                 "fills": values,

@@ -21,7 +21,7 @@ class Instrument(Model):
 
 
 class Policy(Model):
-    version: Literal["v4"] = "v4"
+    version: Literal["v4", "v5"] = "v4"
     authority: str = "User selected v4; see docs/DECISIONS.md"
     body_junction: bool = True
     cc_offset: int = 1
@@ -54,6 +54,8 @@ class Policy(Model):
 
 
 class RiskLimits(Model):
+    evaluation_mode: bool = False
+    evaluation_target_fraction: float = Field(default=0.10, gt=0.02, le=0.5)
     per_trade: float = Field(default=0.0033, gt=0, le=0.01)
     daily_loss: float = Field(default=0.02, gt=0, le=0.1)
     max_drawdown: float = Field(default=0.05, gt=0, le=0.3)

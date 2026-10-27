@@ -129,6 +129,7 @@ class Signal(Model):
     evidence: tuple[Evidence, ...]
     structure_ids: tuple[str, ...]
     policy_hash: str
+    policy_version: str = "v4"
     reason: str
     invalidation: str
     data_source: str

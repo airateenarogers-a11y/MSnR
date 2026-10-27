@@ -118,3 +118,34 @@ def test_chrome_navigation_controls_and_reflow(browser_server):
         page.screenshot(path="artifacts/dashboard-mobile.png", full_page=True)
         assert not errors
         browser.close()
+
+
+def test_native_chart_anchor_readback_and_failure_cleanup(browser_server, signal):
+    from msnr.integrations.tradingview import DRAW, CAPABILITY, drawing_plan
+
+    _, _, chrome = browser_server
+    with sync_playwright() as p:
+        browser = p.chromium.launch(executable_path=chrome, headless=True)
+        page = browser.new_page()
+        page.set_content("<title>Local native-chart API test double</title>")
+        assert not page.evaluate(CAPABILITY)["available"]
+        page.evaluate("""() => {
+          window.objects = new Map(); window.counter = 0; window.offset = 0;
+          window.chart = {
+            symbol: () => 'TEST:XAUUSD', resolution: () => '5',
+            createShape: (point) => {let id = ++window.counter; objects.set(id,[point]); return id;},
+            getShapeById: id => ({getPoints: () => objects.get(id).map(p => ({...p, price:p.price+offset}))}),
+            removeEntity: id => objects.delete(id),
+            getVisibleRange: () => ({from:100, to:1000}), setVisibleRange: async r => r
+          };
+          window.TradingViewApi = {activeChart: () => chart};
+        }""")
+        args = {"symbol": "TEST:XAUUSD", "resolution": "5", "commands": drawing_plan(signal)}
+        assert page.evaluate(DRAW, args)["verified"]
+        count = page.evaluate("objects.size")
+        assert not page.evaluate(DRAW, {**args, "symbol": "WRONG"})["verified"]
+        assert page.evaluate("objects.size") == count
+        page.evaluate("window.offset = 1")
+        assert not page.evaluate(DRAW, args)["verified"]
+        assert page.evaluate("objects.size") == count  # only newly created shapes cleaned up
+        browser.close()

@@ -76,3 +76,10 @@ The Windows runner validates processes, packaging and dependency imports. **MT5 
 5. Verify actual Discord reports, browser trust/page access, production TLS, backups/restores and monitoring. Complete [READINESS.md](READINESS.md). Only the account owner can provide the separate explicit live authorization after those checks.
 
 The delivery contains executable modules, source and local test evidence. It is not represented as a fully validated production trading service.
+
+
+## V5 update — 27 October 2026 PKT
+
+Added v5 source audit, versioned engine predicates, account-type risk profiles, bounded native MT5 reattachment, and conditional Chrome native-anchor annotation. Tests cover exact quarter/session/risk boundaries, source identity, model requirements, pending QM identity, entry-zone rejection, OTE, connection recovery, and Chrome readback/cleanup. The legacy v4 fixtures remain explicitly versioned regression tests. Full historical model coverage and actual laptop MT5/TradingView operation remain unverified; see V5_UPDATE.md.
+
+Final local v5 verification: **142 passed, 3 Windows-only skips**, one dependency warning. Real Chrome tests ran. Ruff and dependency consistency passed. Reproduction: `MSNR_CHROME_EXECUTABLE=/path/to/chrome .venv/bin/pytest -q`. The current Windows CI run must independently verify this revision; earlier Windows results apply to the previous release.

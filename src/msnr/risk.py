@@ -10,7 +10,7 @@ from pydantic import Field
 from .clock import aware
 from .config import Settings
 from .domain import Model, Quote, Signal, SymbolSpec
-from .strategy.catalog import CATALOG, COMMON, RATING_ORDER
+from .strategy.catalog import catalog, requirements, RATING_ORDER
 
 
 class Account(Model):
@@ -85,8 +85,8 @@ def size_trade(
         reasons.append("signal_expired_or_future")
     if any(e.outcome != "PASS" for e in signal.evidence):
         reasons.append("unverified_strategy")
-    model = next((m for m in CATALOG if m.name == signal.setup), None)
-    if model is None or not set(COMMON + (model.requirements if model else ()) + ("phase",)) <= {
+    model = next((m for m in catalog(settings.policy.version) if m.name == signal.setup), None)
+    if model is None or not set(requirements(model, settings.policy.version) if model else ()) <= {
         e.rule for e in signal.evidence if e.outcome == "PASS"
     }:
         reasons.append("mandatory_strategy_evidence_missing")
@@ -130,6 +130,11 @@ def size_trade(
         (t - price) * signal.direction.sign <= 0 for t in signal.targets
     ):
         reasons.append("invalid_order_geometry")
+    elif (
+        settings.policy.version == "v5"
+        and not 2 <= abs(signal.targets[0] - price) / abs(price - signal.stop) <= 3
+    ):
+        reasons.append("tp1_reward_risk_outside_v5_range")
     stop_reference = quote.bid if signal.direction.sign == 1 else quote.ask
     if abs(stop_reference - signal.stop) < spec.stops_distance or any(
         abs(t - stop_reference) < spec.stops_distance for t in signal.targets
@@ -144,9 +149,13 @@ def size_trade(
     per_lot = (
         abs(price - signal.stop) + slippage
     ) / spec.tick_size * spec.tick_value_loss + limits.commission_per_lot
-    risk_cash = min(account.balance, account.equity) * min(
-        {1: 0.0033, 2: 0.005, 3: 0.01}[account.risk_phase], limits.per_trade
-    )
+    fraction = min({1: 0.0033, 2: 0.005, 3: 0.01}[account.risk_phase], limits.per_trade)
+    if settings.policy.version == "v5":
+        if not limits.evaluation_mode:
+            fraction = min(fraction, 0.005)
+        elif account.risk_phase == 2 and account.equity <= account.high_water_equity * 0.97:
+            fraction *= 0.5
+    risk_cash = min(account.balance, account.equity) * fraction
     remaining = account.equity * limits.concurrent_risk - account.open_risk - reserved_risk
     risk_cash = min(risk_cash, max(0, remaining))
     raw = min(spec.volume_max, risk_cash / per_lot) if per_lot > 0 else 0
@@ -170,10 +179,20 @@ def size_trade(
     )
 
 
-def phase_for(equity, initial, peak, phase2_wins, policy, previous=1):
+def phase_for(equity, initial, peak, phase2_wins, policy, previous=1, *, limits=None, phase1_wins=0):
     if equity <= peak * 0.95:
         return 1
     gain = equity / initial - 1
+    if policy.version == "v5":
+        if limits is None or not limits.evaluation_mode:
+            return 2 if equity >= initial * 1.02 and equity >= peak else 1
+        if equity >= initial * 1.05 or equity >= initial * (1 + limits.evaluation_target_fraction - 0.02):
+            return 3
+        if previous == 3:
+            return 3
+        if previous == 2 or equity >= initial * 1.02 or phase1_wins >= 3:
+            return 2
+        return 1
     if (
         gain >= policy.prop_target_fraction - policy.phase3_target_distance
         or previous == 2
@@ -186,7 +205,10 @@ def phase_for(equity, initial, peak, phase2_wins, policy, previous=1):
 
 
 def account_controls(store, settings, records, now, equity, initial, peak, account_id):
-    completed = sorted([r for r in records if r["closed_at"]], key=lambda r: r["closed_at"])
+    completed = sorted(
+        [r for r in records if r["closed_at"] and r.get("account_id", account_id) == account_id],
+        key=lambda r: r["closed_at"],
+    )
     cooldown = None
     if completed:
         cooldown = datetime.fromisoformat(completed[-1]["closed_at"]) + timedelta(
@@ -210,7 +232,14 @@ def account_controls(store, settings, records, now, equity, initial, peak, accou
         if r.get("risk_phase") != 2 or r["net"] <= 0:
             break
         wins += 1
-    phase = phase_for(equity, initial, peak, wins, settings.policy, previous)
+    phase1_wins = 0
+    for r in reversed(completed):
+        if r.get("risk_phase") != 1 or r["net"] <= 0:
+            break
+        phase1_wins += 1
+    phase = phase_for(
+        equity, initial, peak, wins, settings.policy, previous, limits=settings.risk, phase1_wins=phase1_wins
+    )
     if phase != previous:
         store.event("risk.phase_changed", account_id, {"from": previous, "to": phase}, now)
         store.set_state(key, phase)

@@ -308,3 +308,25 @@ def test_feed_block_prevents_execution_without_clearing_other_controls(
     assert result["status"] == "rejected"
     assert not store.rows("SELECT * FROM orders")
     assert not store.state("suspended")
+
+
+def test_terminal_reattaches_once_after_read_disconnect():
+    mt, _, _ = native_module()
+    calls = []
+    original = mt.terminal_info
+    mt.terminal_info = lambda: None if not calls else original()
+    mt.initialize = lambda **kwargs: calls.append(kwargs) or True
+    terminal = Terminal(mt)
+    assert terminal.account()["mode"] == "demo"
+    assert len(calls) == 1 and calls[0]["timeout"] == 10000
+    assert terminal.account()["mode"] == "demo" and len(calls) == 1
+
+
+def test_terminal_does_not_loop_when_reattachment_fails():
+    mt, _, _ = native_module()
+    calls = []
+    mt.terminal_info = lambda: None
+    mt.initialize = lambda **kwargs: calls.append(kwargs) or False
+    with pytest.raises(TerminalReadError):
+        Terminal(mt).account()
+    assert len(calls) == 1

@@ -209,6 +209,21 @@ class Supervisor:
         settings = load(self.config)
         if settings.mode != mode or settings.live_authorization_file is not None:
             raise ValueError("Desktop config must match the selected demo/paper mode with live disabled.")
+        if settings.policy.version != "v5":
+            backup = self.config.with_suffix(".pre-v5.json")
+            if not backup.exists():
+                atomic_json(backup, settings.model_dump())
+            settings = settings.model_copy(
+                update={
+                    "policy": settings.policy.model_copy(
+                        update={
+                            "version": "v5",
+                            "authority": "v5 with explicit user clarifications; docs/DECISIONS.md",
+                        }
+                    )
+                }
+            )
+            atomic_json(self.config, settings.model_dump())
         # Add only explicitly configured broker aliases; preserve operator risk,
         # strategy policy, credentials and all previous instrument names.
         defaults = {i.symbol: i.aliases for i in load(self.root / "config/default.json").instruments}

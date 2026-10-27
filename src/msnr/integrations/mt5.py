@@ -193,6 +193,12 @@ class Terminal:
         a = self.mt.account_info()
         t = self.mt.terminal_info()
         if a is None or t is None or not t.connected:
+            # One bounded reattachment to the already running terminal. No order is retried.
+            self.mt.shutdown()
+            self.connect()
+            a = self.mt.account_info()
+            t = self.mt.terminal_info()
+        if a is None or t is None or not t.connected:
             self.failure("account", code="terminal_disconnected")
         if self.account_id != a.login:
             self.history.clear()

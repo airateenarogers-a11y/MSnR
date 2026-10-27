@@ -8,7 +8,8 @@ from ..clock import quarter, session
 from ..config import Settings
 from ..data import series
 from ..domain import Bar, Direction, Evidence, Quote, Signal, SymbolSpec, fingerprint
-from .catalog import CATALOG, COMMON, RATING_ORDER, rating
+from .catalog import catalog, requirements, RATING_ORDER, rating
+from . import v5
 from .primitives import (
     Level,
     QM,
@@ -103,7 +104,7 @@ class Engine:
             for tf, ls in level_map.items()
         }
         seen = set()
-        for htf, ltfs in MAPPING.items():
+        for htf, ltfs in (v5.MAPPING if self.policy.version == "v5" else MAPPING).items():
             if htf not in bars:
                 continue
             for source in level_map[htf]:
@@ -112,8 +113,15 @@ class Engine:
                 for ltf in ltfs:
                     if ltf not in bars:
                         continue
-                    for qm in qm_map[ltf][-8:]:
-                        if qm.direction != source.role or qm.breakout.end < source.formed:
+                    for qm in qm_map[ltf][-8:] + (
+                        quasimodos(bars[ltf], tick, self.policy, pending=True)[-8:]
+                        if self.policy.version == "v5"
+                        else []
+                    ):
+                        if (
+                            qm.direction != source.role
+                            or (qm.breakout.end if qm.breakout else qm.apex.formed) < source.formed
+                        ):
                             continue
                         key = (source.id, source.revision, qm.id)
                         if key in seen:
@@ -160,6 +168,7 @@ class Engine:
 
     def _candidate(self, snap, bars, lm, qm_map, tl_map, source: Level, qm: QM, htf, ltf, out, line=None):
         direction = qm.direction
+        breakout_end = qm.breakout.end if qm.breakout else snap.now
         sign = direction.sign
         tick = snap.spec.tick_size
         instrument = self.settings.instrument(snap.symbol)
@@ -266,7 +275,7 @@ class Engine:
         def near(p):
             return last.low - tolerance <= p <= last.high + tolerance
 
-        after_break = last.time >= qm.breakout.end
+        after_break = last.time >= breakout_end
         flipped = [
             x
             for tf in (ltf, "M5", "H1")
@@ -282,7 +291,7 @@ class Engine:
         ers = [
             x
             for x in lm[ltf]
-            if x.role == direction and qm.apex.formed < x.formed < qm.breakout.end and x.kind in ("A", "V")
+            if x.role == direction and qm.apex.formed < x.formed < breakout_end and x.kind in ("A", "V")
         ]
         active_tl = [
             t
@@ -310,7 +319,7 @@ class Engine:
                     instrument.inverse_peer,
                 )
                 break
-        ar = asia_range(bars.get("M5", []), snap.now)
+        ar = asia_range(bars.get("M5", []), snap.now, self.policy.version)
         sweep_bars = (
             []
             if ar is None
@@ -324,8 +333,8 @@ class Engine:
             ]
         )
         asia_sweep = None if ar is None else bool(sweep_bars)
-        session_ok = session(snap.now) in ("london", "new_york_am", "new_york_pm")
-        q3 = quarter(snap.now) == 3
+        session_ok = session(snap.now, self.policy.version) in ("london", "new_york_am", "new_york_pm")
+        q3 = quarter(snap.now, self.policy.version) == 3
         entry = snap.quote.ask if sign == 1 else snap.quote.bid
         stop = round_price(qm.apex.apex - sign * instrument.stop_buffer, tick, upward=sign == -1)
         targets = self._targets(lm, entry, direction)
@@ -349,7 +358,7 @@ class Engine:
                             )
                         )
             targets = self._targets(target_map, entry, direction)
-        other_qms = [q for q in qm_map[ltf] if q.direction == direction and q.breakout.end < qm.breakout.end]
+        other_qms = [q for q in qm_map[ltf] if q.direction == direction and q.breakout.end < breakout_end]
         continuation = bool(other_qms and (qm.apex.apex - other_qms[-1].apex.apex) * sign > 0)
         phase = 2 if continuation else 1
         if phase == 2 and targets:
@@ -366,7 +375,7 @@ class Engine:
                 phase = 3
         raw_shapes = levels(bars[ltf], tick, self.policy, evolve=False)
         double = [
-            s for s in raw_shapes if s.role == direction and s.id != qm.apex.id and s.formed < qm.breakout.end
+            s for s in raw_shapes if s.role == direction and s.id != qm.apex.id and s.formed < breakout_end
         ]
         double_apex = (
             None
@@ -374,10 +383,15 @@ class Engine:
             else any(abs(s.apex - qm.apex.apex) <= self.policy.double_apex_ticks * tick for s in double[-3:])
         )
         facts = {
+            "tp1_rr": bool(
+                targets
+                and (entry - stop) * sign > 0
+                and 2 <= (targets[0] - entry) * sign / ((entry - stop) * sign) <= 3
+            ),
             "source_valid": fresh,
             "htf_rejection": rejection_ok,
             "external_qm": qm_valid(qm, touch, "TL" if line else "SNR"),
-            "mtf_mapping": ltf in MAPPING[htf],
+            "mtf_mapping": ltf in (v5.MAPPING if self.policy.version == "v5" else MAPPING)[htf],
             "badge": badge,
             "entry_retest": after_break,
             "targets": len(targets) == 3,
@@ -463,9 +477,36 @@ class Engine:
             "multiple_badges": sum(v is True for v in badges.values()) >= 2,
         }
         grade, score, confluences = rating(optional)
-        for model in CATALOG:
-            required = COMMON + model.requirements + ("phase",) + (("session",) if model.hybrid else ())
+        for model in catalog(self.policy.version):
+            required = requirements(model, self.policy.version)
             model_facts = {**facts, "phase": phase in model.phases}
+            model_badges = badges
+            if self.policy.version == "v5":
+                if qm.breakout is None and model.name != "ERS":
+                    continue
+                model_facts, model_badges = self._v5_facts(
+                    model,
+                    model_facts,
+                    snap,
+                    bars,
+                    lm,
+                    qm_map,
+                    tl_map,
+                    source,
+                    qm,
+                    touch,
+                    fresh,
+                    line,
+                    last,
+                    near,
+                    flipped,
+                    gaps,
+                    ers,
+                    entry,
+                )
+                grade, score, confluences = rating(
+                    {**optional, "multiple_badges": sum(v is True for v in model_badges.values()) >= 2}
+                )
             evidence = gate(model_facts, required, snap.now, (source.id, qm.id))
             failures = [e.rule + ":" + e.outcome for e in evidence if e.outcome != "PASS"]
             if RATING_ORDER[grade] < RATING_ORDER[self.policy.minimum_rating]:
@@ -503,8 +544,9 @@ class Engine:
                     evidence=evidence,
                     structure_ids=(source.id, qm.id),
                     policy_hash=self.policy.digest,
-                    reason=f"{htf} {source.kind} → {ltf} external QM; badges: "
-                    + ", ".join(k for k, v in badges.items() if v is True)
+                    policy_version=self.policy.version,
+                    reason=f"{htf} {source.kind} → {ltf} {'confirmed QM' if qm.breakout else 'early ERS'}; badges: "
+                    + ", ".join(k for k, v in model_badges.items() if v is True)
                     + "; optional confluence: "
                     + ", ".join(confluences),
                     invalidation="Expire at the recorded deadline; invalidate before entry on a closed structural break through the stop extreme or contrary storyline.",
@@ -527,13 +569,140 @@ class Engine:
                         },
                         {"label": "Apex / sweep", "time": qm.apex.formed.isoformat(), "price": qm.apex.apex},
                         {
-                            "label": "Body breakout",
-                            "time": qm.breakout.end.isoformat(),
-                            "price": qm.breakout.close,
+                            "label": "Body breakout" if qm.breakout else "Developing QM (ERS)",
+                            "time": breakout_end.isoformat(),
+                            "price": qm.breakout.close if qm.breakout else qm.reference.price,
                         },
                     ),
                 )
             )
+
+    def _v5_facts(
+        self,
+        model,
+        facts,
+        snap,
+        bars,
+        lm,
+        qms,
+        tls,
+        source,
+        qm,
+        touch,
+        fresh,
+        line,
+        last,
+        near,
+        flips,
+        gaps,
+        ers,
+        entry,
+    ):
+        direction, tick = qm.direction, snap.spec.tick_size
+        tolerance = (self.policy.alignment_ticks or 0) * tick
+        deadline = qm.breakout.end if qm.breakout else snap.now
+        facts["htf_rejection"] = v5.mapped_rejection(source, bars, touch, deadline, line)
+        if source.timeframe in ("MN1", "W1", "D1"):
+            facts["storyline_alignment"] = fresh and facts["htf_rejection"]
+        else:
+            aligned = set()
+            for tf in ("MN1", "W1", "D1"):
+                for x in lm.get(tf, []):
+                    if (
+                        x.fresh or x.repaired or x.fresh_before_touch and x.touches == 1
+                    ) and v5.mapped_rejection(x, bars, x.formed, snap.now):
+                        aligned.add(x.role)
+            facts["storyline_alignment"] = aligned == {direction}
+        boundary = qm.shoulder.price
+        badge_after = max(touch, deadline) if qm.breakout else touch
+
+        def usable(x):
+            return x.role == direction and (x.fresh or x.repaired or x.fresh_before_touch and x.touches == 1)
+
+        if model.name in ("APEX", "C_APEX", "DOUBLE_APEX"):
+            boundary = qm.apex.apex
+            refined = next(
+                (
+                    x
+                    for tf in ("H4", "H1", "M30", "M15")
+                    for x in lm.get(tf, [])
+                    if usable(x) and abs(x.price - qm.apex.apex) <= tolerance
+                ),
+                None,
+            )
+            facts["apex_refinement"] = refined is not None
+            if refined:
+                boundary = refined.price
+                facts["apex_entry"] = near(boundary)
+        elif model.name == "ERS":
+            latest = max(ers, key=lambda x: x.formed, default=None)
+            facts["ers_entry"] = bool(latest and usable(latest) and near(latest.price))
+            facts["early_structure"] = qm.breakout is None and qm.reference.formed <= touch
+            if latest:
+                boundary, badge_after = latest.price, latest.formed
+        elif model.name in ("SBR_RBS", "SBR_RBS_CONTINUATION", "EX2"):
+            choices = [
+                x
+                for x in flips
+                if usable(x) and near(x.price) and (model.name != "EX2" or x.timeframe == "H1")
+            ]
+            selected = max(choices, key=lambda x: x.formed, default=None)
+            facts["flip_entry"] = selected is not None
+            facts["h1_flip"] = selected is not None and selected.timeframe == "H1"
+            if selected:
+                boundary = selected.price
+        elif model.name in ("GAP_QMS", "GAP_CONTINUATION"):
+            selected = max(
+                (x for x in gaps if usable(x) and near(x.price)), key=lambda x: x.formed, default=None
+            )
+            facts["gap_entry"] = selected is not None
+            if selected:
+                boundary = selected.price
+        elif model.name in ("EX1", "EX3", "EX4"):
+            boundary = source.price
+        elif model.name == "CIRCLE_FIB":
+            boundary = entry
+        badges = v5.entry_badges(bars, lm, qms, tls, boundary, direction, badge_after, tick, self.policy)
+        facts["badge"] = facts["entry_zone_badge"] = any(v is True for v in badges.values())
+        facts["ls_badge"] = facts["badge"]
+        facts["flip_badge"] = facts["badge"]
+        facts["ema9_hold"] = badges["ema9"]
+        facts["micro_reversal"] = badges["mini_qm"] or any(
+            q.direction == direction
+            and q.breakout.end >= touch
+            and abs(q.shoulder.price - source.price) <= tolerance
+            for tf in ("M1", "M5")
+            for q in qms.get(tf, [])[-3:]
+        )
+        facts["liquidity_sweep"] = inducement_sweep(
+            bars.get("M5", []),
+            levels(bars.get("M5", []), tick, self.policy, evolve=False),
+            direction,
+            source.price,
+            tolerance,
+            source.formed,
+        )
+        facts["session_sweep"] = v5.session_sweep(
+            bars.get("M5", []), snap.now, direction, source.price, tolerance, source.formed
+        )
+        facts["h1_ocl_or_gap"] = (
+            source.timeframe == "H1"
+            and near(source.price)
+            and (
+                source.kind.startswith("GAP")
+                or any(abs(p - source.price) <= tolerance for _, p in ocls(bars.get("H1", []), tick))
+            )
+        )
+        facts["m5_badge"] = any(
+            v is True
+            for v in v5.entry_badges(
+                bars, lm, qms, tls, boundary, direction, badge_after, tick, self.policy, frames=("M5",)
+            ).values()
+        )
+        facts["ote"] = v5.ote(qm, entry)
+        facts["q2_sweep"] = v5.q2_sweep(bars.get("M1", []), snap.now, direction)
+        facts["entry_retest"] = qm.breakout is not None and last.time >= qm.breakout.end
+        return facts, badges
 
     def _targets(self, lm, entry, direction):
         if direction == Direction.SELL and self.policy.mirror_sell_targets is not True:
@@ -542,7 +711,10 @@ class Engine:
         targets = []
         after = entry
         for frames, types in [
-            (("H1", "H4"), ("SBR", "RBS", "GAP_BUY", "GAP_SELL")),
+            (
+                ("H1", "H4"),
+                ("SBR", "RBS", "GAP_BUY", "GAP_SELL") + (("A", "V") if self.policy.version == "v5" else ()),
+            ),
             (("D1",), None),
             (("W1", "MN1"), None),
         ]:

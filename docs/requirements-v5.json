@@ -1,0 +1,3174 @@
+{
+  "source": "docs/sources/strategy-v5.md",
+  "sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+  "sections": [
+    {
+      "id": "V5-1.1",
+      "section": "1.1",
+      "title": "The Malaysian SNR 2.0 Philosophy (Pitchou.FX)",
+      "start_line": 32,
+      "end_line": 45,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 1.1 The Malaysian SNR 2.0 Philosophy (Pitchou.FX)\nThe **Malaysian Support and Resistance (MSNR) 2.0** framework is a mechanical, rule-based price action system designed to eliminate emotional decision-making. Operating on the core principle of **\"2 Hours to Freedom,\"** the strategy dictates that trading should not be a full-day screen addiction, but a structured 2-hour daily routine.\n\n```\n+-----------------------------------------------------------------------+\n|                       THE 2-HOUR DAILY ROUTINE                        |\n+-----------------------------------------------------------------------+\n| 1. HTF Map (30 Mins)   : Mark Fresh MN/W1/D1 Levels & Storylines       |\n| 2. LTF Alert (30 Mins) : Set Alerts at Refined 4H/1H Entry Zones       |\n| 3. Execute (30 Mins)   : Wait for LTF Confirmation Badge (15M/5M)       |\n| 4. Management (30 Mins): Set SL/TP, Take Partials, Walk Away          |\n+-----------------------------------------------------------------------+\n```\n",
+      "logic": "Human routine/context; keep requested 24/7 monitoring. Do not encode institutional-intent or win-rate assertions as verified facts.",
+      "implementation": [
+        "docs/STRATEGY_V5_AUDIT.md"
+      ],
+      "tests": [],
+      "status": "Documented context; not an empirical market claim"
+    },
+    {
+      "id": "V5-1.2",
+      "section": "1.2",
+      "title": "The Alchemist Philosophy (White Srp / White SNT)",
+      "start_line": 46,
+      "end_line": 50,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 1.2 The Alchemist Philosophy (White Srp / White SNT)\n\"The Alchemist\" framework merges Pitchou's MSNR mechanics with institutional **Smart Money Concepts (SMC)**, **ICT Session Liquidity**, **SMT Intermarket Divergence**, and **Daye Quarterly Theory (QT)**. It views retail SNR levels not merely as support/resistance, but as **liquidity accumulation zones** where central bank algorithms engineer inducement before expanding price toward true institutional Points of Interest (POI).\n\n---\n",
+      "logic": "Human routine/context; keep requested 24/7 monitoring. Do not encode institutional-intent or win-rate assertions as verified facts.",
+      "implementation": [
+        "docs/STRATEGY_V5_AUDIT.md"
+      ],
+      "tests": [],
+      "status": "Documented context; not an empirical market claim"
+    },
+    {
+      "id": "V5-2.1",
+      "section": "2.1",
+      "title": "Mechanical Level Boundaries",
+      "start_line": 53,
+      "end_line": 72,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 2.1 Mechanical Level Boundaries\nIn MSNR 2.0, every support and resistance level has two distinct components:\n1. **The Horizontal Level Line (Open/Close Boundary)**: Placed precisely at the **body junction where Candle 1 closes and Candle 2 opens**. This exact horizontal line is used for testing **touches, rejections, and breakouts**.\n2. **The Apex Extreme (Wick Tip)**: The highest wick high of an A-Shape or lowest wick low of a V-Shape. Used for **Stop Loss placement** (adding mandatory safety buffers) and lower-timeframe **Apex Refinement**.\n\n```\nA-SHAPE RESISTANCE LEVEL                    V-SHAPE SUPPORT LEVEL\n\n       [Apex / Wick High]                         (Candle 1)   (Candle 2)\n              /\\                                      \\           /\n             /  \\                                      \\         /\n  (Candle 1)/    \\(Candle 2)                            \\       /\n           /      \\                                      \\     /\n   =======[Body Junction]======= [LEVEL LINE]    =======[Body Junction]======= [LEVEL LINE]\n          |        |                                    |       |\n          | Red/Grn|                                    |Red/Grn|\n                                                           \\/\n                                                  [Apex / Wick Low]\n```\n",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    },
+    {
+      "id": "V5-2.2",
+      "section": "2.2",
+      "title": "Level Definitions",
+      "start_line": 73,
+      "end_line": 103,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 2.2 Level Definitions\n\n#### 1. A-Shape Resistance (A-SNR)\n* **Formation**: A bullish (or bearish) candle immediately followed by a bearish candle, forming a sharp peak resembling the letter \"A\".\n* **Placement**: Horizontal line drawn at the **close/open body junction** of the two candles.\n* **Function**: Acts as a supply ceiling blocking upward movement.\n\n#### 2. V-Shape Support (V-SNR)\n* **Formation**: A bearish (or bullish) candle immediately followed by a bullish candle, forming a sharp valley resembling the letter \"V\".\n* **Placement**: Horizontal line drawn at the **close/open body junction** of the two candles.\n* **Function**: Acts as a demand floor blocking downward movement.\n\n#### 3. GAP Levels (Overlapping / Structural GAPs)\n* **Formation**: Two consecutive candles closing strongly in the **same direction** (two bullish candles for a Bullish GAP, or two bearish candles for a Bearish GAP).\n* **Placement**: Horizontal line drawn at the **close/open junction** where Candle 1 closes and Candle 2 opens.\n* **Function**: Represents explosive momentum. Bullish GAPs act as strong support; Bearish GAPs act as strong resistance.\n\n```\nBULLISH GAP LEVEL (SUPPORT)               BEARISH GAP LEVEL (RESISTANCE)\n\n      [Candle 2 (Bullish)]                      |         |\n         |        |                             | Bearish |\n         +--------+                             +---------+\n   ======| Close 1/Open 2 |====== [GAP LEVEL] =====| Close 1/Open 2 |====== [GAP LEVEL]\n         +--------+                             +---------+\n         | Bullish|                             | Bearish |\n         | Candle1|                             | Candle2 |\n```\n\n---\n",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    },
+    {
+      "id": "V5-3.1",
+      "section": "3.1",
+      "title": "Candlestick Range Theory (CRT) & OCL",
+      "start_line": 106,
+      "end_line": 111,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 3.1 Candlestick Range Theory (CRT) & OCL\nEvery candlestick contains four price points (OHLC). In *The Alchemist* framework, the **Open Close Level (OCL)** represents the real structural body of institutional orders:\n* **Open Price**: Institutional start of period manipulation.\n* **Close Price**: Institutional valuation settlement.\n* **High/Low Wicks**: Liquidity sweeps (judas swings) into retail stops.\n",
+      "logic": "Fresh until touch; CC is immediately following third candle; same direction; close beyond boundary changes role.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    },
+    {
+      "id": "V5-3.2",
+      "section": "3.2",
+      "title": "Level Freshness States & Mitigation Rules",
+      "start_line": 112,
+      "end_line": 124,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 3.2 Level Freshness States & Mitigation Rules\n\n```\n+------------------+------------------------------------------------------------------+\n| Level State      | Definition & Operational Status                                  |\n+------------------+------------------------------------------------------------------+\n| Fresh            | Never touched by a price wick since creation. Highest win rate.  |\n| Unfresh          | Touched/poked by a price wick. Mitigation occurs; state dimmed.  |\n| Restored (CC)    | Unfresh level validated by a 3rd-candle Confirmation Candle (CC).|\n| Broken (RBS/SBR) | Candle body closes past level line. Converts to RBS or SBR.      |\n+------------------+------------------------------------------------------------------+\n```\n",
+      "logic": "Fresh until touch; CC is immediately following third candle; same direction; close beyond boundary changes role.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    },
+    {
+      "id": "V5-3.3",
+      "section": "3.3",
+      "title": "The Confirmation Candle (CC) 3rd-Candle Rule",
+      "start_line": 125,
+      "end_line": 135,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 3.3 The Confirmation Candle (CC) 3rd-Candle Rule\nWhen an A-Shape or V-Shape level is created, its freshness is strictly determined by the **3rd candle** in the sequence:\n1. **Candle 1**: Initial directional candle.\n2. **Candle 2**: Opposite candle completing the A/V shape.\n3. **Candle 3 (The CC)**: Must close in the **same direction as the newly formed level**:\n   * **For V-Support**: Candle 3 must close **Bullish (Green)**.\n   * **For A-Resistance**: Candle 3 must close **Bearish (Red)**.\n* **Effect**: A valid CC restores an otherwise unfresh/tested level to **full fresh trading authority**.\n\n---\n",
+      "logic": "Fresh until touch; CC is immediately following third candle; same direction; close beyond boundary changes role.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    },
+    {
+      "id": "V5-4.1",
+      "section": "4.1",
+      "title": "Trendline Construction Rules",
+      "start_line": 138,
+      "end_line": 147,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 4.1 Trendline Construction Rules\nTrendlines in MSNR 2.0 must connect exact **A-Shape peaks (Resistance Trendlines)** or **V-Shape valleys (Support Trendlines)**. \n\n```\n               (Touch 1)          (Touch 2)          (Touch 3)          (Touch 4)          (Touch 5)\n                 A1                 A2                 A3                 A4                 A5\n                 /\\                 /\\                 /\\                 /\\                 /                /  \\               /  \\               /  \\               /  \\               /    -------------/----\\-------------/----\\-------------/----\\-------------/----\\-------------/----\\-----> BREAKOUT!\n              [Establish]        [Confirm]         [BEST ENTRY]       [VALID ENTRY]      [DO NOT ENTER]\n```\n",
+      "logic": "Two anchors establish line; allow entries on touches 3/4; reject 1/2/5+. Classifications must not bypass evidence.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:trendlines",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    },
+    {
+      "id": "V5-4.2",
+      "section": "4.2",
+      "title": "The 5-Touch Limit Rule",
+      "start_line": 148,
+      "end_line": 152,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 4.2 The 5-Touch Limit Rule\n* **Touches 1 & 2**: Used exclusively to **draw and establish** the trendline angle. No trades allowed.\n* **Touches 3 & 4 (Active Entry Touches)**: **Valid trade entry setups**. Touch 3 offers the highest historical win rate (1:3+ RR).\n* **Touch 5 (Breakout Limit)**: Trendlines hold up to 5 touches maximum. **Touch 5 is expected to break out**—do NOT take continuation trades on Touch 5.\n",
+      "logic": "Two anchors establish line; allow entries on touches 3/4; reject 1/2/5+. Classifications must not bypass evidence.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:trendlines",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    },
+    {
+      "id": "V5-4.3",
+      "section": "4.3",
+      "title": "The 8 Trendline Classification Types",
+      "start_line": 153,
+      "end_line": 164,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 4.3 The 8 Trendline Classification Types\n1. **Classic Support Trendline**: Connects 2+ fresh V-shapes pointing upward.\n2. **Classic Resistance Trendline**: Connects 2+ fresh A-shapes pointing downward.\n3. **Breakout Support Trendline (SBR TL)**: Broken support trendline retested from below as resistance.\n4. **Breakout Resistance Trendline (RBS TL)**: Broken resistance trendline retested from above as support.\n5. **Advanced Support Trendline**: Connects V-shapes across multi-timeframe storylines.\n6. **Advanced Resistance Trendline**: Connects A-shapes across multi-timeframe storylines.\n7. **Inducement (IDM) Trendline**: Liquidity trendline engineered by algorithms to trap retail breakout traders.\n8. **Trendline Key (TL Key)**: Confluence point where a trendline intersects directly with a fresh horizontal SNR level.\n\n---\n",
+      "logic": "Two anchors establish line; allow entries on touches 3/4; reject 1/2/5+. Classifications must not bypass evidence.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:trendlines",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "Partial classification coverage; independent fixtures outstanding"
+    },
+    {
+      "id": "V5-5.1",
+      "section": "5.1",
+      "title": "Breakout Validation: Body Close vs. Wick Sweep",
+      "start_line": 167,
+      "end_line": 181,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 5.1 Breakout Validation: Body Close vs. Wick Sweep\n* **Valid Breakout**: A candle **BODY CLOSES** completely beyond the horizontal SNR level line. Confirms structural breakout and flips level to SBR/RBS.\n* **Fakeout / Rejection Sweep**: Only the **WICK** extends past the SNR level line while the body closes inside. Confirms level holds; signals potential reversal.\n\n```\nVALID BREAKOUT (Body Close Past Line)          FAKEOUT / REJECTION (Wick Only)\n\n        |  [Green Body Close]                          |  [Wick Sweeps Past]\n     +-----+                                           |\n-----|-----|---------------- [SNR LINE]       ---------|-------------------- [SNR LINE]\n     +-----+                                        +-----+\n        |  [Red Candle]                             |     | [Body Closes Inside]\n        |                                           +-----+\n```\n",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    },
+    {
+      "id": "V5-5.2",
+      "section": "5.2",
+      "title": "Quasimodo (QM) Pattern Anatomy",
+      "start_line": 182,
+      "end_line": 212,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 5.2 Quasimodo (QM) Pattern Anatomy\nThe Quasimodo pattern is the ultimate structural reversal pattern in MSNR 2.0.\n\n#### Bullish QM (Buy Setup)\n1. Price forms a Low (**L**).\n2. Price rallies to form a High (**H**).\n3. Price drops below Low to form a Lower Low (**LL**) — sweeping liquidity.\n4. Price surges upward and **candle body closes** above High to form a Higher High (**HH**).\n5. **Entry Zone**: Pullback to the **Left Shoulder (LS)** level.\n\n```\nBULLISH QM ANATOMY                             BEARISH QM ANATOMY\n\n                  HH (Higher High)                         H (High)           HH (Higher High)\n                  /\\                                       /\\                 /                 /  \\  [Pullback Entry]                   /  \\               /        H (High)  /    \\  /                     LS (Left   /    \\             /             /\\    /      \\/ [LS Entry]           Shoulder) /      \\           /              /  \\  /                               ==========/=======\\=========/========\\========== [LS Entry]\n   ====/====\\/                                         /         \\       /          \\  /\n   LS /      L (Low)                                  /           \\     /            \\/ [Pullback Entry]\n  /  /                                               /             \\   /             LL (Lower Low)\n    /                                               /               \\ /\n   / LL (Lower Low)                                /                 L (Low)\n```\n\n#### Bearish QM (Sell Setup)\n1. Price forms a High (**H**).\n2. Price drops to form a Low (**L**).\n3. Price rallies above High to form a Higher High (**HH**) — sweeping liquidity.\n4. Price crashes downward and **candle body closes** below Low to form a Lower Low (**LL**).\n5. **Entry Zone**: Pullback to the **Left Shoulder (LS)** level.\n\n---\n",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    },
+    {
+      "id": "V5-6.1",
+      "section": "6.1",
+      "title": "Timeframe Hierarchy & Rejection Rules",
+      "start_line": 215,
+      "end_line": 231,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 6.1 Timeframe Hierarchy & Rejection Rules\nThe validation of an SNR level depends strictly on the timeframe being analyzed:\n\n```\n+--------------------+---------------------------+-----------------------------------+\n| HTF SNR Level      | Breakout / Rejection TF   | Validation Rule                   |\n+--------------------+---------------------------+-----------------------------------+\n| Monthly (MN1)      | Daily (1D)                | Rejection Wick Only (No body close)|\n| Weekly (W1)        | 4-Hour (4H)               | Rejection Wick Only (No body close)|\n| Daily (D1)         | 1-Hour (1H)               | Candle BODY CLOSE Required        |\n| 4-Hour (4H)        | 15-Minute (15M)           | Candle BODY CLOSE Required        |\n| 1-Hour (1H)        | 5-Minute (5M)             | Candle BODY CLOSE Required        |\n+--------------------+---------------------------+-----------------------------------+\n```\n\n---\n",
+      "logic": "MN1→D1, W1→H4 wick validation; D1→H1, H4→M15, H1→M5 body-close validation. Evaluate the specified validation timeframe.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine",
+        "src/msnr/strategy/v5.py"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    },
+    {
+      "id": "V5-7.1",
+      "section": "7.1",
+      "title": "Classic vs. Advanced Storylines",
+      "start_line": 234,
+      "end_line": 237,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 7.1 Classic vs. Advanced Storylines\n* **Classic Storyline**: Price travels between **fresh horizontal SNR levels** (e.g., Weekly Resistance to Weekly Support).\n* **Advanced Storyline**: Price travels along **trendlines and SBR/RBS levels** when fresh horizontal SNR levels are exhausted.\n",
+      "logic": "Classic horizontal destination versus advanced exhausted-horizontal trendline story. Retain prior phase-3 mechanics as explicitly approved.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    },
+    {
+      "id": "V5-7.2",
+      "section": "7.2",
+      "title": "The 3 Storyline Phases",
+      "start_line": 238,
+      "end_line": 257,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 7.2 The 3 Storyline Phases\n\n```\n+-----------------------------------------------------------------------+\n|                       THE 3 STORYLINE PHASES                          |\n+-----------------------------------------------------------------------+\n| Phase 1: Initiation (QM Reversal)                                     |\n|   - Rejection/Breakout at HTF Level creates a QM pattern.             |\n|   - Reversal officially begins.                                       |\n| Phase 2: Middle Expansion (Continuation)                              |\n|   - Price breaks intermediate 4H/1H levels in direction of trend.     |\n|   - QMC, GAP, and SBR/RBS continuation setups trigger.                |\n| Phase 3: Ending Exhaustion (Destination Target)                       |\n|   - Price reaches opposing HTF SNR floor/ceiling.                     |\n|   - Rejection wicks form; prepare for storyline completion.           |\n+-----------------------------------------------------------------------+\n```\n\n---\n",
+      "logic": "Classic horizontal destination versus advanced exhausted-horizontal trendline story. Retain prior phase-3 mechanics as explicitly approved.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    },
+    {
+      "id": "V5-8.1",
+      "section": "8.1",
+      "title": "The 5 Primary QMS Setup Models",
+      "start_line": 260,
+      "end_line": 271,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 8.1 The 5 Primary QMS Setup Models\n1. **QMS Apex Setup**: Entry directly at the QM Apex (refining long wicks on $4\text{H} \nightarrow 1\text{H} \nightarrow 30\text{M} \nightarrow 15\text{M}$).\n2. **QMS Left Shoulder (LS) Setup**: Classic retest of the Left Shoulder horizontal line.\n3. **QMS SBR / RBS Setup**: Confluence where Left Shoulder aligns with broken support/resistance.\n4. **QMS Early Right Shoulder (ERS) Setup**: Entry triggered before HH/LL is complete when HTF level gives instant rejection.\n5. **QMS GAP Setup**: Left Shoulder aligns perfectly with a fresh Bullish or Bearish GAP.\n\n---\n",
+      "logic": "APEX refinement H4/H1/M30/M15; LS retest; flip alignment; early ERS explicitly excepted; fresh GAP alignment.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine",
+        "src/msnr/strategy/v5.py"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    },
+    {
+      "id": "V5-9.1",
+      "section": "9.1",
+      "title": "The 7 LTF Streamlined Continuation Setups",
+      "start_line": 274,
+      "end_line": 284,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 9.1 The 7 LTF Streamlined Continuation Setups\n1. **C.APEX Setup**: Retest of a continuation QM Apex.\n2. **C.GAP Setup**: Retest of a 15M/5M fresh GAP during active expansion.\n3. **C.SBR / C.RBS Setup**: Retest of freshly broken support/resistance.\n4. **QMC (Quasimodo Continuation)**: Continuation QM pattern forming in direction of macro trend.\n5. **QM-to-QM Setup**: Micro 1M/5M QM pattern forming inside an HTF QM entry zone.\n6. **Reversal TL-QM Failed**: Trading the momentum explosion when a QM pattern fails and breaks opposite side.\n7. **H1 POI EX1–EX4 Models**: White SNT's H1 Point of Interest execution models targeting M1-M5 order blocks.\n\n---\n",
+      "logic": "Continuation catalogue; H1 EX1–EX4 named but their definitions omitted. Preserve the approved supplemental mechanics.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine",
+        "src/msnr/strategy/v5.py"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    },
+    {
+      "id": "V5-10.1",
+      "section": "10.1",
+      "title": "The 5 Lower-Timeframe (15M / 5M) Confirmation Badges",
+      "start_line": 287,
+      "end_line": 303,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 10.1 The 5 Lower-Timeframe (15M / 5M) Confirmation Badges\nBefore executing any trade, wait for at least ONE confirmation badge at your entry zone:\n\n```\n+------------------------+------------------------------------------------------------------+\n| Confirmation Badge     | Exact Quantitative Definition                                    |\n+------------------------+------------------------------------------------------------------+\n| 1. Candle Rejection    | Rejection wick length >= 2x body length & >= 1 tick.             |\n| 2. Breaking Gap        | Price breaks clean through a 5M/15M GAP level with body close.  |\n| 3. Trendline Breakout  | 5M/15M candle body closes beyond active trendline.               |\n| 4. Mini Bullish/Bearish| Micro 5M/1M QM pattern forms inside HTF zone.                   |\n| 5. 5Min EMA 9 Hold     | Price breaks EMA 9 + 1 additional closed M5 candle holds side.  |\n+------------------------+------------------------------------------------------------------+\n```\n\n---\n",
+      "logic": "At least one eligible badge in the entry zone. Rejection and break badges M15/M5; mini QM M5/M1; EMA9 cross plus one closed holding M5 candle. No unlisted engulfing prerequisite.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:ema_badge",
+        "src/msnr/strategy/engine.py:Engine",
+        "src/msnr/strategy/v5.py"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    },
+    {
+      "id": "V5-11.1",
+      "section": "11.1",
+      "title": "SMT Intermarket Divergence Matrix",
+      "start_line": 306,
+      "end_line": 323,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 11.1 SMT Intermarket Divergence Matrix\n* **Mandatory Status**: SMT is **OPTIONAL** for standard MSNR trades, but **MANDATORY** for Daye QT x SMT and Circle Fibonacci SMT setups.\n\n```\n+--------------------+-----------------------+-----------------------+--------------------------+\n| Asset Class        | Primary Symbol        | Comparison Symbol     | Correlation Relationship |\n+--------------------+-----------------------+-----------------------+--------------------------+\n| Precious Metals    | XAUUSD (Gold)         | XAGUSD (Silver)       | Positive (High/Low Div)  |\n| Forex Majors       | EURUSD                | GBPUSD                | Positive                 |\n| Forex Yens         | USDJPY                | USDCHF                | Positive / Inverse       |\n| Crypto             | BTCUSDm               | ETHUSDm               | Positive                 |\n| Crypto             | ETHUSDm               | BTCUSDm               | Positive                 |\n| Energy             | USOILm (WTI)          | UKOILm (Brent) / XLE  | Positive                 |\n| Equities           | TSLA                  | QQQ / NQ / NVDA       | Positive                 |\n| Equities           | GOOGL                 | MSFT / QQQ / NQ       | Positive                 |\n+--------------------+-----------------------+-----------------------+--------------------------+\n```\n",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine",
+        "src/msnr/strategy/v5.py"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    },
+    {
+      "id": "V5-11.2",
+      "section": "11.2",
+      "title": "ICT Time Sessions & Daye Quarterly Theory (QT)",
+      "start_line": 324,
+      "end_line": 337,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 11.2 ICT Time Sessions & Daye Quarterly Theory (QT)\n* **Timezone Anchor**: All session windows anchored to **`America/New_York` local time** (EDT/EST with Daylight Saving Time).\n* **ICT Session Liquidity Windows**:\n  * **Asian Session**: 20:00 – 00:00 NY (Accumulation Range).\n  * **London Session**: 02:00 – 05:00 NY (Manipulation Sweep / Judas Swing).\n  * **New York Session**: 08:00 – 11:00 NY (Distribution / Expansion).\n* **Daye Quarterly Theory (90-Min Cycles)**:\n  * **Q1 (0 – 22.5 mins)**: Accumulation.\n  * **Q2 (22.5 – 45 mins)**: Manipulation (Judas Sweep).\n  * **Q3 (45 – 67.5 mins)**: Distribution (True Move).\n  * **Q4 (67.5 – 90 mins)**: Reversal / Continuation.\n\n---\n",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine",
+        "src/msnr/strategy/v5.py"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "Clock tested; exact QT sweep gate blocked without sub-minute data"
+    },
+    {
+      "id": "V5-12.1",
+      "section": "12.1",
+      "title": "Circle Fibonacci Ratios",
+      "start_line": 340,
+      "end_line": 346,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 12.1 Circle Fibonacci Ratios\nIn *The Alchemist* framework, custom Fibonacci ratios determine deep institutional discount/premium zones:\n* **Core Ratios**: `0.109`, `0.243`, `0.382`, `0.500` (Equilibrium), `0.618`, `0.707`, `0.786`, `0.886`, `1.109`, `1.272`, `1.618`, `1.893`.\n* **Execution**: Measure swing high to swing low. Enter at deep OTE zones (`0.707` – `0.786`) with SMT confluence.\n\n---\n",
+      "logic": "Exact ratios .109/.243/.382/.5/.618/.707/.786/.886/1.109/1.272/1.618/1.893; OTE retracement .707–.786 with SMT; confirmed QM swing anchors use the approved supplemental interpretation.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:fibonacci",
+        "src/msnr/strategy/engine.py:Engine",
+        "src/msnr/strategy/v5.py"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "Ratios/OTE and SMT gate implemented; real-market model unverified"
+    },
+    {
+      "id": "V5-13.1",
+      "section": "13.1",
+      "title": "Mandatory Stop Loss Safety Buffer Matrix",
+      "start_line": 349,
+      "end_line": 367,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 13.1 Mandatory Stop Loss Safety Buffer Matrix\nA Stop Loss must ALWAYS be placed beyond the structural extreme (Apex or wick tip) plus the asset-specific safety buffer:\n\n```\n+--------------------+-----------------------+---------------------------------------------------+\n| Asset Class        | Symbol                | Mandatory SL Buffer Beyond Apex                   |\n+--------------------+-----------------------+---------------------------------------------------+\n| Forex Pairs        | EURUSD, GBPUSD, etc.  | 30 Pips                                           |\n| Gold / Metals      | XAUUSD                | 3.000 Price Units ($3.00 / 30 Pips / 300 Ticks)   |\n| Equity Indices     | US30, NAS100, SPX500  | 50.0 Index Points                                 |\n| Crypto             | BTCUSDm               | $300.00 – $500.00 Price Units                     |\n| Crypto             | ETHUSDm               | $15.00 – $30.00 Price Units                       |\n| Energy             | USOILm                | $0.30 – $0.50 Price Units (30 – 50 Cents)         |\n| Individual Stocks  | TSLA, GOOGL           | $0.50 – $1.50 Price Units (0.3% – 0.5% Share Price)|\n+--------------------+-----------------------+---------------------------------------------------+\n```\n\n---\n",
+      "logic": "Structural stop beyond apex plus specified asset buffer. Forex30pips, gold3; selected bounds BTC500/ETH30/oil.50/stocks1.50 remain within v5 ranges. Broker ticks/lots and monetary risk still independently validated.",
+      "implementation": [
+        "config/default.json",
+        "src/msnr/risk.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_execution.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    },
+    {
+      "id": "V5-14.1",
+      "section": "14.1",
+      "title": "The Power of Four",
+      "start_line": 370,
+      "end_line": 375,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 14.1 The Power of Four\n1. **Strategy**: 100% mechanical rules; zero guessing.\n2. **Psychology**: Emotional mastery and discipline.\n3. **Risk Management**: Capital preservation.\n4. **Journaling**: Daily performance tracking.\n",
+      "logic": "Separate user-approved evaluation/funded risk profiles; evaluation +2%/three Phase-1 wins then +5%/near-target; funded cap 0.50%. 50/30/20 original-volume exits; BE only after confirmed TP1 fill.",
+      "implementation": [
+        "src/msnr/risk.py:phase_for",
+        "src/msnr/execution.py"
+      ],
+      "tests": [
+        "tests/test_recovery_and_controls.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    },
+    {
+      "id": "V5-14.2",
+      "section": "14.2",
+      "title": "The 3-Phase Funded Account Risk Formula",
+      "start_line": 376,
+      "end_line": 390,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 14.2 The 3-Phase Funded Account Risk Formula\n\n```\n+-----------------------------------------------------------------------+\n|                  3-PHASE FUNDED ACCOUNT RISK SYSTEM                   |\n+-----------------------------------------------------------------------+\n| Phase 1: Capital Survival (0.33% Risk Per Trade)                      |\n|   - Goal: Protect drawdown cushion. Never risk > 0.33% until +2% profit. |\n| Phase 2: System Progression (0.50% Risk Per Trade)                    |\n|   - Goal: Build buffer toward target once account is +2% in profit.   |\n| Phase 3: Aggressive Target Pass (1.00% Risk Per Trade)                |\n|   - Goal: Scale up to pass evaluation once account is +5% in profit.  |\n+-----------------------------------------------------------------------+\n```\n",
+      "logic": "Separate user-approved evaluation/funded risk profiles; evaluation +2%/three Phase-1 wins then +5%/near-target; funded cap 0.50%. 50/30/20 original-volume exits; BE only after confirmed TP1 fill.",
+      "implementation": [
+        "src/msnr/risk.py:phase_for",
+        "src/msnr/execution.py"
+      ],
+      "tests": [
+        "tests/test_recovery_and_controls.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    },
+    {
+      "id": "V5-14.3",
+      "section": "14.3",
+      "title": "Partial Exit Volume Distribution",
+      "start_line": 391,
+      "end_line": 397,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 14.3 Partial Exit Volume Distribution\n* **TP 1 (First Fresh Level / 1:2 to 1:3 RR)**: Close **50%** of volume; move SL to **Breakeven (BE)**.\n* **TP 2 (Intermediate HTF Level)**: Close **30%** of volume.\n* **Final TP (Opposing Weekly/Monthly Destination)**: Hold remaining **20%** runner position risk-free.\n\n---\n",
+      "logic": "Separate user-approved evaluation/funded risk profiles; evaluation +2%/three Phase-1 wins then +5%/near-target; funded cap 0.50%. 50/30/20 original-volume exits; BE only after confirmed TP1 fill.",
+      "implementation": [
+        "src/msnr/risk.py:phase_for",
+        "src/msnr/execution.py"
+      ],
+      "tests": [
+        "tests/test_recovery_and_controls.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    },
+    {
+      "id": "V5-16.1",
+      "section": "16.1",
+      "title": "Master Pre-Trade Checklist",
+      "start_line": 420,
+      "end_line": 431,
+      "source_sha256": "a8fda60e940ace80aea1dfcef28c0960972a397d8bba4917666051ec577c93ff",
+      "text": "### 16.1 Master Pre-Trade Checklist\nBefore entering any trade, complete this 6-step checklist:\n\n- [ ] **Step 1: HTF Storyline Identified?** Is price traveling from a fresh MN/W1/D1 SNR level or trendline?\n- [ ] **Step 2: Fresh Level Confirmed?** Is the entry zone fresh, or validated by a 3rd-candle CC?\n- [ ] **Step 3: QM Breakout Valid?** Did a candle body close past the structural high/low to form HH/LL?\n- [ ] **Step 4: Timeframe Rejection Match?** Did W1 reject on 4H wick, or D1 close body on 1H?\n- [ ] **Step 5: LTF Confirmation Badge Present?** Is there a 15M/5M Candle Rejection, Breaking Gap, Trendline Breakout, Mini QM, or 5Min EMA 9 Hold?\n- [ ] **Step 6: Risk & Buffer Calculated?** Is SL placed beyond Apex with the mandatory asset safety buffer (30 pips Forex / $3 Gold)? Is position size capped at 0.33% - 0.5% risk?\n\n---\n*End of Master Strategy Guide v5.0 — Pitchou.FX & White SNT Unified Framework.*",
+      "logic": "Require all six checklist stages with applicable model conditions. Unknown required evidence rejects. ERS and evaluation Phase 3 use explicit user-approved exceptions.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:gate",
+        "src/msnr/risk.py:size_trade",
+        "src/msnr/strategy/v5.py"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py",
+        "tests/test_execution.py"
+      ],
+      "status": "Implemented predicates; full historical/model validation outstanding"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "V5-1.1-L33",
+      "section": "1.1",
+      "source_line": 33,
+      "text": "The **Malaysian Support and Resistance (MSNR) 2.0** framework is a mechanical, rule-based price action system designed to eliminate emotional decision-making. Operating on the core principle of **\"2 Hours to Freedom,\"** the strategy dictates that trading should not be a full-day screen addiction, but a structured 2-hour daily routine.",
+      "logic": "Human routine/context; keep requested 24/7 monitoring. Do not encode institutional-intent or win-rate assertions as verified facts.",
+      "implementation": [
+        "docs/STRATEGY_V5_AUDIT.md"
+      ],
+      "tests": [],
+      "status": "documented"
+    },
+    {
+      "id": "V5-1.1-L37",
+      "section": "1.1",
+      "source_line": 37,
+      "text": "|                       THE 2-HOUR DAILY ROUTINE                        |",
+      "logic": "Human routine/context; keep requested 24/7 monitoring. Do not encode institutional-intent or win-rate assertions as verified facts.",
+      "implementation": [
+        "docs/STRATEGY_V5_AUDIT.md"
+      ],
+      "tests": [],
+      "status": "documented"
+    },
+    {
+      "id": "V5-1.1-L39",
+      "section": "1.1",
+      "source_line": 39,
+      "text": "| 1. HTF Map (30 Mins)   : Mark Fresh MN/W1/D1 Levels & Storylines       |",
+      "logic": "Human routine/context; keep requested 24/7 monitoring. Do not encode institutional-intent or win-rate assertions as verified facts.",
+      "implementation": [
+        "docs/STRATEGY_V5_AUDIT.md"
+      ],
+      "tests": [],
+      "status": "documented"
+    },
+    {
+      "id": "V5-1.1-L40",
+      "section": "1.1",
+      "source_line": 40,
+      "text": "| 2. LTF Alert (30 Mins) : Set Alerts at Refined 4H/1H Entry Zones       |",
+      "logic": "Human routine/context; keep requested 24/7 monitoring. Do not encode institutional-intent or win-rate assertions as verified facts.",
+      "implementation": [
+        "docs/STRATEGY_V5_AUDIT.md"
+      ],
+      "tests": [],
+      "status": "documented"
+    },
+    {
+      "id": "V5-1.1-L41",
+      "section": "1.1",
+      "source_line": 41,
+      "text": "| 3. Execute (30 Mins)   : Wait for LTF Confirmation Badge (15M/5M)       |",
+      "logic": "Human routine/context; keep requested 24/7 monitoring. Do not encode institutional-intent or win-rate assertions as verified facts.",
+      "implementation": [
+        "docs/STRATEGY_V5_AUDIT.md"
+      ],
+      "tests": [],
+      "status": "documented"
+    },
+    {
+      "id": "V5-1.1-L42",
+      "section": "1.1",
+      "source_line": 42,
+      "text": "| 4. Management (30 Mins): Set SL/TP, Take Partials, Walk Away          |",
+      "logic": "Human routine/context; keep requested 24/7 monitoring. Do not encode institutional-intent or win-rate assertions as verified facts.",
+      "implementation": [
+        "docs/STRATEGY_V5_AUDIT.md"
+      ],
+      "tests": [],
+      "status": "documented"
+    },
+    {
+      "id": "V5-1.2-L47",
+      "section": "1.2",
+      "source_line": 47,
+      "text": "\"The Alchemist\" framework merges Pitchou's MSNR mechanics with institutional **Smart Money Concepts (SMC)**, **ICT Session Liquidity**, **SMT Intermarket Divergence**, and **Daye Quarterly Theory (QT)**. It views retail SNR levels not merely as support/resistance, but as **liquidity accumulation zones** where central bank algorithms engineer inducement before expanding price toward true institutional Points of Interest (POI).",
+      "logic": "Human routine/context; keep requested 24/7 monitoring. Do not encode institutional-intent or win-rate assertions as verified facts.",
+      "implementation": [
+        "docs/STRATEGY_V5_AUDIT.md"
+      ],
+      "tests": [],
+      "status": "documented"
+    },
+    {
+      "id": "V5-2.1-L54",
+      "section": "2.1",
+      "source_line": 54,
+      "text": "In MSNR 2.0, every support and resistance level has two distinct components:",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.1-L55",
+      "section": "2.1",
+      "source_line": 55,
+      "text": "1. **The Horizontal Level Line (Open/Close Boundary)**: Placed precisely at the **body junction where Candle 1 closes and Candle 2 opens**. This exact horizontal line is used for testing **touches, rejections, and breakouts**.",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.1-L56",
+      "section": "2.1",
+      "source_line": 56,
+      "text": "2. **The Apex Extreme (Wick Tip)**: The highest wick high of an A-Shape or lowest wick low of a V-Shape. Used for **Stop Loss placement** (adding mandatory safety buffers) and lower-timeframe **Apex Refinement**.",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.1-L59",
+      "section": "2.1",
+      "source_line": 59,
+      "text": "A-SHAPE RESISTANCE LEVEL                    V-SHAPE SUPPORT LEVEL",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.1-L61",
+      "section": "2.1",
+      "source_line": 61,
+      "text": "       [Apex / Wick High]                         (Candle 1)   (Candle 2)",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.1-L64",
+      "section": "2.1",
+      "source_line": 64,
+      "text": "  (Candle 1)/    \\(Candle 2)                            \\       /",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.1-L66",
+      "section": "2.1",
+      "source_line": 66,
+      "text": "   =======[Body Junction]======= [LEVEL LINE]    =======[Body Junction]======= [LEVEL LINE]",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.1-L68",
+      "section": "2.1",
+      "source_line": 68,
+      "text": "          | Red/Grn|                                    |Red/Grn|",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.1-L70",
+      "section": "2.1",
+      "source_line": 70,
+      "text": "                                                  [Apex / Wick Low]",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.2-L76",
+      "section": "2.2",
+      "source_line": 76,
+      "text": "* **Formation**: A bullish (or bearish) candle immediately followed by a bearish candle, forming a sharp peak resembling the letter \"A\".",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.2-L77",
+      "section": "2.2",
+      "source_line": 77,
+      "text": "* **Placement**: Horizontal line drawn at the **close/open body junction** of the two candles.",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.2-L78",
+      "section": "2.2",
+      "source_line": 78,
+      "text": "* **Function**: Acts as a supply ceiling blocking upward movement.",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.2-L81",
+      "section": "2.2",
+      "source_line": 81,
+      "text": "* **Formation**: A bearish (or bullish) candle immediately followed by a bullish candle, forming a sharp valley resembling the letter \"V\".",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.2-L82",
+      "section": "2.2",
+      "source_line": 82,
+      "text": "* **Placement**: Horizontal line drawn at the **close/open body junction** of the two candles.",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.2-L83",
+      "section": "2.2",
+      "source_line": 83,
+      "text": "* **Function**: Acts as a demand floor blocking downward movement.",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.2-L86",
+      "section": "2.2",
+      "source_line": 86,
+      "text": "* **Formation**: Two consecutive candles closing strongly in the **same direction** (two bullish candles for a Bullish GAP, or two bearish candles for a Bearish GAP).",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.2-L87",
+      "section": "2.2",
+      "source_line": 87,
+      "text": "* **Placement**: Horizontal line drawn at the **close/open junction** where Candle 1 closes and Candle 2 opens.",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.2-L88",
+      "section": "2.2",
+      "source_line": 88,
+      "text": "* **Function**: Represents explosive momentum. Bullish GAPs act as strong support; Bearish GAPs act as strong resistance.",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.2-L91",
+      "section": "2.2",
+      "source_line": 91,
+      "text": "BULLISH GAP LEVEL (SUPPORT)               BEARISH GAP LEVEL (RESISTANCE)",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.2-L93",
+      "section": "2.2",
+      "source_line": 93,
+      "text": "      [Candle 2 (Bullish)]                      |         |",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.2-L94",
+      "section": "2.2",
+      "source_line": 94,
+      "text": "         |        |                             | Bearish |",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.2-L96",
+      "section": "2.2",
+      "source_line": 96,
+      "text": "   ======| Close 1/Open 2 |====== [GAP LEVEL] =====| Close 1/Open 2 |====== [GAP LEVEL]",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.2-L98",
+      "section": "2.2",
+      "source_line": 98,
+      "text": "         | Bullish|                             | Bearish |",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-2.2-L99",
+      "section": "2.2",
+      "source_line": 99,
+      "text": "         | Candle1|                             | Candle2 |",
+      "logic": "Body junction for level boundary; opposite colours for A/V per §3.3 and prior explicit clarification; same colours for GAP. Apex is the wick extreme.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; A/V parenthetical conflict documented"
+    },
+    {
+      "id": "V5-3.1-L107",
+      "section": "3.1",
+      "source_line": 107,
+      "text": "Every candlestick contains four price points (OHLC). In *The Alchemist* framework, the **Open Close Level (OCL)** represents the real structural body of institutional orders:",
+      "logic": "Fresh until touch; CC is immediately following third candle; same direction; close beyond boundary changes role.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; full transition corpus still needed"
+    },
+    {
+      "id": "V5-3.1-L108",
+      "section": "3.1",
+      "source_line": 108,
+      "text": "* **Open Price**: Institutional start of period manipulation.",
+      "logic": "Fresh until touch; CC is immediately following third candle; same direction; close beyond boundary changes role.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; full transition corpus still needed"
+    },
+    {
+      "id": "V5-3.1-L109",
+      "section": "3.1",
+      "source_line": 109,
+      "text": "* **Close Price**: Institutional valuation settlement.",
+      "logic": "Fresh until touch; CC is immediately following third candle; same direction; close beyond boundary changes role.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; full transition corpus still needed"
+    },
+    {
+      "id": "V5-3.1-L110",
+      "section": "3.1",
+      "source_line": 110,
+      "text": "* **High/Low Wicks**: Liquidity sweeps (judas swings) into retail stops.",
+      "logic": "Fresh until touch; CC is immediately following third candle; same direction; close beyond boundary changes role.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; full transition corpus still needed"
+    },
+    {
+      "id": "V5-3.2-L116",
+      "section": "3.2",
+      "source_line": 116,
+      "text": "| Level State      | Definition & Operational Status                                  |",
+      "logic": "Fresh until touch; CC is immediately following third candle; same direction; close beyond boundary changes role.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; full transition corpus still needed"
+    },
+    {
+      "id": "V5-3.2-L118",
+      "section": "3.2",
+      "source_line": 118,
+      "text": "| Fresh            | Never touched by a price wick since creation. Highest win rate.  |",
+      "logic": "Fresh until touch; CC is immediately following third candle; same direction; close beyond boundary changes role.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; full transition corpus still needed"
+    },
+    {
+      "id": "V5-3.2-L119",
+      "section": "3.2",
+      "source_line": 119,
+      "text": "| Unfresh          | Touched/poked by a price wick. Mitigation occurs; state dimmed.  |",
+      "logic": "Fresh until touch; CC is immediately following third candle; same direction; close beyond boundary changes role.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; full transition corpus still needed"
+    },
+    {
+      "id": "V5-3.2-L120",
+      "section": "3.2",
+      "source_line": 120,
+      "text": "| Restored (CC)    | Unfresh level validated by a 3rd-candle Confirmation Candle (CC).|",
+      "logic": "Fresh until touch; CC is immediately following third candle; same direction; close beyond boundary changes role.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; full transition corpus still needed"
+    },
+    {
+      "id": "V5-3.2-L121",
+      "section": "3.2",
+      "source_line": 121,
+      "text": "| Broken (RBS/SBR) | Candle body closes past level line. Converts to RBS or SBR.      |",
+      "logic": "Fresh until touch; CC is immediately following third candle; same direction; close beyond boundary changes role.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; full transition corpus still needed"
+    },
+    {
+      "id": "V5-3.3-L126",
+      "section": "3.3",
+      "source_line": 126,
+      "text": "When an A-Shape or V-Shape level is created, its freshness is strictly determined by the **3rd candle** in the sequence:",
+      "logic": "Fresh until touch; CC is immediately following third candle; same direction; close beyond boundary changes role.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; full transition corpus still needed"
+    },
+    {
+      "id": "V5-3.3-L127",
+      "section": "3.3",
+      "source_line": 127,
+      "text": "1. **Candle 1**: Initial directional candle.",
+      "logic": "Fresh until touch; CC is immediately following third candle; same direction; close beyond boundary changes role.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; full transition corpus still needed"
+    },
+    {
+      "id": "V5-3.3-L128",
+      "section": "3.3",
+      "source_line": 128,
+      "text": "2. **Candle 2**: Opposite candle completing the A/V shape.",
+      "logic": "Fresh until touch; CC is immediately following third candle; same direction; close beyond boundary changes role.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; full transition corpus still needed"
+    },
+    {
+      "id": "V5-3.3-L129",
+      "section": "3.3",
+      "source_line": 129,
+      "text": "3. **Candle 3 (The CC)**: Must close in the **same direction as the newly formed level**:",
+      "logic": "Fresh until touch; CC is immediately following third candle; same direction; close beyond boundary changes role.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; full transition corpus still needed"
+    },
+    {
+      "id": "V5-3.3-L130",
+      "section": "3.3",
+      "source_line": 130,
+      "text": "   * **For V-Support**: Candle 3 must close **Bullish (Green)**.",
+      "logic": "Fresh until touch; CC is immediately following third candle; same direction; close beyond boundary changes role.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; full transition corpus still needed"
+    },
+    {
+      "id": "V5-3.3-L131",
+      "section": "3.3",
+      "source_line": 131,
+      "text": "   * **For A-Resistance**: Candle 3 must close **Bearish (Red)**.",
+      "logic": "Fresh until touch; CC is immediately following third candle; same direction; close beyond boundary changes role.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; full transition corpus still needed"
+    },
+    {
+      "id": "V5-3.3-L132",
+      "section": "3.3",
+      "source_line": 132,
+      "text": "* **Effect**: A valid CC restores an otherwise unfresh/tested level to **full fresh trading authority**.",
+      "logic": "Fresh until touch; CC is immediately following third candle; same direction; close beyond boundary changes role.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:levels"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing; full transition corpus still needed"
+    },
+    {
+      "id": "V5-4.1-L139",
+      "section": "4.1",
+      "source_line": 139,
+      "text": "Trendlines in MSNR 2.0 must connect exact **A-Shape peaks (Resistance Trendlines)** or **V-Shape valleys (Support Trendlines)**. ",
+      "logic": "Two anchors establish line; allow entries on touches 3/4; reject 1/2/5+. Classifications must not bypass evidence.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:trendlines",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing core; eight-type historical coverage incomplete"
+    },
+    {
+      "id": "V5-4.1-L142",
+      "section": "4.1",
+      "source_line": 142,
+      "text": "               (Touch 1)          (Touch 2)          (Touch 3)          (Touch 4)          (Touch 5)",
+      "logic": "Two anchors establish line; allow entries on touches 3/4; reject 1/2/5+. Classifications must not bypass evidence.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:trendlines",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing core; eight-type historical coverage incomplete"
+    },
+    {
+      "id": "V5-4.1-L143",
+      "section": "4.1",
+      "source_line": 143,
+      "text": "                 A1                 A2                 A3                 A4                 A5",
+      "logic": "Two anchors establish line; allow entries on touches 3/4; reject 1/2/5+. Classifications must not bypass evidence.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:trendlines",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing core; eight-type historical coverage incomplete"
+    },
+    {
+      "id": "V5-4.1-L144",
+      "section": "4.1",
+      "source_line": 144,
+      "text": "                 /\\                 /\\                 /\\                 /\\                 /                /  \\               /  \\               /  \\               /  \\               /    -------------/----\\-------------/----\\-------------/----\\-------------/----\\-------------/----\\-----> BREAKOUT!",
+      "logic": "Two anchors establish line; allow entries on touches 3/4; reject 1/2/5+. Classifications must not bypass evidence.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:trendlines",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing core; eight-type historical coverage incomplete"
+    },
+    {
+      "id": "V5-4.1-L145",
+      "section": "4.1",
+      "source_line": 145,
+      "text": "              [Establish]        [Confirm]         [BEST ENTRY]       [VALID ENTRY]      [DO NOT ENTER]",
+      "logic": "Two anchors establish line; allow entries on touches 3/4; reject 1/2/5+. Classifications must not bypass evidence.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:trendlines",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing core; eight-type historical coverage incomplete"
+    },
+    {
+      "id": "V5-4.2-L149",
+      "section": "4.2",
+      "source_line": 149,
+      "text": "* **Touches 1 & 2**: Used exclusively to **draw and establish** the trendline angle. No trades allowed.",
+      "logic": "Two anchors establish line; allow entries on touches 3/4; reject 1/2/5+. Classifications must not bypass evidence.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:trendlines",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing core; eight-type historical coverage incomplete"
+    },
+    {
+      "id": "V5-4.2-L150",
+      "section": "4.2",
+      "source_line": 150,
+      "text": "* **Touches 3 & 4 (Active Entry Touches)**: **Valid trade entry setups**. Touch 3 offers the highest historical win rate (1:3+ RR).",
+      "logic": "Two anchors establish line; allow entries on touches 3/4; reject 1/2/5+. Classifications must not bypass evidence.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:trendlines",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing core; eight-type historical coverage incomplete"
+    },
+    {
+      "id": "V5-4.2-L151",
+      "section": "4.2",
+      "source_line": 151,
+      "text": "* **Touch 5 (Breakout Limit)**: Trendlines hold up to 5 touches maximum. **Touch 5 is expected to break out**—do NOT take continuation trades on Touch 5.",
+      "logic": "Two anchors establish line; allow entries on touches 3/4; reject 1/2/5+. Classifications must not bypass evidence.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:trendlines",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing core; eight-type historical coverage incomplete"
+    },
+    {
+      "id": "V5-4.3-L154",
+      "section": "4.3",
+      "source_line": 154,
+      "text": "1. **Classic Support Trendline**: Connects 2+ fresh V-shapes pointing upward.",
+      "logic": "Two anchors establish line; allow entries on touches 3/4; reject 1/2/5+. Classifications must not bypass evidence.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:trendlines",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing core; eight-type historical coverage incomplete"
+    },
+    {
+      "id": "V5-4.3-L155",
+      "section": "4.3",
+      "source_line": 155,
+      "text": "2. **Classic Resistance Trendline**: Connects 2+ fresh A-shapes pointing downward.",
+      "logic": "Two anchors establish line; allow entries on touches 3/4; reject 1/2/5+. Classifications must not bypass evidence.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:trendlines",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing core; eight-type historical coverage incomplete"
+    },
+    {
+      "id": "V5-4.3-L156",
+      "section": "4.3",
+      "source_line": 156,
+      "text": "3. **Breakout Support Trendline (SBR TL)**: Broken support trendline retested from below as resistance.",
+      "logic": "Two anchors establish line; allow entries on touches 3/4; reject 1/2/5+. Classifications must not bypass evidence.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:trendlines",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing core; eight-type historical coverage incomplete"
+    },
+    {
+      "id": "V5-4.3-L157",
+      "section": "4.3",
+      "source_line": 157,
+      "text": "4. **Breakout Resistance Trendline (RBS TL)**: Broken resistance trendline retested from above as support.",
+      "logic": "Two anchors establish line; allow entries on touches 3/4; reject 1/2/5+. Classifications must not bypass evidence.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:trendlines",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing core; eight-type historical coverage incomplete"
+    },
+    {
+      "id": "V5-4.3-L158",
+      "section": "4.3",
+      "source_line": 158,
+      "text": "5. **Advanced Support Trendline**: Connects V-shapes across multi-timeframe storylines.",
+      "logic": "Two anchors establish line; allow entries on touches 3/4; reject 1/2/5+. Classifications must not bypass evidence.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:trendlines",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing core; eight-type historical coverage incomplete"
+    },
+    {
+      "id": "V5-4.3-L159",
+      "section": "4.3",
+      "source_line": 159,
+      "text": "6. **Advanced Resistance Trendline**: Connects A-shapes across multi-timeframe storylines.",
+      "logic": "Two anchors establish line; allow entries on touches 3/4; reject 1/2/5+. Classifications must not bypass evidence.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:trendlines",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing core; eight-type historical coverage incomplete"
+    },
+    {
+      "id": "V5-4.3-L160",
+      "section": "4.3",
+      "source_line": 160,
+      "text": "7. **Inducement (IDM) Trendline**: Liquidity trendline engineered by algorithms to trap retail breakout traders.",
+      "logic": "Two anchors establish line; allow entries on touches 3/4; reject 1/2/5+. Classifications must not bypass evidence.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:trendlines",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing core; eight-type historical coverage incomplete"
+    },
+    {
+      "id": "V5-4.3-L161",
+      "section": "4.3",
+      "source_line": 161,
+      "text": "8. **Trendline Key (TL Key)**: Confluence point where a trendline intersects directly with a fresh horizontal SNR level.",
+      "logic": "Two anchors establish line; allow entries on touches 3/4; reject 1/2/5+. Classifications must not bypass evidence.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:trendlines",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing core; eight-type historical coverage incomplete"
+    },
+    {
+      "id": "V5-5.1-L168",
+      "section": "5.1",
+      "source_line": 168,
+      "text": "* **Valid Breakout**: A candle **BODY CLOSES** completely beyond the horizontal SNR level line. Confirms structural breakout and flips level to SBR/RBS.",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.1-L169",
+      "section": "5.1",
+      "source_line": 169,
+      "text": "* **Fakeout / Rejection Sweep**: Only the **WICK** extends past the SNR level line while the body closes inside. Confirms level holds; signals potential reversal.",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.1-L172",
+      "section": "5.1",
+      "source_line": 172,
+      "text": "VALID BREAKOUT (Body Close Past Line)          FAKEOUT / REJECTION (Wick Only)",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.1-L174",
+      "section": "5.1",
+      "source_line": 174,
+      "text": "        |  [Green Body Close]                          |  [Wick Sweeps Past]",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.1-L178",
+      "section": "5.1",
+      "source_line": 178,
+      "text": "        |  [Red Candle]                             |     | [Body Closes Inside]",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.2-L183",
+      "section": "5.2",
+      "source_line": 183,
+      "text": "The Quasimodo pattern is the ultimate structural reversal pattern in MSNR 2.0.",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.2-L186",
+      "section": "5.2",
+      "source_line": 186,
+      "text": "1. Price forms a Low (**L**).",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.2-L187",
+      "section": "5.2",
+      "source_line": 187,
+      "text": "2. Price rallies to form a High (**H**).",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.2-L188",
+      "section": "5.2",
+      "source_line": 188,
+      "text": "3. Price drops below Low to form a Lower Low (**LL**) — sweeping liquidity.",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.2-L189",
+      "section": "5.2",
+      "source_line": 189,
+      "text": "4. Price surges upward and **candle body closes** above High to form a Higher High (**HH**).",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.2-L190",
+      "section": "5.2",
+      "source_line": 190,
+      "text": "5. **Entry Zone**: Pullback to the **Left Shoulder (LS)** level.",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.2-L193",
+      "section": "5.2",
+      "source_line": 193,
+      "text": "BULLISH QM ANATOMY                             BEARISH QM ANATOMY",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.2-L195",
+      "section": "5.2",
+      "source_line": 195,
+      "text": "                  HH (Higher High)                         H (High)           HH (Higher High)",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.2-L196",
+      "section": "5.2",
+      "source_line": 196,
+      "text": "                  /\\                                       /\\                 /                 /  \\  [Pullback Entry]                   /  \\               /        H (High)  /    \\  /                     LS (Left   /    \\             /             /\\    /      \\/ [LS Entry]           Shoulder) /      \\           /              /  \\  /                               ==========/=======\\=========/========\\========== [LS Entry]",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.2-L198",
+      "section": "5.2",
+      "source_line": 198,
+      "text": "   LS /      L (Low)                                  /           \\     /            \\/ [Pullback Entry]",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.2-L199",
+      "section": "5.2",
+      "source_line": 199,
+      "text": "  /  /                                               /             \\   /             LL (Lower Low)",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.2-L201",
+      "section": "5.2",
+      "source_line": 201,
+      "text": "   / LL (Lower Low)                                /                 L (Low)",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.2-L205",
+      "section": "5.2",
+      "source_line": 205,
+      "text": "1. Price forms a High (**H**).",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.2-L206",
+      "section": "5.2",
+      "source_line": 206,
+      "text": "2. Price drops to form a Low (**L**).",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.2-L207",
+      "section": "5.2",
+      "source_line": 207,
+      "text": "3. Price rallies above High to form a Higher High (**HH**) — sweeping liquidity.",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.2-L208",
+      "section": "5.2",
+      "source_line": 208,
+      "text": "4. Price crashes downward and **candle body closes** below Low to form a Lower Low (**LL**).",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-5.2-L209",
+      "section": "5.2",
+      "source_line": 209,
+      "text": "5. **Entry Zone**: Pullback to the **Left Shoulder (LS)** level.",
+      "logic": "Require direction-specific L/H/LL/HH or H/L/HH/LL, with body-close breakout. Wicks alone never confirm breakout.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:quasimodos"
+      ],
+      "tests": [
+        "tests/test_strategy.py"
+      ],
+      "status": "existing"
+    },
+    {
+      "id": "V5-6.1-L216",
+      "section": "6.1",
+      "source_line": 216,
+      "text": "The validation of an SNR level depends strictly on the timeframe being analyzed:",
+      "logic": "MN1→D1, W1→H4 wick validation; D1→H1, H4→M15, H1→M5 body-close validation. Evaluate the specified validation timeframe.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required; current mapping and rejection-bar source differ"
+    },
+    {
+      "id": "V5-6.1-L220",
+      "section": "6.1",
+      "source_line": 220,
+      "text": "| HTF SNR Level      | Breakout / Rejection TF   | Validation Rule                   |",
+      "logic": "MN1→D1, W1→H4 wick validation; D1→H1, H4→M15, H1→M5 body-close validation. Evaluate the specified validation timeframe.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required; current mapping and rejection-bar source differ"
+    },
+    {
+      "id": "V5-6.1-L222",
+      "section": "6.1",
+      "source_line": 222,
+      "text": "| Monthly (MN1)      | Daily (1D)                | Rejection Wick Only (No body close)|",
+      "logic": "MN1→D1, W1→H4 wick validation; D1→H1, H4→M15, H1→M5 body-close validation. Evaluate the specified validation timeframe.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required; current mapping and rejection-bar source differ"
+    },
+    {
+      "id": "V5-6.1-L223",
+      "section": "6.1",
+      "source_line": 223,
+      "text": "| Weekly (W1)        | 4-Hour (4H)               | Rejection Wick Only (No body close)|",
+      "logic": "MN1→D1, W1→H4 wick validation; D1→H1, H4→M15, H1→M5 body-close validation. Evaluate the specified validation timeframe.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required; current mapping and rejection-bar source differ"
+    },
+    {
+      "id": "V5-6.1-L224",
+      "section": "6.1",
+      "source_line": 224,
+      "text": "| Daily (D1)         | 1-Hour (1H)               | Candle BODY CLOSE Required        |",
+      "logic": "MN1→D1, W1→H4 wick validation; D1→H1, H4→M15, H1→M5 body-close validation. Evaluate the specified validation timeframe.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required; current mapping and rejection-bar source differ"
+    },
+    {
+      "id": "V5-6.1-L225",
+      "section": "6.1",
+      "source_line": 225,
+      "text": "| 4-Hour (4H)        | 15-Minute (15M)           | Candle BODY CLOSE Required        |",
+      "logic": "MN1→D1, W1→H4 wick validation; D1→H1, H4→M15, H1→M5 body-close validation. Evaluate the specified validation timeframe.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required; current mapping and rejection-bar source differ"
+    },
+    {
+      "id": "V5-6.1-L226",
+      "section": "6.1",
+      "source_line": 226,
+      "text": "| 1-Hour (1H)        | 5-Minute (5M)             | Candle BODY CLOSE Required        |",
+      "logic": "MN1→D1, W1→H4 wick validation; D1→H1, H4→M15, H1→M5 body-close validation. Evaluate the specified validation timeframe.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required; current mapping and rejection-bar source differ"
+    },
+    {
+      "id": "V5-7.1-L235",
+      "section": "7.1",
+      "source_line": 235,
+      "text": "* **Classic Storyline**: Price travels between **fresh horizontal SNR levels** (e.g., Weekly Resistance to Weekly Support).",
+      "logic": "Classic horizontal destination versus advanced exhausted-horizontal trendline story. Retain prior phase-3 mechanics only if approved as supplementary.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py"
+      ],
+      "status": "supplement scope pending; advanced complete-history prerequisite retained"
+    },
+    {
+      "id": "V5-7.1-L236",
+      "section": "7.1",
+      "source_line": 236,
+      "text": "* **Advanced Storyline**: Price travels along **trendlines and SBR/RBS levels** when fresh horizontal SNR levels are exhausted.",
+      "logic": "Classic horizontal destination versus advanced exhausted-horizontal trendline story. Retain prior phase-3 mechanics only if approved as supplementary.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py"
+      ],
+      "status": "supplement scope pending; advanced complete-history prerequisite retained"
+    },
+    {
+      "id": "V5-7.2-L242",
+      "section": "7.2",
+      "source_line": 242,
+      "text": "|                       THE 3 STORYLINE PHASES                          |",
+      "logic": "Classic horizontal destination versus advanced exhausted-horizontal trendline story. Retain prior phase-3 mechanics only if approved as supplementary.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py"
+      ],
+      "status": "supplement scope pending; advanced complete-history prerequisite retained"
+    },
+    {
+      "id": "V5-7.2-L244",
+      "section": "7.2",
+      "source_line": 244,
+      "text": "| Phase 1: Initiation (QM Reversal)                                     |",
+      "logic": "Classic horizontal destination versus advanced exhausted-horizontal trendline story. Retain prior phase-3 mechanics only if approved as supplementary.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py"
+      ],
+      "status": "supplement scope pending; advanced complete-history prerequisite retained"
+    },
+    {
+      "id": "V5-7.2-L245",
+      "section": "7.2",
+      "source_line": 245,
+      "text": "|   - Rejection/Breakout at HTF Level creates a QM pattern.             |",
+      "logic": "Classic horizontal destination versus advanced exhausted-horizontal trendline story. Retain prior phase-3 mechanics only if approved as supplementary.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py"
+      ],
+      "status": "supplement scope pending; advanced complete-history prerequisite retained"
+    },
+    {
+      "id": "V5-7.2-L246",
+      "section": "7.2",
+      "source_line": 246,
+      "text": "|   - Reversal officially begins.                                       |",
+      "logic": "Classic horizontal destination versus advanced exhausted-horizontal trendline story. Retain prior phase-3 mechanics only if approved as supplementary.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py"
+      ],
+      "status": "supplement scope pending; advanced complete-history prerequisite retained"
+    },
+    {
+      "id": "V5-7.2-L247",
+      "section": "7.2",
+      "source_line": 247,
+      "text": "| Phase 2: Middle Expansion (Continuation)                              |",
+      "logic": "Classic horizontal destination versus advanced exhausted-horizontal trendline story. Retain prior phase-3 mechanics only if approved as supplementary.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py"
+      ],
+      "status": "supplement scope pending; advanced complete-history prerequisite retained"
+    },
+    {
+      "id": "V5-7.2-L248",
+      "section": "7.2",
+      "source_line": 248,
+      "text": "|   - Price breaks intermediate 4H/1H levels in direction of trend.     |",
+      "logic": "Classic horizontal destination versus advanced exhausted-horizontal trendline story. Retain prior phase-3 mechanics only if approved as supplementary.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py"
+      ],
+      "status": "supplement scope pending; advanced complete-history prerequisite retained"
+    },
+    {
+      "id": "V5-7.2-L249",
+      "section": "7.2",
+      "source_line": 249,
+      "text": "|   - QMC, GAP, and SBR/RBS continuation setups trigger.                |",
+      "logic": "Classic horizontal destination versus advanced exhausted-horizontal trendline story. Retain prior phase-3 mechanics only if approved as supplementary.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py"
+      ],
+      "status": "supplement scope pending; advanced complete-history prerequisite retained"
+    },
+    {
+      "id": "V5-7.2-L250",
+      "section": "7.2",
+      "source_line": 250,
+      "text": "| Phase 3: Ending Exhaustion (Destination Target)                       |",
+      "logic": "Classic horizontal destination versus advanced exhausted-horizontal trendline story. Retain prior phase-3 mechanics only if approved as supplementary.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py"
+      ],
+      "status": "supplement scope pending; advanced complete-history prerequisite retained"
+    },
+    {
+      "id": "V5-7.2-L251",
+      "section": "7.2",
+      "source_line": 251,
+      "text": "|   - Price reaches opposing HTF SNR floor/ceiling.                     |",
+      "logic": "Classic horizontal destination versus advanced exhausted-horizontal trendline story. Retain prior phase-3 mechanics only if approved as supplementary.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py"
+      ],
+      "status": "supplement scope pending; advanced complete-history prerequisite retained"
+    },
+    {
+      "id": "V5-7.2-L252",
+      "section": "7.2",
+      "source_line": 252,
+      "text": "|   - Rejection wicks form; prepare for storyline completion.           |",
+      "logic": "Classic horizontal destination versus advanced exhausted-horizontal trendline story. Retain prior phase-3 mechanics only if approved as supplementary.",
+      "implementation": [
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py"
+      ],
+      "status": "supplement scope pending; advanced complete-history prerequisite retained"
+    },
+    {
+      "id": "V5-8.1-L261",
+      "section": "8.1",
+      "source_line": 261,
+      "text": "1. **QMS Apex Setup**: Entry directly at the QM Apex (refining long wicks on $4\text{H} ",
+      "logic": "APEX refinement H4/H1/M30/M15; LS retest; flip alignment; early RS precedence pending; fresh GAP alignment.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "ERS conflict pending; other model-specific supplemental rules pending"
+    },
+    {
+      "id": "V5-8.1-L262",
+      "section": "8.1",
+      "source_line": 262,
+      "text": "ightarrow 1\text{H} ",
+      "logic": "APEX refinement H4/H1/M30/M15; LS retest; flip alignment; early RS precedence pending; fresh GAP alignment.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "ERS conflict pending; other model-specific supplemental rules pending"
+    },
+    {
+      "id": "V5-8.1-L263",
+      "section": "8.1",
+      "source_line": 263,
+      "text": "ightarrow 30\text{M} ",
+      "logic": "APEX refinement H4/H1/M30/M15; LS retest; flip alignment; early RS precedence pending; fresh GAP alignment.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "ERS conflict pending; other model-specific supplemental rules pending"
+    },
+    {
+      "id": "V5-8.1-L264",
+      "section": "8.1",
+      "source_line": 264,
+      "text": "ightarrow 15\text{M}$).",
+      "logic": "APEX refinement H4/H1/M30/M15; LS retest; flip alignment; early RS precedence pending; fresh GAP alignment.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "ERS conflict pending; other model-specific supplemental rules pending"
+    },
+    {
+      "id": "V5-8.1-L265",
+      "section": "8.1",
+      "source_line": 265,
+      "text": "2. **QMS Left Shoulder (LS) Setup**: Classic retest of the Left Shoulder horizontal line.",
+      "logic": "APEX refinement H4/H1/M30/M15; LS retest; flip alignment; early RS precedence pending; fresh GAP alignment.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "ERS conflict pending; other model-specific supplemental rules pending"
+    },
+    {
+      "id": "V5-8.1-L266",
+      "section": "8.1",
+      "source_line": 266,
+      "text": "3. **QMS SBR / RBS Setup**: Confluence where Left Shoulder aligns with broken support/resistance.",
+      "logic": "APEX refinement H4/H1/M30/M15; LS retest; flip alignment; early RS precedence pending; fresh GAP alignment.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "ERS conflict pending; other model-specific supplemental rules pending"
+    },
+    {
+      "id": "V5-8.1-L267",
+      "section": "8.1",
+      "source_line": 267,
+      "text": "4. **QMS Early Right Shoulder (ERS) Setup**: Entry triggered before HH/LL is complete when HTF level gives instant rejection.",
+      "logic": "APEX refinement H4/H1/M30/M15; LS retest; flip alignment; early RS precedence pending; fresh GAP alignment.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "ERS conflict pending; other model-specific supplemental rules pending"
+    },
+    {
+      "id": "V5-8.1-L268",
+      "section": "8.1",
+      "source_line": 268,
+      "text": "5. **QMS GAP Setup**: Left Shoulder aligns perfectly with a fresh Bullish or Bearish GAP.",
+      "logic": "APEX refinement H4/H1/M30/M15; LS retest; flip alignment; early RS precedence pending; fresh GAP alignment.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_engine_pipeline.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "ERS conflict pending; other model-specific supplemental rules pending"
+    },
+    {
+      "id": "V5-9.1-L275",
+      "section": "9.1",
+      "source_line": 275,
+      "text": "1. **C.APEX Setup**: Retest of a continuation QM Apex.",
+      "logic": "Continuation catalogue; H1 EX1–EX4 named but their definitions omitted. Preserve only approved supplemental mechanics.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "supplement scope pending; no invented EX definitions"
+    },
+    {
+      "id": "V5-9.1-L276",
+      "section": "9.1",
+      "source_line": 276,
+      "text": "2. **C.GAP Setup**: Retest of a 15M/5M fresh GAP during active expansion.",
+      "logic": "Continuation catalogue; H1 EX1–EX4 named but their definitions omitted. Preserve only approved supplemental mechanics.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "supplement scope pending; no invented EX definitions"
+    },
+    {
+      "id": "V5-9.1-L277",
+      "section": "9.1",
+      "source_line": 277,
+      "text": "3. **C.SBR / C.RBS Setup**: Retest of freshly broken support/resistance.",
+      "logic": "Continuation catalogue; H1 EX1–EX4 named but their definitions omitted. Preserve only approved supplemental mechanics.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "supplement scope pending; no invented EX definitions"
+    },
+    {
+      "id": "V5-9.1-L278",
+      "section": "9.1",
+      "source_line": 278,
+      "text": "4. **QMC (Quasimodo Continuation)**: Continuation QM pattern forming in direction of macro trend.",
+      "logic": "Continuation catalogue; H1 EX1–EX4 named but their definitions omitted. Preserve only approved supplemental mechanics.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "supplement scope pending; no invented EX definitions"
+    },
+    {
+      "id": "V5-9.1-L279",
+      "section": "9.1",
+      "source_line": 279,
+      "text": "5. **QM-to-QM Setup**: Micro 1M/5M QM pattern forming inside an HTF QM entry zone.",
+      "logic": "Continuation catalogue; H1 EX1–EX4 named but their definitions omitted. Preserve only approved supplemental mechanics.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "supplement scope pending; no invented EX definitions"
+    },
+    {
+      "id": "V5-9.1-L280",
+      "section": "9.1",
+      "source_line": 280,
+      "text": "6. **Reversal TL-QM Failed**: Trading the momentum explosion when a QM pattern fails and breaks opposite side.",
+      "logic": "Continuation catalogue; H1 EX1–EX4 named but their definitions omitted. Preserve only approved supplemental mechanics.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "supplement scope pending; no invented EX definitions"
+    },
+    {
+      "id": "V5-9.1-L281",
+      "section": "9.1",
+      "source_line": 281,
+      "text": "7. **H1 POI EX1–EX4 Models**: White SNT's H1 Point of Interest execution models targeting M1-M5 order blocks.",
+      "logic": "Continuation catalogue; H1 EX1–EX4 named but their definitions omitted. Preserve only approved supplemental mechanics.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "supplement scope pending; no invented EX definitions"
+    },
+    {
+      "id": "V5-10.1-L288",
+      "section": "10.1",
+      "source_line": 288,
+      "text": "Before executing any trade, wait for at least ONE confirmation badge at your entry zone:",
+      "logic": "At least one eligible badge in the entry zone. Rejection and break badges M15/M5; mini QM M5/M1; EMA9 cross plus one closed holding M5 candle. No unlisted engulfing prerequisite.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:ema_badge",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: extra badge timeframes and engulfing restrictions"
+    },
+    {
+      "id": "V5-10.1-L292",
+      "section": "10.1",
+      "source_line": 292,
+      "text": "| Confirmation Badge     | Exact Quantitative Definition                                    |",
+      "logic": "At least one eligible badge in the entry zone. Rejection and break badges M15/M5; mini QM M5/M1; EMA9 cross plus one closed holding M5 candle. No unlisted engulfing prerequisite.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:ema_badge",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: extra badge timeframes and engulfing restrictions"
+    },
+    {
+      "id": "V5-10.1-L294",
+      "section": "10.1",
+      "source_line": 294,
+      "text": "| 1. Candle Rejection    | Rejection wick length >= 2x body length & >= 1 tick.             |",
+      "logic": "At least one eligible badge in the entry zone. Rejection and break badges M15/M5; mini QM M5/M1; EMA9 cross plus one closed holding M5 candle. No unlisted engulfing prerequisite.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:ema_badge",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: extra badge timeframes and engulfing restrictions"
+    },
+    {
+      "id": "V5-10.1-L295",
+      "section": "10.1",
+      "source_line": 295,
+      "text": "| 2. Breaking Gap        | Price breaks clean through a 5M/15M GAP level with body close.  |",
+      "logic": "At least one eligible badge in the entry zone. Rejection and break badges M15/M5; mini QM M5/M1; EMA9 cross plus one closed holding M5 candle. No unlisted engulfing prerequisite.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:ema_badge",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: extra badge timeframes and engulfing restrictions"
+    },
+    {
+      "id": "V5-10.1-L296",
+      "section": "10.1",
+      "source_line": 296,
+      "text": "| 3. Trendline Breakout  | 5M/15M candle body closes beyond active trendline.               |",
+      "logic": "At least one eligible badge in the entry zone. Rejection and break badges M15/M5; mini QM M5/M1; EMA9 cross plus one closed holding M5 candle. No unlisted engulfing prerequisite.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:ema_badge",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: extra badge timeframes and engulfing restrictions"
+    },
+    {
+      "id": "V5-10.1-L297",
+      "section": "10.1",
+      "source_line": 297,
+      "text": "| 4. Mini Bullish/Bearish| Micro 5M/1M QM pattern forms inside HTF zone.                   |",
+      "logic": "At least one eligible badge in the entry zone. Rejection and break badges M15/M5; mini QM M5/M1; EMA9 cross plus one closed holding M5 candle. No unlisted engulfing prerequisite.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:ema_badge",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: extra badge timeframes and engulfing restrictions"
+    },
+    {
+      "id": "V5-10.1-L298",
+      "section": "10.1",
+      "source_line": 298,
+      "text": "| 5. 5Min EMA 9 Hold     | Price breaks EMA 9 + 1 additional closed M5 candle holds side.  |",
+      "logic": "At least one eligible badge in the entry zone. Rejection and break badges M15/M5; mini QM M5/M1; EMA9 cross plus one closed holding M5 candle. No unlisted engulfing prerequisite.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:ema_badge",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: extra badge timeframes and engulfing restrictions"
+    },
+    {
+      "id": "V5-11.1-L307",
+      "section": "11.1",
+      "source_line": 307,
+      "text": "* **Mandatory Status**: SMT is **OPTIONAL** for standard MSNR trades, but **MANDATORY** for Daye QT x SMT and Circle Fibonacci SMT setups.",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: old six-hour quarter clock, 19:00 Asia and global hybrid gates"
+    },
+    {
+      "id": "V5-11.1-L311",
+      "section": "11.1",
+      "source_line": 311,
+      "text": "| Asset Class        | Primary Symbol        | Comparison Symbol     | Correlation Relationship |",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: old six-hour quarter clock, 19:00 Asia and global hybrid gates"
+    },
+    {
+      "id": "V5-11.1-L313",
+      "section": "11.1",
+      "source_line": 313,
+      "text": "| Precious Metals    | XAUUSD (Gold)         | XAGUSD (Silver)       | Positive (High/Low Div)  |",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: old six-hour quarter clock, 19:00 Asia and global hybrid gates"
+    },
+    {
+      "id": "V5-11.1-L314",
+      "section": "11.1",
+      "source_line": 314,
+      "text": "| Forex Majors       | EURUSD                | GBPUSD                | Positive                 |",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: old six-hour quarter clock, 19:00 Asia and global hybrid gates"
+    },
+    {
+      "id": "V5-11.1-L315",
+      "section": "11.1",
+      "source_line": 315,
+      "text": "| Forex Yens         | USDJPY                | USDCHF                | Positive / Inverse       |",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: old six-hour quarter clock, 19:00 Asia and global hybrid gates"
+    },
+    {
+      "id": "V5-11.1-L316",
+      "section": "11.1",
+      "source_line": 316,
+      "text": "| Crypto             | BTCUSDm               | ETHUSDm               | Positive                 |",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: old six-hour quarter clock, 19:00 Asia and global hybrid gates"
+    },
+    {
+      "id": "V5-11.1-L317",
+      "section": "11.1",
+      "source_line": 317,
+      "text": "| Crypto             | ETHUSDm               | BTCUSDm               | Positive                 |",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: old six-hour quarter clock, 19:00 Asia and global hybrid gates"
+    },
+    {
+      "id": "V5-11.1-L318",
+      "section": "11.1",
+      "source_line": 318,
+      "text": "| Energy             | USOILm (WTI)          | UKOILm (Brent) / XLE  | Positive                 |",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: old six-hour quarter clock, 19:00 Asia and global hybrid gates"
+    },
+    {
+      "id": "V5-11.1-L319",
+      "section": "11.1",
+      "source_line": 319,
+      "text": "| Equities           | TSLA                  | QQQ / NQ / NVDA       | Positive                 |",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: old six-hour quarter clock, 19:00 Asia and global hybrid gates"
+    },
+    {
+      "id": "V5-11.1-L320",
+      "section": "11.1",
+      "source_line": 320,
+      "text": "| Equities           | GOOGL                 | MSFT / QQQ / NQ       | Positive                 |",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: old six-hour quarter clock, 19:00 Asia and global hybrid gates"
+    },
+    {
+      "id": "V5-11.2-L325",
+      "section": "11.2",
+      "source_line": 325,
+      "text": "* **Timezone Anchor**: All session windows anchored to **`America/New_York` local time** (EDT/EST with Daylight Saving Time).",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: old six-hour quarter clock, 19:00 Asia and global hybrid gates"
+    },
+    {
+      "id": "V5-11.2-L326",
+      "section": "11.2",
+      "source_line": 326,
+      "text": "* **ICT Session Liquidity Windows**:",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: old six-hour quarter clock, 19:00 Asia and global hybrid gates"
+    },
+    {
+      "id": "V5-11.2-L327",
+      "section": "11.2",
+      "source_line": 327,
+      "text": "  * **Asian Session**: 20:00 – 00:00 NY (Accumulation Range).",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: old six-hour quarter clock, 19:00 Asia and global hybrid gates"
+    },
+    {
+      "id": "V5-11.2-L328",
+      "section": "11.2",
+      "source_line": 328,
+      "text": "  * **London Session**: 02:00 – 05:00 NY (Manipulation Sweep / Judas Swing).",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: old six-hour quarter clock, 19:00 Asia and global hybrid gates"
+    },
+    {
+      "id": "V5-11.2-L329",
+      "section": "11.2",
+      "source_line": 329,
+      "text": "  * **New York Session**: 08:00 – 11:00 NY (Distribution / Expansion).",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: old six-hour quarter clock, 19:00 Asia and global hybrid gates"
+    },
+    {
+      "id": "V5-11.2-L330",
+      "section": "11.2",
+      "source_line": 330,
+      "text": "* **Daye Quarterly Theory (90-Min Cycles)**:",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: old six-hour quarter clock, 19:00 Asia and global hybrid gates"
+    },
+    {
+      "id": "V5-11.2-L331",
+      "section": "11.2",
+      "source_line": 331,
+      "text": "  * **Q1 (0 – 22.5 mins)**: Accumulation.",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: old six-hour quarter clock, 19:00 Asia and global hybrid gates"
+    },
+    {
+      "id": "V5-11.2-L332",
+      "section": "11.2",
+      "source_line": 332,
+      "text": "  * **Q2 (22.5 – 45 mins)**: Manipulation (Judas Sweep).",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: old six-hour quarter clock, 19:00 Asia and global hybrid gates"
+    },
+    {
+      "id": "V5-11.2-L333",
+      "section": "11.2",
+      "source_line": 333,
+      "text": "  * **Q3 (45 – 67.5 mins)**: Distribution (True Move).",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: old six-hour quarter clock, 19:00 Asia and global hybrid gates"
+    },
+    {
+      "id": "V5-11.2-L334",
+      "section": "11.2",
+      "source_line": 334,
+      "text": "  * **Q4 (67.5 – 90 mins)**: Reversal / Continuation.",
+      "logic": "Core SMT optional; QT and Circle mandatory SMT; direct USDJPY/USDCHF retained from prior explicit decision unless overridden. NY 20:00–00:00, 02:00–05:00, 08:00–11:00; 90-minute cycle quarters last 22.5 minutes.",
+      "implementation": [
+        "src/msnr/clock.py",
+        "src/msnr/strategy/primitives.py:asia_range",
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "change required: old six-hour quarter clock, 19:00 Asia and global hybrid gates"
+    },
+    {
+      "id": "V5-12.1-L341",
+      "section": "12.1",
+      "source_line": 341,
+      "text": "In *The Alchemist* framework, custom Fibonacci ratios determine deep institutional discount/premium zones:",
+      "logic": "Exact ratios .109/.243/.382/.5/.618/.707/.786/.886/1.109/1.272/1.618/1.893; OTE retracement .707–.786 with SMT; confirmed QM swing anchors require approved supplemental interpretation.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:fibonacci",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "ratios change; full Circle signal model absent"
+    },
+    {
+      "id": "V5-12.1-L342",
+      "section": "12.1",
+      "source_line": 342,
+      "text": "* **Core Ratios**: `0.109`, `0.243`, `0.382`, `0.500` (Equilibrium), `0.618`, `0.707`, `0.786`, `0.886`, `1.109`, `1.272`, `1.618`, `1.893`.",
+      "logic": "Exact ratios .109/.243/.382/.5/.618/.707/.786/.886/1.109/1.272/1.618/1.893; OTE retracement .707–.786 with SMT; confirmed QM swing anchors require approved supplemental interpretation.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:fibonacci",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "ratios change; full Circle signal model absent"
+    },
+    {
+      "id": "V5-12.1-L343",
+      "section": "12.1",
+      "source_line": 343,
+      "text": "* **Execution**: Measure swing high to swing low. Enter at deep OTE zones (`0.707` – `0.786`) with SMT confluence.",
+      "logic": "Exact ratios .109/.243/.382/.5/.618/.707/.786/.886/1.109/1.272/1.618/1.893; OTE retracement .707–.786 with SMT; confirmed QM swing anchors require approved supplemental interpretation.",
+      "implementation": [
+        "src/msnr/strategy/primitives.py:fibonacci",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "ratios change; full Circle signal model absent"
+    },
+    {
+      "id": "V5-13.1-L350",
+      "section": "13.1",
+      "source_line": 350,
+      "text": "A Stop Loss must ALWAYS be placed beyond the structural extreme (Apex or wick tip) plus the asset-specific safety buffer:",
+      "logic": "Structural stop beyond apex plus specified asset buffer. Forex30pips, gold3; selected bounds BTC500/ETH30/oil.50/stocks1.50 remain within v5 ranges. Broker ticks/lots and monetary risk still independently validated.",
+      "implementation": [
+        "config/default.json",
+        "src/msnr/risk.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_execution.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "existing buffer configuration; no silent tick/contract assumptions"
+    },
+    {
+      "id": "V5-13.1-L354",
+      "section": "13.1",
+      "source_line": 354,
+      "text": "| Asset Class        | Symbol                | Mandatory SL Buffer Beyond Apex                   |",
+      "logic": "Structural stop beyond apex plus specified asset buffer. Forex30pips, gold3; selected bounds BTC500/ETH30/oil.50/stocks1.50 remain within v5 ranges. Broker ticks/lots and monetary risk still independently validated.",
+      "implementation": [
+        "config/default.json",
+        "src/msnr/risk.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_execution.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "existing buffer configuration; no silent tick/contract assumptions"
+    },
+    {
+      "id": "V5-13.1-L356",
+      "section": "13.1",
+      "source_line": 356,
+      "text": "| Forex Pairs        | EURUSD, GBPUSD, etc.  | 30 Pips                                           |",
+      "logic": "Structural stop beyond apex plus specified asset buffer. Forex30pips, gold3; selected bounds BTC500/ETH30/oil.50/stocks1.50 remain within v5 ranges. Broker ticks/lots and monetary risk still independently validated.",
+      "implementation": [
+        "config/default.json",
+        "src/msnr/risk.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_execution.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "existing buffer configuration; no silent tick/contract assumptions"
+    },
+    {
+      "id": "V5-13.1-L357",
+      "section": "13.1",
+      "source_line": 357,
+      "text": "| Gold / Metals      | XAUUSD                | 3.000 Price Units ($3.00 / 30 Pips / 300 Ticks)   |",
+      "logic": "Structural stop beyond apex plus specified asset buffer. Forex30pips, gold3; selected bounds BTC500/ETH30/oil.50/stocks1.50 remain within v5 ranges. Broker ticks/lots and monetary risk still independently validated.",
+      "implementation": [
+        "config/default.json",
+        "src/msnr/risk.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_execution.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "existing buffer configuration; no silent tick/contract assumptions"
+    },
+    {
+      "id": "V5-13.1-L358",
+      "section": "13.1",
+      "source_line": 358,
+      "text": "| Equity Indices     | US30, NAS100, SPX500  | 50.0 Index Points                                 |",
+      "logic": "Structural stop beyond apex plus specified asset buffer. Forex30pips, gold3; selected bounds BTC500/ETH30/oil.50/stocks1.50 remain within v5 ranges. Broker ticks/lots and monetary risk still independently validated.",
+      "implementation": [
+        "config/default.json",
+        "src/msnr/risk.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_execution.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "existing buffer configuration; no silent tick/contract assumptions"
+    },
+    {
+      "id": "V5-13.1-L359",
+      "section": "13.1",
+      "source_line": 359,
+      "text": "| Crypto             | BTCUSDm               | $300.00 – $500.00 Price Units                     |",
+      "logic": "Structural stop beyond apex plus specified asset buffer. Forex30pips, gold3; selected bounds BTC500/ETH30/oil.50/stocks1.50 remain within v5 ranges. Broker ticks/lots and monetary risk still independently validated.",
+      "implementation": [
+        "config/default.json",
+        "src/msnr/risk.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_execution.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "existing buffer configuration; no silent tick/contract assumptions"
+    },
+    {
+      "id": "V5-13.1-L360",
+      "section": "13.1",
+      "source_line": 360,
+      "text": "| Crypto             | ETHUSDm               | $15.00 – $30.00 Price Units                       |",
+      "logic": "Structural stop beyond apex plus specified asset buffer. Forex30pips, gold3; selected bounds BTC500/ETH30/oil.50/stocks1.50 remain within v5 ranges. Broker ticks/lots and monetary risk still independently validated.",
+      "implementation": [
+        "config/default.json",
+        "src/msnr/risk.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_execution.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "existing buffer configuration; no silent tick/contract assumptions"
+    },
+    {
+      "id": "V5-13.1-L361",
+      "section": "13.1",
+      "source_line": 361,
+      "text": "| Energy             | USOILm                | $0.30 – $0.50 Price Units (30 – 50 Cents)         |",
+      "logic": "Structural stop beyond apex plus specified asset buffer. Forex30pips, gold3; selected bounds BTC500/ETH30/oil.50/stocks1.50 remain within v5 ranges. Broker ticks/lots and monetary risk still independently validated.",
+      "implementation": [
+        "config/default.json",
+        "src/msnr/risk.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_execution.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "existing buffer configuration; no silent tick/contract assumptions"
+    },
+    {
+      "id": "V5-13.1-L362",
+      "section": "13.1",
+      "source_line": 362,
+      "text": "| Individual Stocks  | TSLA, GOOGL           | $0.50 – $1.50 Price Units (0.3% – 0.5% Share Price)|",
+      "logic": "Structural stop beyond apex plus specified asset buffer. Forex30pips, gold3; selected bounds BTC500/ETH30/oil.50/stocks1.50 remain within v5 ranges. Broker ticks/lots and monetary risk still independently validated.",
+      "implementation": [
+        "config/default.json",
+        "src/msnr/risk.py",
+        "src/msnr/strategy/engine.py:Engine"
+      ],
+      "tests": [
+        "tests/test_execution.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "existing buffer configuration; no silent tick/contract assumptions"
+    },
+    {
+      "id": "V5-14.1-L371",
+      "section": "14.1",
+      "source_line": 371,
+      "text": "1. **Strategy**: 100% mechanical rules; zero guessing.",
+      "logic": "Phase2 threshold +2%; Phase3 threshold +5% and 1% conflict with checklist cap and prior approvals. 50/30/20 original-volume exits; BE only after confirmed TP1 fill.",
+      "implementation": [
+        "src/msnr/risk.py:phase_for",
+        "src/msnr/execution.py"
+      ],
+      "tests": [
+        "tests/test_recovery_and_controls.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "risk precedence pending; exit fractions existing"
+    },
+    {
+      "id": "V5-14.1-L372",
+      "section": "14.1",
+      "source_line": 372,
+      "text": "2. **Psychology**: Emotional mastery and discipline.",
+      "logic": "Phase2 threshold +2%; Phase3 threshold +5% and 1% conflict with checklist cap and prior approvals. 50/30/20 original-volume exits; BE only after confirmed TP1 fill.",
+      "implementation": [
+        "src/msnr/risk.py:phase_for",
+        "src/msnr/execution.py"
+      ],
+      "tests": [
+        "tests/test_recovery_and_controls.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "risk precedence pending; exit fractions existing"
+    },
+    {
+      "id": "V5-14.1-L373",
+      "section": "14.1",
+      "source_line": 373,
+      "text": "3. **Risk Management**: Capital preservation.",
+      "logic": "Phase2 threshold +2%; Phase3 threshold +5% and 1% conflict with checklist cap and prior approvals. 50/30/20 original-volume exits; BE only after confirmed TP1 fill.",
+      "implementation": [
+        "src/msnr/risk.py:phase_for",
+        "src/msnr/execution.py"
+      ],
+      "tests": [
+        "tests/test_recovery_and_controls.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "risk precedence pending; exit fractions existing"
+    },
+    {
+      "id": "V5-14.1-L374",
+      "section": "14.1",
+      "source_line": 374,
+      "text": "4. **Journaling**: Daily performance tracking.",
+      "logic": "Phase2 threshold +2%; Phase3 threshold +5% and 1% conflict with checklist cap and prior approvals. 50/30/20 original-volume exits; BE only after confirmed TP1 fill.",
+      "implementation": [
+        "src/msnr/risk.py:phase_for",
+        "src/msnr/execution.py"
+      ],
+      "tests": [
+        "tests/test_recovery_and_controls.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "risk precedence pending; exit fractions existing"
+    },
+    {
+      "id": "V5-14.2-L380",
+      "section": "14.2",
+      "source_line": 380,
+      "text": "|                  3-PHASE FUNDED ACCOUNT RISK SYSTEM                   |",
+      "logic": "Phase2 threshold +2%; Phase3 threshold +5% and 1% conflict with checklist cap and prior approvals. 50/30/20 original-volume exits; BE only after confirmed TP1 fill.",
+      "implementation": [
+        "src/msnr/risk.py:phase_for",
+        "src/msnr/execution.py"
+      ],
+      "tests": [
+        "tests/test_recovery_and_controls.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "risk precedence pending; exit fractions existing"
+    },
+    {
+      "id": "V5-14.2-L382",
+      "section": "14.2",
+      "source_line": 382,
+      "text": "| Phase 1: Capital Survival (0.33% Risk Per Trade)                      |",
+      "logic": "Phase2 threshold +2%; Phase3 threshold +5% and 1% conflict with checklist cap and prior approvals. 50/30/20 original-volume exits; BE only after confirmed TP1 fill.",
+      "implementation": [
+        "src/msnr/risk.py:phase_for",
+        "src/msnr/execution.py"
+      ],
+      "tests": [
+        "tests/test_recovery_and_controls.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "risk precedence pending; exit fractions existing"
+    },
+    {
+      "id": "V5-14.2-L383",
+      "section": "14.2",
+      "source_line": 383,
+      "text": "|   - Goal: Protect drawdown cushion. Never risk > 0.33% until +2% profit. |",
+      "logic": "Phase2 threshold +2%; Phase3 threshold +5% and 1% conflict with checklist cap and prior approvals. 50/30/20 original-volume exits; BE only after confirmed TP1 fill.",
+      "implementation": [
+        "src/msnr/risk.py:phase_for",
+        "src/msnr/execution.py"
+      ],
+      "tests": [
+        "tests/test_recovery_and_controls.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "risk precedence pending; exit fractions existing"
+    },
+    {
+      "id": "V5-14.2-L384",
+      "section": "14.2",
+      "source_line": 384,
+      "text": "| Phase 2: System Progression (0.50% Risk Per Trade)                    |",
+      "logic": "Phase2 threshold +2%; Phase3 threshold +5% and 1% conflict with checklist cap and prior approvals. 50/30/20 original-volume exits; BE only after confirmed TP1 fill.",
+      "implementation": [
+        "src/msnr/risk.py:phase_for",
+        "src/msnr/execution.py"
+      ],
+      "tests": [
+        "tests/test_recovery_and_controls.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "risk precedence pending; exit fractions existing"
+    },
+    {
+      "id": "V5-14.2-L385",
+      "section": "14.2",
+      "source_line": 385,
+      "text": "|   - Goal: Build buffer toward target once account is +2% in profit.   |",
+      "logic": "Phase2 threshold +2%; Phase3 threshold +5% and 1% conflict with checklist cap and prior approvals. 50/30/20 original-volume exits; BE only after confirmed TP1 fill.",
+      "implementation": [
+        "src/msnr/risk.py:phase_for",
+        "src/msnr/execution.py"
+      ],
+      "tests": [
+        "tests/test_recovery_and_controls.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "risk precedence pending; exit fractions existing"
+    },
+    {
+      "id": "V5-14.2-L386",
+      "section": "14.2",
+      "source_line": 386,
+      "text": "| Phase 3: Aggressive Target Pass (1.00% Risk Per Trade)                |",
+      "logic": "Phase2 threshold +2%; Phase3 threshold +5% and 1% conflict with checklist cap and prior approvals. 50/30/20 original-volume exits; BE only after confirmed TP1 fill.",
+      "implementation": [
+        "src/msnr/risk.py:phase_for",
+        "src/msnr/execution.py"
+      ],
+      "tests": [
+        "tests/test_recovery_and_controls.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "risk precedence pending; exit fractions existing"
+    },
+    {
+      "id": "V5-14.2-L387",
+      "section": "14.2",
+      "source_line": 387,
+      "text": "|   - Goal: Scale up to pass evaluation once account is +5% in profit.  |",
+      "logic": "Phase2 threshold +2%; Phase3 threshold +5% and 1% conflict with checklist cap and prior approvals. 50/30/20 original-volume exits; BE only after confirmed TP1 fill.",
+      "implementation": [
+        "src/msnr/risk.py:phase_for",
+        "src/msnr/execution.py"
+      ],
+      "tests": [
+        "tests/test_recovery_and_controls.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "risk precedence pending; exit fractions existing"
+    },
+    {
+      "id": "V5-14.3-L392",
+      "section": "14.3",
+      "source_line": 392,
+      "text": "* **TP 1 (First Fresh Level / 1:2 to 1:3 RR)**: Close **50%** of volume; move SL to **Breakeven (BE)**.",
+      "logic": "Phase2 threshold +2%; Phase3 threshold +5% and 1% conflict with checklist cap and prior approvals. 50/30/20 original-volume exits; BE only after confirmed TP1 fill.",
+      "implementation": [
+        "src/msnr/risk.py:phase_for",
+        "src/msnr/execution.py"
+      ],
+      "tests": [
+        "tests/test_recovery_and_controls.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "risk precedence pending; exit fractions existing"
+    },
+    {
+      "id": "V5-14.3-L393",
+      "section": "14.3",
+      "source_line": 393,
+      "text": "* **TP 2 (Intermediate HTF Level)**: Close **30%** of volume.",
+      "logic": "Phase2 threshold +2%; Phase3 threshold +5% and 1% conflict with checklist cap and prior approvals. 50/30/20 original-volume exits; BE only after confirmed TP1 fill.",
+      "implementation": [
+        "src/msnr/risk.py:phase_for",
+        "src/msnr/execution.py"
+      ],
+      "tests": [
+        "tests/test_recovery_and_controls.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "risk precedence pending; exit fractions existing"
+    },
+    {
+      "id": "V5-14.3-L394",
+      "section": "14.3",
+      "source_line": 394,
+      "text": "* **Final TP (Opposing Weekly/Monthly Destination)**: Hold remaining **20%** runner position risk-free.",
+      "logic": "Phase2 threshold +2%; Phase3 threshold +5% and 1% conflict with checklist cap and prior approvals. 50/30/20 original-volume exits; BE only after confirmed TP1 fill.",
+      "implementation": [
+        "src/msnr/risk.py:phase_for",
+        "src/msnr/execution.py"
+      ],
+      "tests": [
+        "tests/test_recovery_and_controls.py",
+        "tests/test_strategy_v5.py"
+      ],
+      "status": "risk precedence pending; exit fractions existing"
+    },
+    {
+      "id": "V5-16.1-L421",
+      "section": "16.1",
+      "source_line": 421,
+      "text": "Before entering any trade, complete this 6-step checklist:",
+      "logic": "Require all six checklist stages with applicable model conditions. Unknown required evidence rejects. ERS and phase3 exceptions require explicit resolution.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:gate",
+        "src/msnr/risk.py:size_trade"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py",
+        "tests/test_execution.py"
+      ],
+      "status": "checklist precedence pending; complete historical coverage not proven"
+    },
+    {
+      "id": "V5-16.1-L423",
+      "section": "16.1",
+      "source_line": 423,
+      "text": "- [ ] **Step 1: HTF Storyline Identified?** Is price traveling from a fresh MN/W1/D1 SNR level or trendline?",
+      "logic": "Require all six checklist stages with applicable model conditions. Unknown required evidence rejects. ERS and phase3 exceptions require explicit resolution.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:gate",
+        "src/msnr/risk.py:size_trade"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py",
+        "tests/test_execution.py"
+      ],
+      "status": "checklist precedence pending; complete historical coverage not proven"
+    },
+    {
+      "id": "V5-16.1-L424",
+      "section": "16.1",
+      "source_line": 424,
+      "text": "- [ ] **Step 2: Fresh Level Confirmed?** Is the entry zone fresh, or validated by a 3rd-candle CC?",
+      "logic": "Require all six checklist stages with applicable model conditions. Unknown required evidence rejects. ERS and phase3 exceptions require explicit resolution.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:gate",
+        "src/msnr/risk.py:size_trade"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py",
+        "tests/test_execution.py"
+      ],
+      "status": "checklist precedence pending; complete historical coverage not proven"
+    },
+    {
+      "id": "V5-16.1-L425",
+      "section": "16.1",
+      "source_line": 425,
+      "text": "- [ ] **Step 3: QM Breakout Valid?** Did a candle body close past the structural high/low to form HH/LL?",
+      "logic": "Require all six checklist stages with applicable model conditions. Unknown required evidence rejects. ERS and phase3 exceptions require explicit resolution.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:gate",
+        "src/msnr/risk.py:size_trade"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py",
+        "tests/test_execution.py"
+      ],
+      "status": "checklist precedence pending; complete historical coverage not proven"
+    },
+    {
+      "id": "V5-16.1-L426",
+      "section": "16.1",
+      "source_line": 426,
+      "text": "- [ ] **Step 4: Timeframe Rejection Match?** Did W1 reject on 4H wick, or D1 close body on 1H?",
+      "logic": "Require all six checklist stages with applicable model conditions. Unknown required evidence rejects. ERS and phase3 exceptions require explicit resolution.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:gate",
+        "src/msnr/risk.py:size_trade"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py",
+        "tests/test_execution.py"
+      ],
+      "status": "checklist precedence pending; complete historical coverage not proven"
+    },
+    {
+      "id": "V5-16.1-L427",
+      "section": "16.1",
+      "source_line": 427,
+      "text": "- [ ] **Step 5: LTF Confirmation Badge Present?** Is there a 15M/5M Candle Rejection, Breaking Gap, Trendline Breakout, Mini QM, or 5Min EMA 9 Hold?",
+      "logic": "Require all six checklist stages with applicable model conditions. Unknown required evidence rejects. ERS and phase3 exceptions require explicit resolution.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:gate",
+        "src/msnr/risk.py:size_trade"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py",
+        "tests/test_execution.py"
+      ],
+      "status": "checklist precedence pending; complete historical coverage not proven"
+    },
+    {
+      "id": "V5-16.1-L428",
+      "section": "16.1",
+      "source_line": 428,
+      "text": "- [ ] **Step 6: Risk & Buffer Calculated?** Is SL placed beyond Apex with the mandatory asset safety buffer (30 pips Forex / $3 Gold)? Is position size capped at 0.33% - 0.5% risk?",
+      "logic": "Require all six checklist stages with applicable model conditions. Unknown required evidence rejects. ERS and phase3 exceptions require explicit resolution.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:gate",
+        "src/msnr/risk.py:size_trade"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py",
+        "tests/test_execution.py"
+      ],
+      "status": "checklist precedence pending; complete historical coverage not proven"
+    },
+    {
+      "id": "V5-16.1-L431",
+      "section": "16.1",
+      "source_line": 431,
+      "text": "*End of Master Strategy Guide v5.0 — Pitchou.FX & White SNT Unified Framework.*",
+      "logic": "Require all six checklist stages with applicable model conditions. Unknown required evidence rejects. ERS and phase3 exceptions require explicit resolution.",
+      "implementation": [
+        "src/msnr/strategy/catalog.py",
+        "src/msnr/strategy/engine.py:gate",
+        "src/msnr/risk.py:size_trade"
+      ],
+      "tests": [
+        "tests/test_strategy_v5.py",
+        "tests/test_execution.py"
+      ],
+      "status": "checklist precedence pending; complete historical coverage not proven"
+    }
+  ]
+}

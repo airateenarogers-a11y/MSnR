@@ -1,6 +1,6 @@
 # MSnR · Trading Ledger
 
-Python trading research and monitoring service for the user-approved **Malaysian SNR / Alchemist v4** specification. The repository includes rule evaluation, a durable event journal, paper execution, a Windows MT5 bridge, chart rendering, Discord delivery, historical replay, reports and a responsive dashboard.
+Python trading research and monitoring service for the user-approved **Malaysian SNR / Alchemist v5** specification. The repository includes rule evaluation, a durable event journal, paper execution, a Windows MT5 bridge, chart rendering, Discord delivery, historical replay, reports and a responsive dashboard.
 
 **Operational status:** local engineering validation is recorded in [VALIDATION.md](docs/VALIDATION.md). This repository is **not certified for live trading**. Real broker instruments, terminal behavior, historical edge and forward demo behavior require external validation. No profit, win-rate or native TradingView drawing accuracy is claimed. The base CLI configuration defaults to `paper`; the Windows launcher uses a separate authorized `demo` profile. Live execution requires a separate authorization manifest.
 
@@ -34,7 +34,8 @@ MSNR_CHROME_EXECUTABLE=/workspace/tools/chrome/opt/google/chrome/chrome .venv/bi
 
 ## Strategy provenance
 
-- [Original v4](docs/sources/strategy-v4.md): authoritative Markdown, unchanged.
+- [V5 source](docs/sources/strategy-v5.md): authoritative Markdown, unchanged.
+- [V5 compliance and limits](docs/COMPLIANCE_V5.md); [v5 changes and TradingView usage](docs/V5_UPDATE.md).
 - [Original v3](docs/sources/strategy-v3.md): reference only, unchanged.
 - [User decisions](docs/DECISIONS.md): approved definitions, exceptions, session clock, buffers, SMT, cooldowns and phases. These clarifications take precedence over conflicting source text.
 - [Pre-implementation audit](docs/STRATEGY_AUDIT.md) and [compliance matrix](docs/COMPLIANCE_MATRIX.md).

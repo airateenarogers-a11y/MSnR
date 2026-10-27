@@ -28,7 +28,7 @@ The installer cannot create a broker account or supply its credentials.
 
 The worker receives the bridge connection only after a hedging demo account is verified. The launcher starts **automatic DEMO execution**, as authorized by the owner. It can place orders on the connected demo account once all strategy and risk checks pass. MT5 must have Algo Trading enabled and external Python trading permitted. Real/live accounts are refused; the launcher does not change those MT5 permissions by blindly toggling a button. The configured kill switch, loss/exposure limits, cooldowns and manual reality-check rule still apply. No qualifying setup means no trade.
 
-V4 plus the approved clarification record remains authoritative. Missing mandatory evidence rejects the setup. Existing engineering tests do not establish 100% compliance across every model and real-market history; full historical/model validation remains outstanding. The demo account is the authorized forward-testing environment.
+V5 plus the approved clarification record remains authoritative. Missing mandatory evidence rejects the setup. Existing engineering tests do not establish 100% compliance across every model and real-market history; full historical/model validation remains outstanding. The demo account is the authorized forward-testing environment.
 
 Click **Configure Discord** to enter an optional webhook locally. It is saved in the encrypted credential vault and the worker restarts with the setting. Leave the field empty to disable Discord. Do not send passwords, tokens or webhook URLs in chat.
 

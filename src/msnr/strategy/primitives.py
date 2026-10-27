@@ -118,10 +118,10 @@ class QM:
     shoulder: Level
     reference: Level
     apex: Level
-    breakout: Bar
+    breakout: Bar | None
 
 
-def quasimodos(bars: list[Bar], tick: float, policy: Policy) -> list[QM]:
+def quasimodos(bars: list[Bar], tick: float, policy: Policy, *, pending=False) -> list[QM]:
     raw = [x for x in levels(bars, tick, policy, evolve=False) if x.kind in ("A", "V")]
     result = []
     for a, b, c in zip(raw, raw[1:], raw[2:]):
@@ -133,12 +133,23 @@ def quasimodos(bars: list[Bar], tick: float, policy: Policy) -> list[QM]:
             continue
         for candle in bars[c.index + 1 :]:
             if (candle.close - b.price) * d.sign > 0:
-                result.append(QM(fingerprint(a.id, b.id, c.id, candle.end), d, a, b, c, candle))
+                if not pending:
+                    identity = (
+                        (a.id, b.id, c.id) if policy.version == "v5" else (a.id, b.id, c.id, candle.end)
+                    )
+                    result.append(QM(fingerprint(*identity), d, a, b, c, candle))
                 break
+        else:
+            if pending and not any(
+                ((x.low if d == Direction.BUY else x.high) - c.apex) * d.sign < 0 for x in bars[c.index + 1 :]
+            ):
+                result.append(QM(fingerprint(a.id, b.id, c.id), d, a, b, c, None))
     return result
 
 
 def qm_valid(qm: QM, touched_at: datetime, source_kind: str) -> bool:
+    if qm.breakout is None:
+        return False
     external = qm.reference.formed <= touched_at
     post = qm.breakout.end > touched_at if source_kind != "TL" else qm.breakout.end >= touched_at
     return external and post
@@ -216,14 +227,14 @@ def ema(closes: list[float], length: int = 9) -> list[float | None]:
     return result
 
 
-def ema_badge(bars: list[Bar], direction: Direction, hold_bars: int | None) -> bool | None:
+def ema_badge(bars: list[Bar], direction: Direction, hold_bars: int | None, version="v4") -> bool | None:
     if hold_bars is None:
         return None
     if len(bars) < 11 + hold_bars or any(b.timeframe != "M5" for b in bars):
         return False
     values = ema([b.close for b in bars])
     cross = len(bars) - hold_bars - 1
-    if not engulfing(bars[cross - 1], bars[cross], direction):
+    if version != "v5" and not engulfing(bars[cross - 1], bars[cross], direction):
         return False
     if (bars[cross - 1].close - values[cross - 1]) * direction.sign > 0:
         return False
@@ -260,10 +271,10 @@ def smt(primary: list[Level], peer: list[Level], direction: Direction, inverse: 
     return movement < 0 and other > 0
 
 
-def asia_range(bars: list[Bar], now: datetime) -> tuple[float, float] | None:
+def asia_range(bars: list[Bar], now: datetime, version="v4") -> tuple[float, float] | None:
     local = now.astimezone(NY)
     midnight = local.replace(hour=0, minute=0, second=0, microsecond=0)
-    start = midnight - timedelta(hours=5)
+    start = midnight - timedelta(hours=4 if version == "v5" else 5)
     selected = [b for b in bars if b.time >= start and b.end <= midnight]
     if not selected or selected[0].time != start or selected[-1].end != midnight:
         return None
@@ -273,12 +284,13 @@ def asia_range(bars: list[Bar], now: datetime) -> tuple[float, float] | None:
 
 
 FIBO_RATIOS = (0.0, 0.109, 0.25, 0.50, 0.707, 0.886, 1.0, 1.272, 1.618, 1.893, 2.0)
+FIBO_RATIOS_V5 = (0.109, 0.243, 0.382, 0.500, 0.618, 0.707, 0.786, 0.886, 1.109, 1.272, 1.618, 1.893)
 
 
-def fibonacci(low: float, high: float) -> dict[float, float]:
+def fibonacci(low: float, high: float, version="v4") -> dict[float, float]:
     if high <= low:
         raise ValueError("Fibonacci requires ordered confirmed swing anchors")
-    return {r: low + (high - low) * r for r in FIBO_RATIOS}
+    return {r: low + (high - low) * r for r in (FIBO_RATIOS_V5 if version == "v5" else FIBO_RATIOS)}
 
 
 def trendline_break(bars: list[Bar], lines: list[Trendline], direction: Direction, after: datetime):

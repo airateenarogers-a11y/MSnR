@@ -30,7 +30,8 @@ def candle(i, o, h, low, c, tf="M5", minutes=5, symbol="XAUUSDm", start=NOW):
 
 @pytest.fixture
 def settings():
-    return load()
+    value = load()
+    return value.model_copy(update={"policy": value.policy.model_copy(update={"version": "v4"})})
 
 
 @pytest.fixture

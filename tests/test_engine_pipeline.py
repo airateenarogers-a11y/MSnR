@@ -7,6 +7,7 @@ from conftest import NOW, candle
 
 def market_fixture():
     settings = load()
+    settings = settings.model_copy(update={"policy": settings.policy.model_copy(update={"version": "v4"})})
     hstart = NOW - timedelta(hours=9)
     h = [
         (104, 105, 101, 102),

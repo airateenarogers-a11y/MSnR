@@ -26,6 +26,10 @@ def main():
     tv = commands.add_parser("tradingview-check")
     tv.add_argument("--chrome", default=os.getenv("MSNR_CHROME_EXECUTABLE"))
     tv.add_argument("--output", type=Path, default=Path("artifacts/tradingview"))
+    draw = commands.add_parser("tradingview-draw")
+    draw.add_argument("signal_id")
+    draw.add_argument("--symbol", required=True, help="Exact TradingView symbol, including exchange prefix")
+    draw.add_argument("--cdp", default="http://127.0.0.1:9222")
     bridge = commands.add_parser("bridge")
     bridge.add_argument("--host", default="127.0.0.1")
     bridge.add_argument("--port", type=int, default=8765)
@@ -76,7 +80,7 @@ def main():
                     "policy_hash": settings.policy.digest,
                     "credentials_present": secret_status(),
                     "worker": store.state("worker_health", None),
-                    "source_version": "v4",
+                    "source_version": settings.policy.version,
                     "platform_requirements": {
                         "MT5": "Windows terminal + authenticated bridge",
                         "charts": "Deterministic renderer; Chrome needed for TradingView inspection",
@@ -97,6 +101,19 @@ def main():
                     Path(os.getenv("MSNR_TRADINGVIEW_PROFILE", "var/browser-profile")), args.chrome
                 ).inspect(args.output),
                 indent=2,
+            )
+        )
+    elif args.command == "tradingview-draw":
+        from .integrations.tradingview import TradingView
+        from .domain import Signal
+
+        rows = store.rows("SELECT payload FROM signals WHERE id=?", (args.signal_id,))
+        if not rows:
+            parser.error("Signal ID is absent from this database")
+        signal = Signal.model_validate_json(rows[0]["payload"])
+        print(
+            json.dumps(
+                TradingView(Path("var/browser-profile")).annotate(signal, args.symbol, args.cdp), indent=2
             )
         )
     elif args.command == "backtest":

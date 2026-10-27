@@ -40,20 +40,23 @@ def period(now: datetime, kind: str) -> tuple[datetime, datetime]:
     return start.astimezone(UTC), end.astimezone(UTC)
 
 
-def quarter(now: datetime) -> int:
+def quarter(now: datetime, version="v4") -> int:
     wall = aware(now).astimezone(NY)
+    if version == "v5":
+        seconds = wall.hour * 3600 + wall.minute * 60 + wall.second + wall.microsecond / 1_000_000
+        return int(seconds % 5400 // 1350) + 1
     return (wall.hour * 60 + wall.minute) % 360 // 90 + 1
 
 
-def session(now: datetime) -> str:
+def session(now: datetime, version="v4") -> str:
     wall = aware(now).astimezone(NY)
     m = wall.hour * 60 + wall.minute
-    if m >= 19 * 60:
+    if m >= (20 if version == "v5" else 19) * 60:
         return "asia"
     if 2 * 60 <= m < 5 * 60:
         return "london"
     if 8 * 60 <= m < 11 * 60:
         return "new_york_am"
-    if 13 * 60 <= m < 16 * 60:
+    if version != "v5" and 13 * 60 <= m < 16 * 60:
         return "new_york_pm"
     return "off_session"

@@ -16,3 +16,16 @@ Further proposed parameter definitions remain unapproved until a user reply is r
 9. User approved rejection wick >=2 body lengths and >=1 tick, body engulfing, one additional closed M5 EMA9 hold candle, <=1 tick level alignment, <=3 instrument pips MISS, <=2 ticks double apex. These are approved implementation definitions, not claims extracted verbatim from v4.
 
 10. Final user clarification: Part 3 at <=20% remaining source-to-target distance OR after two consecutive continuation breakouts. All closed trades impose a 10-minute cooldown. >=3R closes additionally require an authenticated manual reality check. Phase 3 at target minus two percentage points or three consecutive Phase-2 wins; -5% from peak demotes to Phase 1. USDJPY/USDCHF uses direct comparison. Challenge target defaults to the given 10% example, is explicit configuration, and must match the actual prop contract. Configured risk caps always apply.
+
+
+## V5 superseding decisions — 27 October 2026 PKT
+
+V5 is now primary. Earlier approved v4 details fill gaps only where consistent with v5. The uploaded Python files are references, never strategy authority. The reuploaded v5 has the same SHA-256 as the audited source.
+
+- Evaluation profile: 0.33% baseline; 0.50% at +2% equity or three consecutive Phase-1 wins; 1.00% at +5% or within two percentage points of the evaluation target. Phase-2 peak drawdown of 3% halves the allowed risk. Phase-3 peak drawdown of 5% resets Phase 1. Independent daily/drawdown ceilings can suspend execution first.
+- Funded profile: 0.50% hard maximum; Phase 2 at +2%; Phase 1 during drawdown recovery. Operational recovery interpretation: equity must recover its high-water mark before promotion. `evaluation_mode` defaults false, independently of demo/real broker mode. The operator's existing per-trade ceiling is retained and can be lower than the ladder.
+- EX1: H1 POI liquidity-sweep retest with M1/M5 micro QM/MSS. EX2: broken H1 SBR/RBS retest with M5 EMA9 hold. EX3: Asian/London range sweep into H1 POI with M1/M5 reversal. EX4: H1 OCL/GAP retest with M5 badge. Earlier mandatory SMT for H1 liquidity-sweep models applies to EX1/EX3; it is optional for EX2/EX4.
+- ERS explicitly bypasses the main closed QM breakout only while the structure is developing. The latest ERS level must itself be usable and receive a closed LTF badge, with verified macro storyline alignment. An unusable latest ERS does not permit fallback to an older ERS.
+- V5 badge definitions supersede the earlier universal engulfing restriction. M5/M15 directional body breaks and EMA9 cross/hold do not require an extra engulfing candle.
+- V5 mappings are MN1→D1, W1→H4, D1→H1, H4→M15, H1→M5. The validation candle is on the mapped frame. Native chart timestamps are UTC epoch seconds without a guessed broker/server-hour offset.
+- V5 Asia is 20:00–00:00 New York; QT quarters divide each 90-minute cycle into 22.5-minute intervals. Exact QT Q1/Q2 boundaries need sub-minute data; M1 candles spanning a half-minute boundary cannot establish the precise range. This model rejects rather than approximate that boundary.

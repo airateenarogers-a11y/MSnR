@@ -63,7 +63,9 @@
     },
     {
       "symbol": "TSLA",
-      "aliases": ["TSLAm"],
+      "aliases": [
+        "TSLAm"
+      ],
       "peer": [
         "QQQ",
         "NVDA"
@@ -74,7 +76,9 @@
     },
     {
       "symbol": "GOOGL",
-      "aliases": ["GOOGLm"],
+      "aliases": [
+        "GOOGLm"
+      ],
       "peer": [
         "MSFT",
         "QQQ"
@@ -99,7 +103,9 @@
     "part3_continuation_breakouts": 2,
     "cooldown_minutes": 10,
     "prop_target_fraction": 0.1,
-    "phase3_target_distance": 0.02
+    "phase3_target_distance": 0.02,
+    "version": "v5",
+    "authority": "v5 with explicit user clarifications; docs/DECISIONS.md"
   },
   "risk": {}
 }
