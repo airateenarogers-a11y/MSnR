@@ -1,9 +1,9 @@
 from __future__ import annotations
 
 from contextlib import asynccontextmanager
+from datetime import datetime
 import hmac
 import os
-import threading
 from uuid import UUID
 
 from fastapi import Depends, FastAPI, Header, HTTPException
@@ -13,6 +13,7 @@ from .clock import iso, utcnow
 from .domain import Model
 from .integrations.mt5 import Terminal
 from .store import Store, encode
+from .terminal_gate import TerminalGate
 
 
 class OrderRequest(Model):
@@ -44,11 +45,12 @@ class CloseRequest(Model):
 def create_bridge(terminal=None, db_path="var/bridge.db"):
     terminal = terminal or Terminal()
     store = Store(db_path)
-    lock = threading.RLock()
+    gate = TerminalGate()
 
     @asynccontextmanager
     async def lifespan(app):
-        terminal.connect()
+        with gate.call("initialize"):
+            terminal.connect()
         yield
         terminal.mt.shutdown()
 
@@ -58,6 +60,11 @@ def create_bridge(terminal=None, db_path="var/bridge.db"):
             raise HTTPException(401, "Bridge authentication required")
 
     app = FastAPI(title="MSnR Windows MT5 Bridge", dependencies=[Depends(auth)], lifespan=lifespan)
+
+    @app.get("/diagnostics")
+    def diagnostics():
+        # No native call or terminal lock: usable even during history synchronization.
+        return {"at": iso(utcnow()), **gate.snapshot()}
 
     def permit():
         a = terminal.account()
@@ -112,44 +119,45 @@ def create_bridge(terminal=None, db_path="var/bridge.db"):
 
     @app.get("/account")
     def account():
-        with lock:
+        with gate.call("account"):
             return terminal.account()
 
     @app.get("/symbols")
     def symbols():
-        with lock:
+        with gate.call("symbols"):
             return terminal.symbols()
 
     @app.get("/quote")
     def quote(symbol: str):
-        with lock:
+        with gate.call("quote", symbol):
             return terminal.quote(symbol)
 
     @app.get("/spec")
     def spec(symbol: str):
-        with lock:
+        with gate.call("spec", symbol):
             return terminal.spec(symbol)
 
     @app.get("/bars")
     def bars(symbol: str, timeframe: str, count: int = 1000):
         if not 1 <= count <= 10000:
             raise HTTPException(422, "count must be 1–10000")
-        with lock:
+        with gate.call("bars", symbol, timeframe):
             return terminal.bars(symbol, timeframe, count)
 
     @app.get("/reconcile")
-    def reconcile():
-        with lock:
-            return terminal.reconcile()
+    def reconcile(since: datetime | None = None):
+        if since is not None and (since.tzinfo is None or since.utcoffset() is None or since > utcnow()):
+            raise HTTPException(422, "Reconciliation start must be a past, timezone-aware timestamp")
+        with gate.call("reconcile"):
+            return terminal.reconcile(since=since)
 
     @app.get("/commands/{command_id}")
     def command_status(command_id: UUID):
-        with lock:
-            return store.state("command:" + str(command_id), {"status": "not_found"})
+        return store.state("command:" + str(command_id), {"status": "not_found"})
 
     @app.post("/orders")
     def place(body: OrderRequest):
-        with lock:
+        with gate.call("place_order", body.symbol):
             a = permit()
             if a["id"] != body.account_id:
                 raise HTTPException(409, "Account identity changed")
@@ -197,7 +205,7 @@ def create_bridge(terminal=None, db_path="var/bridge.db"):
 
     @app.post("/positions/modify")
     def modify(body: ModifyRequest):
-        with lock:
+        with gate.call("modify_position"):
             permit()
             mt = terminal.mt
             positions = mt.positions_get(ticket=body.ticket)
@@ -220,7 +228,7 @@ def create_bridge(terminal=None, db_path="var/bridge.db"):
 
     @app.post("/positions/close")
     def close(body: CloseRequest):
-        with lock:
+        with gate.call("close_position"):
             permit()
             mt = terminal.mt
             positions = mt.positions_get(ticket=body.ticket)

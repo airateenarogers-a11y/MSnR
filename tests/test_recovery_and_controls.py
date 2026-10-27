@@ -44,7 +44,8 @@ def test_broker_deals_recover_unknown_order(store, settings, signal, quote, spec
             self.order = command_id
             raise TimeoutError()
 
-        def reconcile(self):
+        def reconcile(self, since=None):
+            assert since <= NOW - timedelta(days=2500)
             return {
                 "complete": True,
                 "positions": [{"ticket": 456, "volume": 0.6, "sl": 95}],
@@ -67,6 +68,9 @@ def test_broker_deals_recover_unknown_order(store, settings, signal, quote, spec
     broker = Broker()
     e = Execution(store, settings, broker)
     assert e.submit(signal, quote, spec, account, NOW)["status"] == "unknown"
+    # Old unresolved orders must remain inside the narrowed history window.
+    with store.transaction() as db:
+        db.execute("UPDATE orders SET created_at=?", ((NOW - timedelta(days=2500)).isoformat(),))
     result = e.reconcile(NOW + timedelta(seconds=1))
     assert result["status"] == "reconciled"
     assert store.rows("SELECT status FROM signals")[0]["status"] == "Active"

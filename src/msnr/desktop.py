@@ -21,7 +21,7 @@ import webbrowser
 import httpx
 
 from .config import load
-from .clock import utcnow, PKT
+from .clock import iso, utcnow, PKT
 from datetime import datetime
 
 
@@ -209,6 +209,16 @@ class Supervisor:
         settings = load(self.config)
         if settings.mode != mode or settings.live_authorization_file is not None:
             raise ValueError("Desktop config must match the selected demo/paper mode with live disabled.")
+        # Add only explicitly configured broker aliases; preserve operator risk,
+        # strategy policy, credentials and all previous instrument names.
+        defaults = {i.symbol: i.aliases for i in load(self.root / "config/default.json").instruments}
+        merged = tuple(
+            i.model_copy(update={"aliases": tuple(dict.fromkeys((*i.aliases, *defaults.get(i.symbol, ()))))})
+            for i in settings.instruments
+        )
+        if merged != settings.instruments:
+            settings = settings.model_copy(update={"instruments": merged})
+            atomic_json(self.config, settings.model_dump())
         self.processes = {}
         self.streams = {}
         self.stop_files = {}
@@ -390,14 +400,16 @@ class Supervisor:
             return "Choose your broker's terminal64.exe, then sign in to a hedging DEMO account."
         self.start_process("bridge")
         try:
-            with httpx.Client(trust_env=False, timeout=2) as client:
-                deadline = time.monotonic() + 10
+            with httpx.Client(trust_env=False, timeout=httpx.Timeout(15, connect=2)) as client:
+                deadline = time.monotonic() + 15
                 while True:
                     try:
                         response = client.get(
                             f"http://127.0.0.1:{self.bridge_port}/account",
                             headers={"Authorization": "Bearer " + self.credentials["bridge"]},
                         )
+                        if response.status_code == 503:
+                            return "MT5 is busy or its data is unavailable. Use Check MT5 for the exact operation; this is not necessarily a login problem."
                         response.raise_for_status()
                         account = response.json()
                         break
@@ -409,8 +421,10 @@ class Supervisor:
                 return "MT5 must be signed in to a hedging DEMO account. The worker remains disconnected."
             if self.mode == "demo" and not account.get("trading_allowed"):
                 return "Enable MT5 Algo Trading and allow external Python trading, then click Connect MT5."
+        except httpx.ReadTimeout:
+            return "The MT5 bridge timed out. Use Check MT5 to test your open terminal directly and inspect bridge.log."
         except (httpx.HTTPError, ValueError):
-            return "Waiting for MT5 demo login. Keep the terminal open, then click Connect MT5 again."
+            return "The MT5 bridge did not provide an account response. Use Check MT5 and inspect bridge.log; keep your terminal open."
         process = self.processes.get("worker")
         if not self.feed_connected or process is None or process.poll() is not None:
             self.feed_connected = False
@@ -423,10 +437,59 @@ class Supervisor:
                 "Worker running with MT5. New execution is suspended; review the dashboard before resuming."
             )
         return (
-            "Worker running with MT5 DEMO connection. Every strategy and risk condition must pass before an order."
+            "Worker running; MT5 DEMO account verified. Loading market data; the dashboard shows readiness per instrument."
             if self.mode == "demo"
             else "MT5 demo feed connected. Executions remain simulated in PAPER mode."
         )
+
+    def check_mt5(self):
+        path = self.credentials.get("terminal", "")
+        if not path or not Path(path).is_file():
+            return "Choose the terminal64.exe for your open MT5 installation, then run Check MT5."
+        output = self.state / "mt5-check.json"
+        # A separate read-only native probe distinguishes a bridge failure from
+        # a terminal/IPC/history failure. It receives no order instructions.
+        atomic_json(output, {"status": "starting", "read_only": True, "at": iso(utcnow())})
+        job = ProcessJob()
+        options = (
+            {"creationflags": subprocess.CREATE_NEW_PROCESS_GROUP}
+            if os.name == "nt"
+            else {"start_new_session": True}
+        )
+        try:
+            with (self.state / "mt5-check.log").open("ab", buffering=0) as stream:
+                process = subprocess.Popen(
+                    [
+                        sys.executable,
+                        "-m",
+                        "msnr.diagnostics",
+                        "--config",
+                        str(self.config),
+                        "--output",
+                        str(output),
+                    ],
+                    cwd=self.root,
+                    env=self.environment(),
+                    stdin=subprocess.DEVNULL,
+                    stdout=stream,
+                    stderr=subprocess.STDOUT,
+                    **options,
+                )
+                job.assign(process)
+                try:
+                    process.wait(timeout=90)
+                except subprocess.TimeoutExpired:
+                    job.close()
+                    process.kill()
+                    process.wait(timeout=5)
+                    report = json.loads(output.read_text(encoding="utf-8"))
+                    report["status"] = "native_call_timed_out"
+                    atomic_json(output, report)
+        finally:
+            job.close()
+        report = json.loads(output.read_text(encoding="utf-8"))
+        readable = sum(s.get("status") == "readable" for s in report.get("symbols", []))
+        return f"MT5 check: {report['status']}; {readable} instruments returned quotes and M1 candles. Click Copy MT5 report for details. No orders were sent by this check."
 
     def restart_worker(self):
         self.stop_process("worker")
@@ -491,6 +554,15 @@ def gui(supervisor: Supervisor, vault: Vault):
         window.clipboard_append(supervisor.credentials["operator"])
         status.set("Sign-in key copied. Paste it into the dashboard's Sign in form.")
 
+    def copy_report():
+        report = supervisor.state / "mt5-check.json"
+        if not report.exists():
+            status.set("Run Check MT5 first. The report contains no passwords, tokens or account number.")
+            return
+        window.clipboard_clear()
+        window.clipboard_append(report.read_text(encoding="utf-8"))
+        status.set("MT5 diagnostic report copied. It contains no passwords, tokens or account number.")
+
     def terminal():
         filename = filedialog.askopenfilename(
             title="Choose your broker's MT5 terminal64.exe", filetypes=[("MT5 terminal", "terminal64.exe")]
@@ -542,6 +614,8 @@ def gui(supervisor: Supervisor, vault: Vault):
             ("Connect MT5", lambda: action(supervisor.connect)),
             ("Configure Discord", discord),
             ("Open logs", lambda: os.startfile(supervisor.state)),
+            ("Check MT5 (read only)", lambda: action(supervisor.check_mt5)),
+            ("Copy MT5 report", copy_report),
         ]
     ):
         ttk.Button(buttons, text=label, command=command).grid(

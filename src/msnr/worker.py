@@ -24,6 +24,7 @@ from .reports import schedule_reports
 from .store import Store
 from .strategy.engine import Engine, Snapshot
 from .process_identity import identity
+from .market_health import MarketDataUnavailable
 
 log = logging.getLogger("msnr")
 
@@ -40,6 +41,7 @@ class Worker:
     def __init__(self, store: Store, settings: Settings, bridge=None):
         self.store = store
         self.settings = settings
+        self.base_settings = settings
         self.engine = Engine(settings)
         self.bridge = bridge
         if bridge is None and os.getenv("MSNR_BRIDGE_URL"):
@@ -92,9 +94,11 @@ class Worker:
         stop_file = os.getenv("MSNR_WORKER_STOP_FILE")
         return self.stop_event.is_set() or bool(stop_file and Path(stop_file).is_file())
 
-    def _bars(self, symbol):
-        bars = {}
+    def _bars(self, symbol, initial=None):
+        bars = dict(initial or {})
         for timeframe in TIMEFRAMES:
+            if timeframe in bars:
+                continue
             if self.stop_requested():
                 raise WorkerStopping()
             now = utcnow()
@@ -112,13 +116,83 @@ class Worker:
             bars[timeframe] = self.bridge.bars(symbol, timeframe, 500)
         return bars
 
+    def feed_failure(self, exc):
+        now = utcnow()
+        incident = self.store.state("feed_incident")
+        first = not incident or not incident.get("active")
+        if first:
+            incident = {"id": str(uuid4()), "started_at": iso(now), "attempts": 0}
+        incident.update(
+            active=True,
+            recovered_checks=0,
+            at=iso(now),
+            details=exc.details,
+            attempts=incident["attempts"] + 1,
+        )
+        delay = min(60, max(5, exc.details["retry_after"]) * 2 ** min(incident["attempts"] - 1, 3))
+        incident["retry_at"] = iso(now + timedelta(seconds=delay))
+        self.store.set_state("feed_incident", incident)
+        self.store.set_state("feed_blocked", True)
+        self.store.set_state(
+            "worker_health",
+            {
+                "at": iso(now),
+                "status": "waiting_for_mt5",
+                "reason": str(exc),
+                "retry_at": incident["retry_at"],
+                "details": exc.details,
+            },
+        )
+        log.warning(
+            json.dumps({"event": "worker.feed_wait", **exc.details, "retry_at": incident["retry_at"]})
+        )
+        if first:
+            self.store.event("feed.interrupted", incident["id"], exc.details, now)
+            last = self.store.state("feed_notice_at")
+            if not last or now - datetime.fromisoformat(last) >= timedelta(minutes=15):
+                self.store.enqueue(
+                    "feed:" + incident["id"],
+                    {
+                        "type": "market feed delayed",
+                        "summary": f"{exc}. New entries wait for fresh data. Automatic retry is active; use Check MT5 for details.",
+                    },
+                    now,
+                )
+                self.store.set_state("feed_notice_at", iso(now))
+        self.deliver_notice(now)
+
+    def deliver_notice(self, now):
+        if self.discord and self.store.state("notifications_enabled", True):
+            self.discord.deliver_one(now)
+
     def once(self):
+        self.lease(utcnow())
+        incident = self.store.state("feed_incident")
+        if incident and incident.get("active") and utcnow() < datetime.fromisoformat(incident["retry_at"]):
+            self.deliver_notice(utcnow())
+            return
+        try:
+            self._once()
+        except MarketDataUnavailable as exc:
+            self.feed_failure(exc)
+
+    def _once(self):
         now = utcnow()
         self.lease(now)
         if not self.recovered:
             if self.discord:
                 self.discord.recover()
+            with self.store.transaction() as db:
+                cancelled = db.execute(
+                    "UPDATE outbox SET status='cancelled',error='Superseded by consolidated feed diagnostics' "
+                    "WHERE status='pending' AND event_key LIKE 'failure:%'"
+                ).rowcount
+                if cancelled:
+                    self.store.event(
+                        "notification.legacy_failures_superseded", "worker", {"count": cancelled}, db=db
+                    )
             self.recovered = True
+        self.settings = self.base_settings
         runtime_risk = self.store.state("runtime_risk", None)
         if runtime_risk:
             self.settings = self.settings.model_copy(update={"risk": RiskLimits.model_validate(runtime_risk)})
@@ -146,6 +220,14 @@ class Worker:
                 },
             )
             return
+        self.store.set_state(
+            "worker_health",
+            {
+                "at": iso(now),
+                "status": "checking_mt5",
+                "reason": "Checking MT5 account and reconciliation",
+            },
+        )
         account = self.bridge.account()
         self.store.set_state("account_snapshot", account)
         if self.settings.mode in ("demo", "live"):
@@ -153,7 +235,27 @@ class Worker:
             if reconciliation["status"] != "reconciled":
                 self.store.set_state("suspended", True)
         symbol_list = {s["symbol"] for s in self.bridge.symbols()}
+        self.store.set_state("feed_blocked", False)
         statuses = {}
+        resolved = []
+        names = {}
+        for instrument in self.settings.instruments:
+            matches = [s for s in instrument.aliases if s in symbol_list]
+            actual = (
+                instrument.symbol
+                if instrument.symbol in symbol_list
+                else matches[0]
+                if len(matches) == 1
+                else instrument.symbol
+            )
+            if actual in names:
+                raise ValueError("Two configured instruments resolve to the same broker symbol")
+            names[actual] = instrument.symbol
+            resolved.append(instrument.model_copy(update={"symbol": actual}))
+        self.settings = self.settings.model_copy(update={"instruments": tuple(resolved)})
+        self.engine.settings = self.settings
+        self.execution.settings = self.settings
+        self.store.set_state("broker_symbols", {original: actual for actual, original in names.items()})
         for instrument in self.settings.instruments:
             if self.stop_requested():
                 return
@@ -207,8 +309,17 @@ class Worker:
                         else "cooldown"
                     }
                     continue
-                bars = self._bars(selected)
-                closed = [b for b in bars["M1"] if b.end <= now]
+                self.store.set_state(
+                    "worker_health",
+                    {
+                        "at": iso(utcnow()),
+                        "status": "loading_market_data",
+                        "symbol": selected,
+                        "timeframe": "M1",
+                    },
+                )
+                m1 = self.bridge.bars(selected, "M1", 500)
+                closed = [b for b in m1 if b.end <= now]
                 if not closed:
                     statuses[selected] = {"status": "missing_data"}
                     continue
@@ -216,12 +327,21 @@ class Worker:
                 if self.store.state(checkpoint) == iso(closed[-1].end):
                     statuses[selected] = {"status": "watching", "last_bar": iso(closed[-1].end)}
                     continue
+                bars = self._bars(selected, {"M1": m1})
                 peers = {}
                 peer_specs = {}
                 for peer in instrument.peer:
                     if peer in symbol_list:
-                        peer_specs[peer] = self.bridge.spec(peer)
-                        peers[peer] = self._bars(peer)
+                        try:
+                            peer_specs[peer] = self.bridge.spec(peer)
+                            peers[peer] = self._bars(peer)
+                        except MarketDataUnavailable as exc:
+                            if exc.details["scope"] != "symbol":
+                                raise
+                            # Core MSNR is standalone. SMT-required models remain
+                            # rejected by the engine when peer data is unavailable.
+                            peer_specs.pop(peer, None)
+                            self.store.set_state("peer_status:" + selected, exc.details)
                         break
                 quote = self.bridge.quote(selected)
                 now = utcnow()
@@ -295,27 +415,54 @@ class Worker:
                 }
             except WorkerStopping:
                 return
+            except MarketDataUnavailable as exc:
+                statuses[selected] = {"status": "waiting_for_data", "reason": str(exc), **exc.details}
+                self.store.set_state(
+                    "instrument_status",
+                    {names.get(k, k): {**v, "broker_symbol": k} for k, v in statuses.items()},
+                )
+                if exc.details["scope"] != "symbol":
+                    raise
             except Exception as exc:
                 statuses[selected] = {"status": "error", "error_type": type(exc).__name__}
                 self.store.set_state("suspended", True)
                 self.store.event("worker.error", selected, {"error_type": type(exc).__name__}, now)
                 self.store.enqueue(
-                    "failure:" + selected + ":" + now.strftime("%Y-%m-%dT%H"),
+                    "critical-failure:" + now.strftime("%Y-%m-%dT%H"),
                     {
                         "type": "operational failure",
                         "summary": f"{selected}: {type(exc).__name__}. New execution is suspended; inspect local diagnostics.",
                     },
                     now,
                 )
-        self.store.set_state("instrument_status", statuses)
         self.store.set_state(
-            "worker_health", {"at": iso(utcnow()), "status": "running", "mode": self.settings.mode}
+            "instrument_status", {names.get(k, k): {**v, "broker_symbol": k} for k, v in statuses.items()}
+        )
+        incident = self.store.state("feed_incident")
+        if incident and incident.get("active"):
+            incident["recovered_checks"] = incident.get("recovered_checks", 0) + 1
+            if incident["recovered_checks"] >= 2:
+                incident["active"] = False
+                self.store.event("feed.restored", incident["id"], {}, utcnow())
+            self.store.set_state("feed_incident", incident)
+        state = (
+            "running"
+            if any(v["status"] == "watching" for v in statuses.values())
+            else (
+                "waiting_for_data"
+                if any(
+                    v["status"] in ("waiting_for_data", "missing_data", "error") for v in statuses.values()
+                )
+                else "connected_no_open_markets"
+            )
+        )
+        self.store.set_state(
+            "worker_health", {"at": iso(utcnow()), "status": state, "mode": self.settings.mode}
         )
         if self.stop_requested():
             return
         schedule_reports(self.store, now, self.settings.risk.paper_balance)
-        if self.discord and self.store.state("notifications_enabled", True):
-            self.discord.deliver_one(now)
+        self.deliver_notice(now)
 
     def _monitor(self, quote, now):
         if self.settings.mode == "paper":

@@ -142,6 +142,15 @@ def create_app(settings: Settings | None = None, store: Store | None = None):
     @app.get("/api/status", dependencies=[Depends(read_access)])
     def status():
         worker = store.state("worker_health", None)
+        instruments = store.state("instrument_status", {})
+        mapping = store.state("broker_symbols", {})
+        for configured in settings.instruments:
+            symbol = mapping.get(configured.symbol, configured.symbol)
+            quote = store.state("quote:" + symbol)
+            if quote:
+                instruments.setdefault(configured.symbol, {}).update(
+                    broker_symbol=symbol, bid=quote["bid"], ask=quote["ask"], quote_at=quote["time"]
+                )
         fresh = bool(
             worker
             and worker.get("status") in ("running", "loading_market_data")
@@ -155,9 +164,10 @@ def create_app(settings: Settings | None = None, store: Store | None = None):
             "worker_fresh": fresh,
             "kill": store.state("kill", False),
             "suspended": store.state("suspended", False),
+            "feed_blocked": store.state("feed_blocked", False),
             "reality_check_required": store.state("reality_required", False),
             "account": store.state("account_snapshot", None),
-            "instruments": store.state("instrument_status", {}),
+            "instruments": instruments,
             "configured_instruments": [i.symbol for i in settings.instruments if i.enabled],
             "active_signals": len(
                 store.rows(

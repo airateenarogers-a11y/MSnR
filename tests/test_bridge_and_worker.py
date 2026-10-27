@@ -69,7 +69,7 @@ class FakeTerminal:
     def bars(self, *args):
         return [candle(-1, 100, 101, 99, 100)]
 
-    def reconcile(self):
+    def reconcile(self, since=None):
         return {"complete": True, "positions": [], "deals": []}
 
 

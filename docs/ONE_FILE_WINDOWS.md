@@ -46,6 +46,23 @@ This means the database still has a worker owner. It does not indicate an MT5 lo
 
 The repaired launcher verifies each worker using a unique launch identifier because Windows Python can run its interpreter under a different PID from its launcher. Each service has its own Windows process job so restarting a worker also cleans up its child processes. The control window must show **Worker: running** and the dashboard must show current market data before treating the feed as connected.
 
+### If MT5 is logged in but the app reports timeouts
+
+Keep the existing MT5 terminal open. Close MSnR, download the latest installer above, and run that new file. This updates the application and preserves its runtime data. An open chart proves the terminal can display market data; the separate Python connection still needs a successful read.
+
+1. Click **Check MT5 (read only)** in the updated control window. It independently attaches to the selected terminal, reads account mode/permissions, discovers broker symbols, and requests a quote plus five M1 candles per enabled instrument. It never sends, changes or closes an order.
+2. Click **Copy MT5 report** to see/share the result. The JSON contains symbol names, actual prices, quote ages, candle counts, operation timings and MT5 error codes. It excludes the account number, balance, passwords, tokens and webhook. A native call that exceeds the 90-second diagnostic budget is reported with the operation that was in progress.
+3. Click **Connect MT5**. In the dashboard's **Overview → Market watch**, verify the bid/ask prices, quote timestamps and per-instrument status. A readable old quote during market closure is labelled with its age; it is not a tradable live quote. A successful five-candle probe does not establish that every strategy timeframe has sufficient history.
+4. If a previous version latched **Critical-error suspension**, first confirm current quotes and a complete reconciliation. Then use **Settings → Clear reviewed error suspension** once. Existing unknown/partial orders, journal-integrity failures, kill switches and risk restrictions are not bypassed. Temporary read delays in this update use a separate automatic feed wait instead of creating that permanent latch.
+
+The update gives cold history/deal reads a bounded 90-second HTTP deadline, avoids proxy routing for loopback traffic, and rejects queued requests while the native terminal is busy. Bridge logs identify the operation, symbol, timeframe, elapsed time and native error code. The authenticated `/diagnostics` endpoint exposes the active operation without waiting for the native lock.
+
+Subsequent history reads update the latest three bars, refresh the full requested window every five minutes, and reload after gaps; failed reads never fall back to cached prices. Higher-timeframe evaluation begins only after a new closed M1 candle is observed. Reconciliation includes the preceding day and every older unresolved/open local order, instead of scanning from 2020 on every poll. The complete broker position list still detects untracked exposure. Strategy checks, all required timeframes and risk rules remain in force.
+
+Only explicit broker aliases are resolved: the desktop configuration now includes `TSLA → TSLAm` and `GOOGL → GOOGLm`, and preserves any operator aliases. The actual resolved symbol is used consistently in market data, strategy evaluation, journal records and orders. Optional missing SMT peer data does not prevent standalone MSNR evaluation; models that require SMT still reject missing peer evidence.
+
+One persistent feed incident replaces separate notifications for every affected market. Retries back off to at most once per minute, and feed notices are limited to one per 15 minutes. Pending legacy per-market failure notices are marked cancelled with an audit event; their records and all trading outcomes remain intact. No real broker connection or profitable execution is claimed from the automated test results alone.
+
 ## Files and recovery
 
 | Location under `%LOCALAPPDATA%\MSnR` | Purpose |

@@ -63,6 +63,7 @@
     },
     {
       "symbol": "TSLA",
+      "aliases": ["TSLAm"],
       "peer": [
         "QQQ",
         "NVDA"
@@ -73,6 +74,7 @@
     },
     {
       "symbol": "GOOGL",
+      "aliases": ["GOOGLm"],
       "peer": [
         "MSFT",
         "QQQ"

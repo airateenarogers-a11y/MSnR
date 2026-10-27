@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 from uuid import uuid4
 
@@ -51,7 +51,9 @@ class Execution:
                 now,
                 reserved_risk=reserved[0],
                 reserved_count=reserved[1],
-                killed=self.store.state("kill", False, db) or self.store.state("suspended", False, db),
+                killed=self.store.state("kill", False, db)
+                or self.store.state("suspended", False, db)
+                or self.store.state("feed_blocked", False, db),
             )
             if not decision.accepted:
                 self.store.event("execution.rejected", signal.id, decision.model_dump(), now, db)
@@ -262,13 +264,19 @@ class Execution:
     def reconcile(self, now: datetime) -> dict:
         if self.broker is None:
             return {"status": "not_configured"}
-        result = self.broker.reconcile()
+        tracked = self.store.rows("SELECT * FROM orders WHERE status NOT IN ('rejected','closed')")
+        # Include every unresolved/open local order, even if it is years old.
+        # Untracked broker positions still appear in positions_get and block execution.
+        since = min(
+            [now - timedelta(days=1)] + [datetime.fromisoformat(o["created_at"]) for o in tracked]
+        ) - timedelta(minutes=5)
+        result = self.broker.reconcile(since=since)
         if not result.get("complete"):
             self.store.set_state("suspended", True)
             return {"status": "incomplete"}
         deals = result.get("deals", [])
         known_positions = set()
-        for order in self.store.rows("SELECT * FROM orders WHERE status NOT IN ('rejected','closed')"):
+        for order in tracked:
             payload = json.loads(order["payload"])
             if payload["mode"] not in ("demo", "live"):
                 continue
