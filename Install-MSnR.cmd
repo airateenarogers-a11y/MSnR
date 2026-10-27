@@ -14,8 +14,8 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-$SourceCommit = '92a52a70e9f886b5e9551d120f5f35cafd834f15'
-$SourceSha256 = '521ea8d37f850c64b796c7fbe08ed82247cddfb1db848ca7d519f1d4b546374c'
+$SourceCommit = 'eb4f8ffb2675918473d820f6feb27d22176b770b'
+$SourceSha256 = '31a06d367016202e595d120eee32dd4cfc71c76e10cdecaf46557443cadb8ba1'
 $SourceUrl = "https://codeload.github.com/airateenarogers-a11y/MSnR/zip/$SourceCommit"
 $script:UpgradeBackup = $null
 
