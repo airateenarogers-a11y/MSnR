@@ -46,6 +46,17 @@ The worker-lock repair is included in installer source `92a52a70e9f886b5e9551d12
 
 These checks run without connecting an MT5 account or sending an order. They validate the Windows service/installer repair; the broker and strategy-validation limits below still apply. See [the exact recovery procedure](ONE_FILE_WINDOWS.md#if-the-worker-stopped-with-workerlease_unavailable).
 
+## MT5 feed timeout update — 27 October 2026 UTC
+
+Installer source `eb4f8ffb2675918473d820f6feb27d22176b770b` is packaged by `41f58b115bcf628d444ab19607538323a5b67ba7`.
+
+- Local complete suite with real Chrome: **109 passed, 3 Windows-only skips**, one dependency deprecation warning. Ruff and dependency consistency checks pass.
+- [Windows verification](https://github.com/airateenarogers-a11y/MSnR/actions/runs/40432905446/job/121954650708) passed dependency installation, desktop/worker/feed regressions, DPAPI, PowerShell validation, first install, state-preserving upgrade and repeat launch. [Linux verification](https://github.com/airateenarogers-a11y/MSnR/actions/runs/40432905446/job/121954651060) also passed.
+- Controlled tests cover a blocked native-history call with concurrent HTTP requests, immediate busy responses, responsive diagnostics, native error-code propagation, route-specific read deadlines, no order retries, persistent feed backoff, consolidated notifications, incremental history refresh/gap recovery, account-change cache invalidation, broker alias consistency, old unresolved orders in reconciliation, and a read-only diagnostic report without credentials/account numbers.
+- The public pinned installer was compared byte-for-byte with the generated file. SHA-256: `8748f799d9047b26fe3f153f62d5d990e0a070f7279c52150abaaf04f1c6e4d6`.
+
+The Windows runner validates processes, packaging and dependency imports. **MT5 market responses in automated tests are controlled doubles, not a live terminal account.** The user's laptop must run **Check MT5 (read only)** to verify the native connection, prices and M1 candles; full multi-timeframe history and broker execution require their own checks. No real-account connection or order placement was performed during this repair. See [timeout troubleshooting](ONE_FILE_WINDOWS.md#if-mt5-is-logged-in-but-the-app-reports-timeouts).
+
 ## Limits of this evidence
 
 - The 18 named strategy models have catalogue gates and code paths. There is **not yet a complete independent positive/negative historical fixture corpus for every model, direction and market**. A traceability mapping identifies code/test responsibility; it is not proof of every clause's correctness on unseen data. Advanced storylines remain blocked by default until complete level-history coverage is verified.
