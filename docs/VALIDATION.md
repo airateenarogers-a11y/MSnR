@@ -35,6 +35,17 @@ MSNR_CHROME_EXECUTABLE=/workspace/tools/chrome/opt/google/chrome/chrome \
 
 The Chrome executable used was Google Chrome 156.0.8078.47. Its downloaded package SHA-256 was `6c92cd22e90c6e3e255d782991543fa2091db8614e8536a971a7433a5c4d7ac8`, verified against Google's HTTPS package index. This checksum describes the tested package; the installer checks the current published package rather than assuming that version forever.
 
+## Windows worker recovery update — 27 October 2026 UTC
+
+The worker-lock repair is included in installer source `92a52a70e9f886b5e9551d120f5f35cafd834f15`, packaged by commit `bdea3fb5bda87b6a08ae36d2f4992bda59d0803f`.
+
+- Local complete suite with real Chrome: **96 passed, 3 Windows-only skips**, one dependency deprecation warning. Ruff and dependency consistency checks pass.
+- [Native Windows verification](https://github.com/airateenarogers-a11y/MSnR/actions/runs/40428272700/job/121939396916): dependency installation, desktop/worker tests, DPAPI encryption, Windows PowerShell checks, first installation, state-preserving upgrade and repeat launch all passed.
+- Regression coverage includes active/unknown owner rejection, verified dead-owner recovery, legacy lease expiry, Python redirector/interpreter PID differences, orphaned worker cleanup, reconnecting a stopped worker, and graceful lease release. The installer upgrade test preserves the encrypted vault byte-for-byte, retains a runtime sentinel, verifies the backup, and starts/stops real local services on each invocation.
+- The public installer download was byte-compared with the generated file. SHA-256: `c1e1e2c06b3c09273de1c7ac589f141154f847fc1158b3b2995907e486535feb`.
+
+These checks run without connecting an MT5 account or sending an order. They validate the Windows service/installer repair; the broker and strategy-validation limits below still apply. See [the exact recovery procedure](ONE_FILE_WINDOWS.md#if-the-worker-stopped-with-workerlease_unavailable).
+
 ## Limits of this evidence
 
 - The 18 named strategy models have catalogue gates and code paths. There is **not yet a complete independent positive/negative historical fixture corpus for every model, direction and market**. A traceability mapping identifies code/test responsibility; it is not proof of every clause's correctness on unseen data. Advanced storylines remain blocked by default until complete level-history coverage is verified.

@@ -40,6 +40,12 @@ Keep the PC/VPS and the MSnR control window running. Keep MT5 running for market
 
 Close the MSnR control window to stop its worker, bridge and dashboard. Shutdown may take several seconds. It stops only processes this launcher created. A Windows job object terminates its child services if the launcher is forcibly closed. New worker locks record the host, PID and process creation identity: a replacement may recover a lock only when that local process is positively known to have ended. Live, inaccessible or unverifiable owners keep their locks. Old releases created locks without process metadata; those legacy locks must expire (up to ten minutes after the last renewal). The control window shows a stopped worker and the lock expiry instead of claiming execution is enabled. Use Connect MT5 to retry after recovery. Never delete the journal or blindly reset an unknown order/lease.
 
+### If the worker stopped with `worker.lease_unavailable`
+
+This means the database still has a worker owner. It does not indicate an MT5 login failure. Leave MT5 running, close all MSnR control/setup windows, download the current installer from the link above, and run that new file once. The installer backs up the old installation and preserves the journal, settings and encrypted credentials. If the control window reports a legacy lock expiry, wait until that time and click **Connect MT5**. A lock that keeps extending belongs to another active worker; stop that MSnR instance normally first.
+
+The repaired launcher verifies each worker using a unique launch identifier because Windows Python can run its interpreter under a different PID from its launcher. Each service has its own Windows process job so restarting a worker also cleans up its child processes. The control window must show **Worker: running** and the dashboard must show current market data before treating the feed as connected.
+
 ## Files and recovery
 
 | Location under `%LOCALAPPDATA%\MSnR` | Purpose |
