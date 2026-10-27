@@ -1,6 +1,7 @@
 import json
 import os
 import shutil
+import signal
 import time
 
 import httpx
@@ -58,14 +59,55 @@ def test_crashed_worker_restarts_without_waiting_ten_minutes(desktop):
     store = Store(desktop.database)
     old = store.state("worker_lease")
     process = desktop.processes["worker"]
-    process.kill()
+    if os.name == "nt":
+        # Kill the actual interpreter, which can differ from the venv redirector.
+        os.kill(old["pid"], signal.SIGTERM)
+    else:
+        process.kill()
     process.wait(timeout=5)
     assert "Worker stopped" in desktop.worker_problem()
     assert store.state("worker_lease") == old
     desktop.start()
     assert desktop.processes["worker"].pid != process.pid
-    assert store.state("worker_lease")["pid"] == desktop.processes["worker"].pid
+    assert store.state("worker_lease")["session"] == desktop.worker_session
     assert store.rows("SELECT * FROM events WHERE kind='worker.lease_recovered'")
+
+
+def test_worker_launch_handshake_handles_redirector_pid(desktop, monkeypatch):
+    from datetime import timedelta
+    from types import SimpleNamespace
+    from msnr.clock import iso, utcnow
+
+    desktop.worker_session = "this-launch"
+    desktop.processes["worker"] = SimpleNamespace(pid=123, poll=lambda: None)
+    store = Store(desktop.database)
+    lease = {"pid": 456, "session": "this-launch", "until": iso(utcnow() + timedelta(minutes=10))}
+    store.set_state("worker_lease", lease)
+    try:
+        desktop.wait_worker(timeout=0.2)
+        lease["session"] = "another-launch"
+        store.set_state("worker_lease", lease)
+        with pytest.raises(RuntimeError, match="startup has not been confirmed"):
+            desktop.wait_worker(timeout=0.2)
+    finally:
+        desktop.processes.pop("worker")
+
+
+@pytest.mark.skipif(os.name != "nt", reason="Windows job trees include the venv redirector")
+def test_stopping_orphaned_redirector_ends_actual_worker(desktop):
+    from msnr.process_identity import identity
+
+    desktop.start()
+    lease = Store(desktop.database).state("worker_lease")
+    process = desktop.processes["worker"]
+    process.kill()
+    process.wait(timeout=5)
+    desktop.stop_process("worker")
+    deadline = time.monotonic() + 5
+    while identity(lease["pid"]) == lease["process_identity"] and time.monotonic() < deadline:
+        time.sleep(0.1)
+    assert identity(lease["pid"]) != lease["process_identity"]
+    desktop.start()
 
 
 def test_reconnect_restarts_a_dead_worker_even_after_connection_flag(desktop, monkeypatch):

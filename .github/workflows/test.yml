@@ -24,13 +24,27 @@ jobs:
         shell: pwsh
         run: |
           python -m venv .venv
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           .venv/Scripts/python -m pip install --require-hashes -r requirements-windows.lock
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           .venv/Scripts/python -m pip install --no-deps --no-build-isolation -e .
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           .venv/Scripts/python -m pip check
       - name: Test desktop lifecycle and Windows credential encryption
         shell: pwsh
         run: |
-          .venv/Scripts/python -m pytest -q tests/test_desktop.py tests/test_worker_recovery.py
+          .venv/Scripts/python -m pytest -q tests/test_desktop.py tests/test_worker_recovery.py --junitxml=windows-tests.xml
+          if ($LASTEXITCODE -ne 0) {
+            $failureCode = $LASTEXITCODE
+            if (Test-Path windows-tests.xml) {
+              [xml]$results = Get-Content windows-tests.xml -Raw
+              foreach ($failure in $results.SelectNodes('//failure|//error')) {
+                $detail = $failure.InnerText.Replace('%', '%25').Replace("`r", '%0D').Replace("`n", '%0A')
+                Write-Host "::error::$detail"
+              }
+            }
+            exit $failureCode
+          }
           $env:PSModulePath = ''
           powershell -NoProfile -File deployment/test-windows-bootstrap.ps1
       - name: Verify install, upgrade and restart

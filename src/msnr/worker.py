@@ -51,6 +51,7 @@ class Worker:
         self.owner = str(uuid4())
         self.process_id = os.getpid()
         self.process_identity = identity(self.process_id)
+        self.session = os.getenv("MSNR_WORKER_SESSION")
         self.host = socket.gethostname()
         self.stop_event = threading.Event()
         self.recovered = False
@@ -82,6 +83,7 @@ class Worker:
                     "pid": self.process_id,
                     "process_identity": self.process_identity,
                     "host": self.host,
+                    "session": self.session,
                 },
                 db,
             )

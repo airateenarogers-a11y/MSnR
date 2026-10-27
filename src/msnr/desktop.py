@@ -212,7 +212,8 @@ class Supervisor:
         self.processes = {}
         self.streams = {}
         self.stop_files = {}
-        self.job = ProcessJob()
+        self.jobs = {}
+        self.worker_session = None
         self.dashboard_port, self.bridge_port = free_port(8000), free_port(8765)
         self.feed_connected = False
 
@@ -254,6 +255,8 @@ class Supervisor:
         stream = (self.state / f"{role}.log").open("ab", buffering=0)
         env = self.environment(feed)
         if role == "worker":
+            self.worker_session = secrets.token_hex(24)
+            env["MSNR_WORKER_SESSION"] = self.worker_session
             stop_file = self.state / ("stop-" + secrets.token_hex(12))
             self.stop_files[role] = stop_file
             env["MSNR_WORKER_STOP_FILE"] = str(stop_file)
@@ -262,6 +265,7 @@ class Supervisor:
             if os.name == "nt"
             else {"start_new_session": True}
         )
+        job = ProcessJob()
         try:
             process = subprocess.Popen(
                 args,
@@ -272,15 +276,18 @@ class Supervisor:
                 stderr=subprocess.STDOUT,
                 **options,
             )
-            self.job.assign(process)
+            job.assign(process)
         except BaseException:
+            job.close()
             stream.close()
             raise
         self.processes[role], self.streams[role] = process, stream
+        self.jobs[role] = job
 
     def stop_process(self, role):
         process = self.processes.pop(role, None)
         stop_file = self.stop_files.pop(role, None)
+        job = self.jobs.pop(role, None)
         if stop_file:
             stop_file.touch()
         if process and process.poll() is None:
@@ -289,8 +296,14 @@ class Supervisor:
                     process.send_signal(signal.CTRL_BREAK_EVENT if os.name == "nt" else signal.SIGTERM)
                 process.wait(timeout=25)
             except (OSError, subprocess.TimeoutExpired):
+                # Windows venv python.exe can be a redirector. Terminating only
+                # that PID leaves the actual interpreter and its lease alive.
+                if job:
+                    job.close()
                 process.kill()
                 process.wait(timeout=5)
+        if job:
+            job.close()
         stream = self.streams.pop(role, None)
         if stream:
             stream.close()
@@ -334,7 +347,16 @@ class Supervisor:
                 raise RuntimeError(problem)
             process = self.processes.get("worker")
             lease = self.database_state("worker_lease")
-            if process and process.poll() is None and lease and lease.get("pid") == process.pid:
+            # Match this launch, not Popen.pid: Windows venv redirectors can
+            # create a child interpreter with a different PID.
+            if (
+                process
+                and process.poll() is None
+                and self.worker_session
+                and lease
+                and lease.get("session") == self.worker_session
+                and datetime.fromisoformat(lease["until"]) > utcnow()
+            ):
                 return
             time.sleep(0.1)
         raise RuntimeError("Worker startup has not been confirmed. Check worker.log before retrying.")
@@ -416,7 +438,9 @@ class Supervisor:
             for role in ("worker", "bridge", "dashboard"):
                 self.stop_process(role)
         finally:
-            self.job.close()
+            for job in self.jobs.values():
+                job.close()
+            self.jobs.clear()
 
 
 def gui(supervisor: Supervisor, vault: Vault):
